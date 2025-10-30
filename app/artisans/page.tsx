@@ -134,7 +134,7 @@ const Artisans = () => {
       <Header />
 
       {/* Page Header */}
-      <section className="py-12 px-4 bg-gradient-to-b from-muted/50 to-background">
+      <section className="py-12 px-4 bg-linear-to-b from-muted/50 to-background">
         <div className="container mx-auto">
           <div className="text-center space-y-4 mb-8">
             <h1 className="text-4xl lg:text-5xl font-bold">
