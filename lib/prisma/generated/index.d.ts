@@ -1191,7 +1191,6 @@ export namespace Prisma {
     email: string | null
     password: string | null
     emailVerified: boolean | null
-    role: string | null
     banned: boolean | null
     banReason: string | null
     banExpires: Date | null
@@ -1208,7 +1207,6 @@ export namespace Prisma {
     email: string | null
     password: string | null
     emailVerified: boolean | null
-    role: string | null
     banned: boolean | null
     banReason: string | null
     banExpires: Date | null
@@ -1232,6 +1230,7 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     image: number
+    data: number
     _all: number
   }
 
@@ -1244,7 +1243,6 @@ export namespace Prisma {
     email?: true
     password?: true
     emailVerified?: true
-    role?: true
     banned?: true
     banReason?: true
     banExpires?: true
@@ -1261,7 +1259,6 @@ export namespace Prisma {
     email?: true
     password?: true
     emailVerified?: true
-    role?: true
     banned?: true
     banReason?: true
     banExpires?: true
@@ -1285,6 +1282,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     image?: true
+    data?: true
     _all?: true
   }
 
@@ -1368,13 +1366,14 @@ export namespace Prisma {
     email: string | null
     password: string | null
     emailVerified: boolean
-    role: string | null
+    role: JsonValue | null
     banned: boolean | null
     banReason: string | null
     banExpires: Date | null
     createdAt: Date
     updatedAt: Date
     image: string | null
+    data: JsonValue | null
     _count: ProfileCountAggregateOutputType | null
     _min: ProfileMinAggregateOutputType | null
     _max: ProfileMaxAggregateOutputType | null
@@ -1409,6 +1408,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     image?: boolean
+    data?: boolean
     accounts?: boolean | Profile$accountsArgs<ExtArgs>
     sessions?: boolean | Profile$sessionsArgs<ExtArgs>
     _count?: boolean | ProfileCountOutputTypeDefaultArgs<ExtArgs>
@@ -1429,6 +1429,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     image?: boolean
+    data?: boolean
   }, ExtArgs["result"]["profile"]>
 
   export type ProfileSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1446,6 +1447,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     image?: boolean
+    data?: boolean
   }, ExtArgs["result"]["profile"]>
 
   export type ProfileSelectScalar = {
@@ -1463,9 +1465,10 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     image?: boolean
+    data?: boolean
   }
 
-  export type ProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fullName" | "avatarUrl" | "phone" | "email" | "password" | "emailVerified" | "role" | "banned" | "banReason" | "banExpires" | "createdAt" | "updatedAt" | "image", ExtArgs["result"]["profile"]>
+  export type ProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fullName" | "avatarUrl" | "phone" | "email" | "password" | "emailVerified" | "role" | "banned" | "banReason" | "banExpires" | "createdAt" | "updatedAt" | "image" | "data", ExtArgs["result"]["profile"]>
   export type ProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accounts?: boolean | Profile$accountsArgs<ExtArgs>
     sessions?: boolean | Profile$sessionsArgs<ExtArgs>
@@ -1488,13 +1491,14 @@ export namespace Prisma {
       email: string | null
       password: string | null
       emailVerified: boolean
-      role: string | null
+      role: Prisma.JsonValue | null
       banned: boolean | null
       banReason: string | null
       banExpires: Date | null
       createdAt: Date
       updatedAt: Date
       image: string | null
+      data: Prisma.JsonValue | null
     }, ExtArgs["result"]["profile"]>
     composites: {}
   }
@@ -1927,13 +1931,14 @@ export namespace Prisma {
     readonly email: FieldRef<"Profile", 'String'>
     readonly password: FieldRef<"Profile", 'String'>
     readonly emailVerified: FieldRef<"Profile", 'Boolean'>
-    readonly role: FieldRef<"Profile", 'String'>
+    readonly role: FieldRef<"Profile", 'Json'>
     readonly banned: FieldRef<"Profile", 'Boolean'>
     readonly banReason: FieldRef<"Profile", 'String'>
     readonly banExpires: FieldRef<"Profile", 'DateTime'>
     readonly createdAt: FieldRef<"Profile", 'DateTime'>
     readonly updatedAt: FieldRef<"Profile", 'DateTime'>
     readonly image: FieldRef<"Profile", 'String'>
+    readonly data: FieldRef<"Profile", 'Json'>
   }
     
 
@@ -5709,7 +5714,8 @@ export namespace Prisma {
     banExpires: 'banExpires',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    image: 'image'
+    image: 'image',
+    data: 'data'
   };
 
   export type ProfileScalarFieldEnum = (typeof ProfileScalarFieldEnum)[keyof typeof ProfileScalarFieldEnum]
@@ -5770,12 +5776,29 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
   export const QueryMode: {
     default: 'default',
     insensitive: 'insensitive'
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   export const NullsOrder: {
@@ -5809,6 +5832,20 @@ export namespace Prisma {
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -5854,13 +5891,14 @@ export namespace Prisma {
     email?: StringNullableFilter<"Profile"> | string | null
     password?: StringNullableFilter<"Profile"> | string | null
     emailVerified?: BoolFilter<"Profile"> | boolean
-    role?: StringNullableFilter<"Profile"> | string | null
+    role?: JsonNullableFilter<"Profile">
     banned?: BoolNullableFilter<"Profile"> | boolean | null
     banReason?: StringNullableFilter<"Profile"> | string | null
     banExpires?: DateTimeNullableFilter<"Profile"> | Date | string | null
     createdAt?: DateTimeFilter<"Profile"> | Date | string
     updatedAt?: DateTimeFilter<"Profile"> | Date | string
     image?: StringNullableFilter<"Profile"> | string | null
+    data?: JsonNullableFilter<"Profile">
     accounts?: AccountListRelationFilter
     sessions?: SessionListRelationFilter
   }
@@ -5880,6 +5918,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     image?: SortOrderInput | SortOrder
+    data?: SortOrderInput | SortOrder
     accounts?: AccountOrderByRelationAggregateInput
     sessions?: SessionOrderByRelationAggregateInput
   }
@@ -5895,13 +5934,14 @@ export namespace Prisma {
     phone?: StringNullableFilter<"Profile"> | string | null
     password?: StringNullableFilter<"Profile"> | string | null
     emailVerified?: BoolFilter<"Profile"> | boolean
-    role?: StringNullableFilter<"Profile"> | string | null
+    role?: JsonNullableFilter<"Profile">
     banned?: BoolNullableFilter<"Profile"> | boolean | null
     banReason?: StringNullableFilter<"Profile"> | string | null
     banExpires?: DateTimeNullableFilter<"Profile"> | Date | string | null
     createdAt?: DateTimeFilter<"Profile"> | Date | string
     updatedAt?: DateTimeFilter<"Profile"> | Date | string
     image?: StringNullableFilter<"Profile"> | string | null
+    data?: JsonNullableFilter<"Profile">
     accounts?: AccountListRelationFilter
     sessions?: SessionListRelationFilter
   }, "id" | "email">
@@ -5921,6 +5961,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     image?: SortOrderInput | SortOrder
+    data?: SortOrderInput | SortOrder
     _count?: ProfileCountOrderByAggregateInput
     _max?: ProfileMaxOrderByAggregateInput
     _min?: ProfileMinOrderByAggregateInput
@@ -5937,13 +5978,14 @@ export namespace Prisma {
     email?: StringNullableWithAggregatesFilter<"Profile"> | string | null
     password?: StringNullableWithAggregatesFilter<"Profile"> | string | null
     emailVerified?: BoolWithAggregatesFilter<"Profile"> | boolean
-    role?: StringNullableWithAggregatesFilter<"Profile"> | string | null
+    role?: JsonNullableWithAggregatesFilter<"Profile">
     banned?: BoolNullableWithAggregatesFilter<"Profile"> | boolean | null
     banReason?: StringNullableWithAggregatesFilter<"Profile"> | string | null
     banExpires?: DateTimeNullableWithAggregatesFilter<"Profile"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Profile"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Profile"> | Date | string
     image?: StringNullableWithAggregatesFilter<"Profile"> | string | null
+    data?: JsonNullableWithAggregatesFilter<"Profile">
   }
 
   export type AccountWhereInput = {
@@ -6187,13 +6229,14 @@ export namespace Prisma {
     email?: string | null
     password?: string | null
     emailVerified?: boolean
-    role?: string | null
+    role?: NullableJsonNullValueInput | InputJsonValue
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     image?: string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
   }
@@ -6206,13 +6249,14 @@ export namespace Prisma {
     email?: string | null
     password?: string | null
     emailVerified?: boolean
-    role?: string | null
+    role?: NullableJsonNullValueInput | InputJsonValue
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     image?: string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
@@ -6225,13 +6269,14 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
-    role?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: NullableJsonNullValueInput | InputJsonValue
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
   }
@@ -6244,13 +6289,14 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
-    role?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: NullableJsonNullValueInput | InputJsonValue
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -6263,13 +6309,14 @@ export namespace Prisma {
     email?: string | null
     password?: string | null
     emailVerified?: boolean
-    role?: string | null
+    role?: NullableJsonNullValueInput | InputJsonValue
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     image?: string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type ProfileUpdateManyMutationInput = {
@@ -6280,13 +6327,14 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
-    role?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: NullableJsonNullValueInput | InputJsonValue
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type ProfileUncheckedUpdateManyInput = {
@@ -6297,13 +6345,14 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
-    role?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: NullableJsonNullValueInput | InputJsonValue
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type AccountCreateInput = {
@@ -6604,6 +6653,29 @@ export namespace Prisma {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
 
   export type BoolNullableFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
@@ -6672,6 +6744,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     image?: SortOrder
+    data?: SortOrder
   }
 
   export type ProfileMaxOrderByAggregateInput = {
@@ -6682,7 +6755,6 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     emailVerified?: SortOrder
-    role?: SortOrder
     banned?: SortOrder
     banReason?: SortOrder
     banExpires?: SortOrder
@@ -6699,7 +6771,6 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     emailVerified?: SortOrder
-    role?: SortOrder
     banned?: SortOrder
     banReason?: SortOrder
     banExpires?: SortOrder
@@ -6750,6 +6821,32 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
   export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -7171,6 +7268,29 @@ export namespace Prisma {
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
   }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
 
   export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
@@ -7357,13 +7477,14 @@ export namespace Prisma {
     email?: string | null
     password?: string | null
     emailVerified?: boolean
-    role?: string | null
+    role?: NullableJsonNullValueInput | InputJsonValue
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     image?: string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
     sessions?: SessionCreateNestedManyWithoutUserInput
   }
 
@@ -7375,13 +7496,14 @@ export namespace Prisma {
     email?: string | null
     password?: string | null
     emailVerified?: boolean
-    role?: string | null
+    role?: NullableJsonNullValueInput | InputJsonValue
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     image?: string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -7409,13 +7531,14 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
-    role?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: NullableJsonNullValueInput | InputJsonValue
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
     sessions?: SessionUpdateManyWithoutUserNestedInput
   }
 
@@ -7427,13 +7550,14 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
-    role?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: NullableJsonNullValueInput | InputJsonValue
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -7445,13 +7569,14 @@ export namespace Prisma {
     email?: string | null
     password?: string | null
     emailVerified?: boolean
-    role?: string | null
+    role?: NullableJsonNullValueInput | InputJsonValue
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     image?: string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
     accounts?: AccountCreateNestedManyWithoutUserInput
   }
 
@@ -7463,13 +7588,14 @@ export namespace Prisma {
     email?: string | null
     password?: string | null
     emailVerified?: boolean
-    role?: string | null
+    role?: NullableJsonNullValueInput | InputJsonValue
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     image?: string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -7497,13 +7623,14 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
-    role?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: NullableJsonNullValueInput | InputJsonValue
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
     accounts?: AccountUpdateManyWithoutUserNestedInput
   }
 
@@ -7515,13 +7642,14 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
-    role?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: NullableJsonNullValueInput | InputJsonValue
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
   }
 
