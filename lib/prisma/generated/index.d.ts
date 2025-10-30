@@ -1723,7 +1723,7 @@ export namespace Prisma {
     /**
      * The data needed to create a Profile.
      */
-    data: XOR<ProfileCreateInput, ProfileUncheckedCreateInput>
+    data?: XOR<ProfileCreateInput, ProfileUncheckedCreateInput>
   }
 
   /**
@@ -2065,7 +2065,7 @@ export namespace Prisma {
   }
 
   export type ProfileCreateInput = {
-    id: string
+    id?: string
     fullName?: string | null
     avatarUrl?: string | null
     phone?: string | null
@@ -2076,7 +2076,7 @@ export namespace Prisma {
   }
 
   export type ProfileUncheckedCreateInput = {
-    id: string
+    id?: string
     fullName?: string | null
     avatarUrl?: string | null
     phone?: string | null
@@ -2109,7 +2109,7 @@ export namespace Prisma {
   }
 
   export type ProfileCreateManyInput = {
-    id: string
+    id?: string
     fullName?: string | null
     avatarUrl?: string | null
     phone?: string | null

@@ -24,6 +24,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { authClient } from "@/lib/client";
 import { useRouter } from "next/navigation";
 
 const loginSchema = z.object({
@@ -58,41 +59,39 @@ const Auth = () => {
 
   useEffect(() => {
     // Check if user is already logged in
-    // const checkUser = async () => {
-    //   const {
-    //     data: { session },
-    //   } = await supabase.auth.getSession();
-    //   if (session) {
-    //     navigate("/");
-    //   }
-    // };
-    // checkUser();
+    const checkUser = async () => {
+      const { data } = await authClient.getSession();
+      if (data?.session) {
+        navigate.push("/");
+      }
+    };
+    checkUser();
   }, [navigate]);
 
   const handleLogin = async (data: LoginFormData) => {
     setIsLoading(true);
     try {
-      //   const { error } = await supabase.auth.signInWithPassword({
-      //     email: data.email,
-      //     password: data.password,
-      //   });
+      const { error, data: userData } = await authClient.signIn.email({
+        email: data.email,
+        password: data.password,
+      });
 
-      //   if (error) {
-      //     if (error.message.includes("Invalid login credentials")) {
-      //       toast({
-      //         variant: "destructive",
-      //         title: "Login failed",
-      //         description: "Invalid email or password. Please try again.",
-      //       });
-      //     } else {
-      //       toast({
-      //         variant: "destructive",
-      //         title: "Login failed",
-      //         description: error.message,
-      //       });
-      //     }
-      //     return;
-      //   }
+      if (error) {
+        if (error?.message?.includes("Invalid login credentials")) {
+          toast({
+            variant: "destructive",
+            title: "Login failed",
+            description: "Invalid email or password. Please try again.",
+          });
+        } else {
+          toast({
+            variant: "destructive",
+            title: "Login failed",
+            description: error.message,
+          });
+        }
+        return;
+      }
 
       toast({
         title: "Welcome back!",
@@ -113,24 +112,24 @@ const Auth = () => {
   const handleSignup = async (data: SignupFormData) => {
     setIsLoading(true);
     try {
-      //   const { error } = await supabase.auth.signUp({
-      //     email: data.email,
-      //     password: data.password,
-      //     options: {
-      //       data: {
-      //         full_name: data.fullName,
-      //       },
-      //     },
-      //   });
+      const { error } = await authClient.signUp.email({
+        email: data.email,
+        password: data.password,
+        name: data.fullName,
+        callbackURL: "https://example.com/callback",
+        
+      });
 
-      //   if (error) {
-      //     toast({
-      //       variant: "destructive",
-      //       title: "Signup failed",
-      //       description: error.message,
-      //     });
-      //     return;
-      //   }
+      if (error) {
+        console.log(error, "error here..");
+
+        toast({
+          variant: "destructive",
+          title: "Signup failed",
+          description: error.message,
+        });
+        return;
+      }
 
       toast({
         title: "Account created!",
@@ -151,19 +150,22 @@ const Auth = () => {
   const handleGoogleLogin = async () => {
     setIsLoading(true);
     try {
-      //   const { error } = await supabase.auth.signInWithOAuth({
-      //     provider: "google",
-      //     options: {
-      //       redirectTo: `${window.location.origin}/`,
-      //     },
-      //   });
-      //   if (error) {
-      //     toast({
-      //       variant: "destructive",
-      //       title: "Google login failed",
-      //       description: error.message,
-      //     });
-      //   }
+      const { error } = await authClient.signIn.social({
+        provider: "google",
+        idToken: {
+          token: "",
+          accessToken: "",
+        },
+        callbackURL: `${window.location.origin}/`,
+      });
+
+      if (error) {
+        toast({
+          variant: "destructive",
+          title: "Google login failed",
+          description: error.message,
+        });
+      }
     } catch (error) {
       toast({
         variant: "destructive",

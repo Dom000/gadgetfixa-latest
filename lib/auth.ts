@@ -1,7 +1,7 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
-// If your Prisma file is located elsewhere, you can change the path
 import { PrismaClient } from "@/lib/prisma/generated";
+import * as argon2 from "argon2";
 
 const prisma = new PrismaClient();
 export const auth = betterAuth({
@@ -10,6 +10,16 @@ export const auth = betterAuth({
   }),
   emailAndPassword: {
     enabled: true,
+    password: {
+      hash: async (password: string) => {
+        const hashedPassword = await argon2.hash(password);
+        return hashedPassword;
+      },
+      verify: async (data: { hash: string; password: string }) => {
+        const isValid = await argon2.verify(data.hash, data.password);
+        return isValid;
+      },
+    },
   },
   socialProviders: {
     google: {
