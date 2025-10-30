@@ -116,8 +116,7 @@ const Auth = () => {
         email: data.email,
         password: data.password,
         name: data.fullName,
-        callbackURL: "https://example.com/callback",
-        
+        // callbackURL: "https://example.com/callback",
       });
 
       if (error) {
