@@ -76,6 +76,8 @@ const Auth = () => {
         password: data.password,
       });
 
+      console.log(userData, "here..");
+
       if (error) {
         if (error?.message?.includes("Invalid login credentials")) {
           toast({

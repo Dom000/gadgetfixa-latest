@@ -16,10 +16,16 @@ model Profile {
   email         String?   @unique
   password      String?
   emailVerified Boolean   @default(false) @map("email_verified")
+  role          String?   @default("user")
+  banned        Boolean?  @default(false)
+  banReason     String?   @map("ban_reason")
+  banExpires    DateTime? @map("ban_expires")
   createdAt     DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt     DateTime  @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
   accounts      Account[]
   sessions      Session[]
+
+  image String?
 
   @@map("profiles")
 }
@@ -47,14 +53,15 @@ model Account {
 }
 
 model Session {
-  id        String   @id @default(cuid())
-  userId    String   @map("user_id")
-  token     String   @unique
-  expiresAt DateTime @map("expires_at")
-  ipAddress String?  @map("ip_address")
-  userAgent String?  @map("user_agent")
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  id             String   @id @default(cuid())
+  userId         String   @map("user_id")
+  token          String   @unique
+  expiresAt      DateTime @map("expires_at")
+  ipAddress      String?  @map("ip_address")
+  userAgent      String?  @map("user_agent")
+  impersonatedBy String?  @map("impersonated_by")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
 
   user Profile @relation(fields: [userId], references: [id], onDelete: Cascade)
 
