@@ -61,7 +61,7 @@ export function NavMain({
                       className={
                         path == item.url ||
                         item.items?.some((subItem) => path == subItem.url)
-                          ? "text-pink-500/50"
+                          ? "text-blue-500/70"
                           : ""
                       }
                     />

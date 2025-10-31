@@ -84,21 +84,20 @@ export function NavUser({
             <DropdownMenuGroup>
               <Link href="/home/account">
                 <DropdownMenuItem>
-                  <BadgeCheck />
-                  Account
+                  <BadgeCheck size={16} className="mr-3" /> Account
                 </DropdownMenuItem>
               </Link>
 
-              <DropdownMenuItem asChild>
+              <DropdownMenuItem disabled asChild>
                 <Link href="/home/notification">
-                  <Bell />
+                  <Bell size={16} className="mr-3" />
                   Notifications
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleLogout}>
-              <LogOut />
+            <DropdownMenuItem className="" onClick={handleLogout}>
+              <LogOut size={16} className="mr-3" />
               Log out
             </DropdownMenuItem>
           </DropdownMenuContent>

@@ -77,7 +77,7 @@ export function TeamSwitcher({
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <div className="flex aspect-square size-14 items-center justify-center ">
+              <div className="flex aspect-square  items-center justify-center ">
                 <Link
                   href="/"
                   className=" font-bold bg-gradient-primary bg-clip-text text-transparent"

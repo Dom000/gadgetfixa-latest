@@ -31,6 +31,9 @@ import {
   Handshake,
   Sword,
   Swords,
+  Inbox,
+  Building2Icon,
+  User,
 } from "lucide-react";
 import { LiaCoinsSolid } from "react-icons/lia";
 import {
@@ -103,106 +106,32 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     },
     navMain: [
       {
-        title: "Quizes",
-        url: "/home",
-        icon: Newspaper,
-      },
-      {
-        title: "Quiz histories",
-        url: "/home/account/quiz-history",
-        icon: History,
-      },
-      {
-        title: "Notifications",
-        url: "/home/notification",
-        icon: Bell,
-      },
-      {
-        title: "Account",
+        title: "Bussiness Management",
         url: "#",
-        icon: SquareUser,
+        icon: Building2Icon,
         isActive: true,
         showArrow: true,
         items: [
           {
-            title: "Profile",
-            url: "/home/account",
+            title: "My Bussinesses",
+            url: "/home",
           },
           {
-            title: "Settings",
+            title: "Create Bussiness",
             url: "/home/account/settings",
           },
         ],
       },
       {
-        title: "Ambassadorship",
-        url: "#",
-        icon: SquareUser,
-        isActive: true,
-        showArrow: true,
-        items: [
-          {
-            title: "Active Markets",
-            url: "/home/active-markets",
-          },
-        ],
+        title: "Inbox",
+        url: "/home/inbox",
+        icon: Inbox,
       },
+
       {
-        title: "Referals & Earnings",
-        url: "#",
-        icon: Users,
-        isActive: true,
-        showArrow: true,
-        items: [
-          {
-            title: "Referals",
-            url: "/home/referals",
-          },
-          {
-            title: "Ref. Earnings",
-            url: "/home/referals/earnings",
-          },
-        ],
-      },
-      {
-        title: "Quiz points",
-        url: "/home/quiz-points",
-        icon: Gem,
-      },
-      {
-        title: "My Jackpots",
-        url: "/home/my-jackpots",
-        icon: Trophy,
-      },
-      {
-        title: "Tournaments",
-        url: "/home/tournaments",
-        icon: Swords,
-      },
-      {
-        title: "Team Management",
-        url: "#",
-        icon: Users,
-        isActive: true,
-        showArrow: true,
-        items: [
-          {
-            title: "My Team",
-            url: "/home/team",
-          },
-          {
-            title: "Create Team",
-            url: "/home/team/create",
-          },
-          {
-            title: "Add Members",
-            url: "/home/team/add-members",
-          },
-          {
-            title: "Transfer Market",
-            url: "/home/team/transfer-market",
-          },
-        ],
+        title: "Account",
+        url: "/home/account",
+        icon: User,
       },
     ],
     admin: [
@@ -215,131 +144,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         title: "Users",
         url: "/admin/users",
         icon: Users,
-      },
-      {
-        title: "Testimonials",
-        url: "/admin/testimonials",
-        icon: FileVideo2,
-      },
-      {
-        title: "Create & Edit Variables",
-        url: "/admin/dynamic-variables",
-        icon: Variable,
-      },
-      {
-        title: "Create & Edit Pages",
-        url: "/admin/pages",
-        icon: Layers2,
-      },
-      {
-        title: "Incentives",
-        url: "/admin/incentives",
-        icon: Gift,
-      },
-      {
-        title: "Referals",
-        url: "/admin/referals",
-        icon: Users,
-      },
-      {
-        title: "Prize Redemption",
-        url: "/admin/prize-redemption",
-        icon: GemIcon,
-      },
-      {
-        title: "Manage Teams",
-        url: "/admin/team",
-        icon: Users,
-      },
-      {
-        title: "Ambassadors",
-        url: "/admin/ambassador",
-        icon: Handshake,
-      },
-      {
-        title: "Level",
-        url: "#",
-        icon: ArrowUpNarrowWide,
-        isActive: false,
-        showArrow: true,
-        items: [
-          {
-            title: "All Levels",
-            url: "/admin/levels",
-          },
-          {
-            title: "Create Level",
-            url: "/admin/levels/create_new",
-          },
-        ],
-      },
-      {
-        title: "Quizes",
-        url: "#",
-        icon: SquareMenu,
-        isActive: true,
-        showArrow: true,
-        items: [
-          {
-            title: "All Quizes",
-            url: "/admin/quizes",
-          },
-          {
-            title: "Create Quiz",
-            url: "/admin/quizes/create_new",
-          },
-        ],
-      },
-      {
-        title: "Quiz points/Jackpots",
-        url: "#",
-        icon: Trophy,
-        isActive: true,
-        showArrow: true,
-        items: [
-          {
-            title: "Quiz points",
-            url: "/admin/quiz-points",
-          },
-          {
-            title: "Jackpots",
-            url: "/admin/quiz-points/jackpots",
-          },
-        ],
-      },
-      {
-        title: "Manage Market",
-        url: "#",
-        icon: Store,
-        isActive: true,
-        showArrow: true,
-        items: [
-          {
-            title: "Markets",
-            url: "/admin/markets",
-          },
-          {
-            title: "create Market",
-            url: "/admin/markets/create-new",
-          },
-        ],
-      },
-      {
-        title: "Manage Tournament",
-        url: "#",
-        icon: Swords,
-        isActive: true,
-        showArrow: true,
-        items: [
-          {
-            title: "Create",
-            url: "/admin/tournaments/create-new",
-          },
-          {
-            title: "All Tournaments",
-            url: "/admin/tournaments",
-          },
-        ],
       },
     ],
   };
