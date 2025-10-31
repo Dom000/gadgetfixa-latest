@@ -28,7 +28,6 @@ const testimonials = [
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
-      <Header />
 
       {/* Hero Section */}
       <section className="relative py-20 px-4 overflow-hidden">

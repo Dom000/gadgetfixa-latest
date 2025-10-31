@@ -1,7 +1,7 @@
 import { AppSidebar } from "@/components/SideBar";
 import React from "react";
 
-function FeedLayout({
+function AdminLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -14,4 +14,4 @@ function FeedLayout({
   );
 }
 
-export default FeedLayout;
+export default AdminLayout;

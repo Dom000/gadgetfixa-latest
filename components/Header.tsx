@@ -1,23 +1,29 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Search, Menu, LogOut, User } from "lucide-react";
+import { Search, Menu, LogOut, User, PanelLeft, Ellipsis } from "lucide-react";
 // import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import type { User as SupabaseUser } from "@supabase/supabase-js";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
+  DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
+import { useSidebar } from "./ui/sidebar";
+import { Input } from "./ui/input";
 
 const Header = () => {
   const [user, setUser] = useState<SupabaseUser | null>(null);
   const navigate = useRouter();
   const { toast } = useToast();
+  const { toggleSidebar, open } = useSidebar();
 
   useEffect(() => {
     // Set up auth state listener
@@ -49,6 +55,37 @@ const Header = () => {
     //   navigate("/");
     // }
   };
+  const path = usePathname();
+  if (path.match("/home*|/admin*")) {
+    return (
+      <div
+        className={cn(
+          "flex h-16 bg-gray-50 justify-end bg-clip-padding backdrop-filter backdrop-blur-md   shadow-sm  space-x-3 md:space-x-1 py-3 sm:py-3 px-2 sm:px-14   z-10 sticky top-0 w-full ",
+          open ? "justify-evenly sm:px-16" : "justify-between"
+        )}
+      >
+        <Button
+          data-sidebar="trigger"
+          variant="ghost"
+          size="icon"
+          className={cn(
+            "h-7 w-7 hidden",
+            open ? " sm:mr-48 md:mr-48" : "sm:mr-80 md:mr-96"
+          )}
+          onClick={(event) => {
+            toggleSidebar();
+          }}
+        >
+          <PanelLeft />
+          <span className="sr-only">Toggle Sidebar</span>
+        </Button>
+        <div className="relative w-4/5 md:w-2/5 ">
+          <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+          <Input placeholder="Search Quiz title" type="text" className="pl-8" />{" "}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <header className=" border-b border-border sticky top-0 z-50 backdrop-blur-sm bg-background/95">

@@ -3,6 +3,7 @@ import { Orbitron, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/providers";
 import { SidebarProvider } from "@/components/ui/sidebar";
+import Header from "@/components/Header";
 
 const orbitron = Orbitron({
   variable: "--font-orbitron",
@@ -16,7 +17,8 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "Gadget Fixa",
-  description: "A modern platform connecting customers with skilled artisans for gadget repairs and maintenance services",
+  description:
+    "A modern platform connecting customers with skilled artisans for gadget repairs and maintenance services",
 };
 
 export default function RootLayout({
@@ -31,7 +33,11 @@ export default function RootLayout({
       >
         {" "}
         <SidebarProvider>
-          <Providers>{children}</Providers>
+          <Providers>
+            {" "}
+            <Header />
+            {children}
+          </Providers>
         </SidebarProvider>
       </body>
     </html>
