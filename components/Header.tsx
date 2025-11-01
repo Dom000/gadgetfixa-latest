@@ -69,7 +69,7 @@ const Header = () => {
           variant="ghost"
           size="icon"
           className={cn(
-            "h-7 w-7 hidden",
+            "h-7 w-7 md:hidden",
             open ? " sm:mr-48 md:mr-48" : "sm:mr-80 md:mr-96"
           )}
           onClick={(event) => {

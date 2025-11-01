@@ -21,6 +21,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { Badge } from "./ui/badge";
 
 export function TeamSwitcher({
   teams,
@@ -85,12 +86,16 @@ export function TeamSwitcher({
                   Gadget Fixa
                 </Link>
               </div>
-              <div className="grid flex-1 text-left text-sm leading-tight">
+              <Badge variant={"secondary"}>
                 <span className="truncate font-semibold">
                   {activeTeam.name}
                 </span>
                 <span className="truncate text-xs">{activeTeam.plan}</span>
-              </div>
+              </Badge>
+              {/* <div className="grid flex-1 text-left text-sm leading-tight">
+               
+                <span className="truncate text-xs">{activeTeam.plan}</span>
+              </div> */}
               <ChevronsUpDown className="ml-auto" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>

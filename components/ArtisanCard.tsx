@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Phone, MapPin, Clock, MessageCircle } from "lucide-react";
+import { Phone, MapPin, Clock, MessageCircle, Settings } from "lucide-react";
 import StarRating from "./StarRating";
 
 interface ArtisanCardProps {
@@ -18,6 +18,7 @@ interface ArtisanCardProps {
     isOnline: boolean;
     profileImage: string;
     specialties: string[];
+    private?: boolean;
   };
 }
 
@@ -36,15 +37,25 @@ const ArtisanCard = ({ artisan }: ArtisanCardProps) => {
             <div className="flex-1">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="font-semibold text-lg text-foreground">{artisan.name}</h3>
+                  <h3 className="font-semibold text-lg text-foreground">
+                    {artisan.name}
+                  </h3>
                   <p className="text-primary font-medium">{artisan.shopName}</p>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <div className={`w-3 h-3 rounded-full ${artisan.isOnline ? 'bg-secondary' : 'bg-muted-foreground'}`} />
-                  <span className="text-sm text-muted-foreground">
-                    {artisan.isOnline ? 'Online' : 'Offline'}
-                  </span>
-                </div>
+                {!artisan.private && (
+                  <div className="flex items-center space-x-2">
+                    <div
+                      className={`w-3 h-3 rounded-full ${
+                        artisan.isOnline
+                          ? "bg-secondary"
+                          : "bg-muted-foreground"
+                      }`}
+                    />
+                    <span className="text-sm text-muted-foreground">
+                      {artisan.isOnline ? "Online" : "Offline"}
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -82,16 +93,29 @@ const ArtisanCard = ({ artisan }: ArtisanCardProps) => {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex space-x-2 pt-2">
-            <Button className="flex-1" variant="hero">
-              <MessageCircle className="w-4 h-4 mr-2" />
-              Contact
-            </Button>
-            <Button variant="outline" className="flex-1">
-              <Clock className="w-4 h-4 mr-2" />
-              Book Now
-            </Button>
-          </div>
+          {artisan.private ? (
+            <div className="flex space-x-2 pt-2">
+              <Button className="flex-1" variant="hero">
+                <MessageCircle className="w-4 h-4 mr-2" />
+                View Inboxes
+              </Button>
+              <Button variant="outline" className="flex-1">
+                <Settings className="w-4 h-4 mr-2" />
+                Manage
+              </Button>
+            </div>
+          ) : (
+            <div className="flex space-x-2 pt-2">
+              <Button className="flex-1" variant="hero">
+                <MessageCircle className="w-4 h-4 mr-2" />
+                Contact
+              </Button>
+              <Button variant="outline" className="flex-1">
+                <Clock className="w-4 h-4 mr-2" />
+                Book Now
+              </Button>
+            </div>
+          )}
         </div>
       </CardContent>
     </Card>

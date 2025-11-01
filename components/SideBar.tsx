@@ -34,6 +34,7 @@ import {
   Inbox,
   Building2Icon,
   User,
+  ConstructionIcon,
 } from "lucide-react";
 import { LiaCoinsSolid } from "react-icons/lia";
 import {
@@ -106,6 +107,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     },
     navMain: [
       {
+        title: "Find Arisans",
+        url: "/artisans",
+        icon: ConstructionIcon,
+      },
+      {
         title: "Bussiness Management",
         url: "#",
         icon: Building2Icon,
@@ -118,7 +124,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           },
           {
             title: "Create Bussiness",
-            url: "/home/account/settings",
+            url: "/home/create-biz",
           },
         ],
       },
