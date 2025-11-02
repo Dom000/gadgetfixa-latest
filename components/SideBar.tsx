@@ -124,7 +124,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           },
           {
             title: "Create Bussiness",
-            url: "/home/create-biz",
+            url: "/home/my-businesses/create",
           },
         ],
       },

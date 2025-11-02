@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Phone, MapPin, Clock, MessageCircle, Settings } from "lucide-react";
 import StarRating from "./StarRating";
+import Link from "next/link";
 
 interface ArtisanCardProps {
   artisan: {
@@ -99,10 +100,12 @@ const ArtisanCard = ({ artisan }: ArtisanCardProps) => {
                 <MessageCircle className="w-4 h-4 mr-2" />
                 View Inboxes
               </Button>
-              <Button variant="outline" className="flex-1">
-                <Settings className="w-4 h-4 mr-2" />
-                Manage
-              </Button>
+              <Link className="w-full" href={"/home/my-businesses/edit"}>
+                <Button variant="outline" className="flex-1">
+                  <Settings className="w-4 h-4 mr-2" />
+                  Manage
+                </Button>
+              </Link>
             </div>
           ) : (
             <div className="flex space-x-2 pt-2">

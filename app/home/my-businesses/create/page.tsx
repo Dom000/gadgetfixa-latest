@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { MultiSelect } from "@/components/ui/multi-select";
+import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
@@ -107,24 +108,25 @@ function page() {
                 </FormItem>
               )}
             />
-            <FormField
-              control={createBiz.control}
-              name="description"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Description</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="text"
-                      placeholder="Description"
-                      {...field}
-                      disabled={isLoading}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <div className="col-span-2">
+              <FormField
+                control={createBiz.control}
+                name="description"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="my-20">Description</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        placeholder="Description"
+                        {...field}
+                        disabled={isLoading}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
             <FormField
               control={createBiz.control}
               name="categories"
@@ -215,16 +217,16 @@ function page() {
                 </FormItem>
               )}
             />
-            <Button
-              type="submit"
-              className="w-fit"
-              disabled={isLoading}
-              variant="hero"
-            >
-              {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              Create Bussiness
-            </Button>
-          </form>
+          </form>{" "}
+          <Button
+            type="submit"
+            className="w-fit"
+            disabled={isLoading}
+            variant="hero"
+          >
+            {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+            Create Bussiness
+          </Button>
         </Form>{" "}
       </div>
     </div>
