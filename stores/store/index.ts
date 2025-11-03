@@ -9,7 +9,6 @@ export type AppActions = {
   login: (user: any) => void;
   logout: () => void;
   getIsAdmin: () => boolean;
-  setDefaultView: (by: any) => void;
 };
 
 export const useAppStore = create<AppState>()(

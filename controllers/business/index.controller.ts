@@ -5,7 +5,12 @@ export async function createBusiness(arg: any) {
   return data;
 }
 
-export async function getBusiness() {
-  const { data } = await axios.get("/api/business");
+export async function getBusiness(page = 1, limit = 10) {
+  const { data } = await axios.get(`/api/business?page=${page}&limit=${limit}`);
+  return data;
+}
+
+export async function getBusinessById(id: string) {
+  const { data } = await axios.get(`/api/business/${id}`);
   return data;
 }

@@ -6,11 +6,11 @@ export enum DefaultView {
 export interface AuthState {
   isAuthenticated: boolean;
   isAdmin: any;
-  editPage: boolean;
   userDetails: any | null;
-  defaultView: DefaultView;
+  anonymousUser: any | null;
   login: (user: any) => void;
   logout: () => void;
+  setAnonymousUser: (user: any) => void;
 }
 
 export interface Business {
