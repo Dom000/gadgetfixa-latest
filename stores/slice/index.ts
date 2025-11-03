@@ -1,4 +1,5 @@
-import { AuthState, DefaultView} from "@/types";
+import { authClient } from "@/lib/client";
+import { AuthState, DefaultView } from "@/types";
 import { getCookie } from "cookies-next";
 import { StateCreator } from "zustand";
 
@@ -10,10 +11,24 @@ export const createAuthSlice: StateCreator<AuthState> = (set) => ({
   editPage: false,
   login: (user) => set({ isAuthenticated: true, userDetails: user }),
   logout: () => {
-    set({ isAuthenticated: false, userDetails: null, defaultView: DefaultView.USER, editPage: false });
+    set({
+      isAuthenticated: false,
+      userDetails: null,
+      defaultView: DefaultView.USER,
+      editPage: false,
+    });
     // Clear localStorage to prevent data persistence between users
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem(process.env.NEXT_PUBLIC_USER_PERSIST || "user_persist");
+    if (typeof window !== "undefined") {
+      localStorage.removeItem(
+        process.env.NEXT_PUBLIC_USER_PERSIST || "user_persist"
+      );
+      authClient.signOut({
+        fetchOptions: {
+          onSuccess: () => {
+            window.location.href = "/auth";
+          },
+        },
+      });
     }
   },
   getIsAdmin: () => {

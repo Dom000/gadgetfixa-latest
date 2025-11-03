@@ -113,10 +113,12 @@ const ArtisanCard = ({ artisan }: ArtisanCardProps) => {
                 <MessageCircle className="w-4 h-4 mr-2" />
                 Contact
               </Button>
-              <Button variant="outline" className="flex-1">
-                <Clock className="w-4 h-4 mr-2" />
-                Book Now
-              </Button>
+              <Link className="w-full" href={"/artisans/" + artisan.id}>
+                <Button variant="outline" className="flex-1">
+                  <Clock className="w-4 h-4 mr-2" />
+                  See More
+                </Button>
+              </Link>
             </div>
           )}
         </div>

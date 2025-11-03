@@ -1,10 +1,16 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { Button } from "@/components/ui/button";
-import { Search, Menu, LogOut, User, PanelLeft, Ellipsis } from "lucide-react";
-// import { supabase } from "@/integrations/supabase/client";
+import {
+  Search,
+  Menu,
+  LogOut,
+  User as UserIcon,
+  PanelLeft,
+  Ellipsis,
+  LayoutGrid,
+} from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import type { User as SupabaseUser } from "@supabase/supabase-js";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,42 +24,42 @@ import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useSidebar } from "./ui/sidebar";
 import { Input } from "./ui/input";
-
+import { authClient } from "@/lib/client";
+import { User } from "better-auth";
+import { Prisma } from "@prisma/client";
+import { Profile } from "@/lib/prisma/generated";
 const Header = () => {
-  const [user, setUser] = useState<SupabaseUser | null>(null);
+  const [user, setUser] = useState<Profile | null>(null);
   const navigate = useRouter();
   const { toast } = useToast();
   const { toggleSidebar, open } = useSidebar();
+  const router = useRouter();
+  const { data: session, isPending, error } = authClient.useSession();
 
   useEffect(() => {
-    // Set up auth state listener
-    // const {
-    //   data: { subscription },
-    // } = supabase.auth.onAuthStateChange((event, session) => {
-    //   setUser(session?.user ?? null);
-    // });
-    // // Check for existing session
-    // supabase.auth.getSession().then(({ data: { session } }) => {
-    //   setUser(session?.user ?? null);
-    // });
-    // return () => subscription.unsubscribe();
-  }, []);
+    if (session) {
+      setUser((session?.user as unknown as Profile) ?? null);
+    } else {
+      setUser(null);
+    }
+  }, [session]);
 
   const handleLogout = async () => {
-    // const { error } = await supabase.auth.signOut();
-    // if (error) {
-    //   toast({
-    //     variant: "destructive",
-    //     title: "Logout failed",
-    //     description: error.message,
-    //   });
-    // } else {
-    //   toast({
-    //     title: "Logged out",
-    //     description: "You have been successfully logged out.",
-    //   });
-    //   navigate("/");
-    // }
+    await authClient.signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          router.push("/login");
+        },
+      },
+    });
+  };
+
+  const handleDashboard = () => {
+    if ((user?.role as string[]).includes("admin")) {
+      navigate.push("/admin/dashboard");
+      return;
+    }
+    navigate.push("/home");
   };
   const path = usePathname();
   if (path.match("/home*|/admin*")) {
@@ -122,11 +128,15 @@ const Header = () => {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm">
-                  <User className="w-4 h-4 mr-2" />
+                  <UserIcon className="w-4 h-4 mr-2" />
                   Account
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={handleDashboard}>
+                  <LayoutGrid className="w-4 h-4 mr-2" />
+                  Dashboard
+                </DropdownMenuItem>{" "}
                 <DropdownMenuItem onClick={handleLogout}>
                   <LogOut className="w-4 h-4 mr-2" />
                   Logout

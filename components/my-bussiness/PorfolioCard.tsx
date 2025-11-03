@@ -8,9 +8,15 @@ interface PortfolioCardProps {
   title: string;
   description: string;
   imageUrl: string;
+  viewOnly?: boolean;
 }
 
-function PortfolioCard({ title, description, imageUrl }: PortfolioCardProps) {
+function PortfolioCard({
+  title,
+  description,
+  imageUrl,
+  viewOnly = false,
+}: PortfolioCardProps) {
   const onDelete = () => {
     // Handle delete action
     console.log("Delete portfolio item");
@@ -26,13 +32,15 @@ function PortfolioCard({ title, description, imageUrl }: PortfolioCardProps) {
           className="w-full h-48 object-cover group-hover:brightness-50 transition-all"
         />
         <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity" />
-        <Button
-          size={"icon"}
-          onClick={onDelete}
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-2 bg-red-500 text-white rounded-full hover:bg-red-600 opacity-0 group-hover:opacity-100 transition-opacity z-10"
-        >
-          <Trash2 size={16} />
-        </Button>
+        {viewOnly && (
+          <Button
+            size={"icon"}
+            onClick={onDelete}
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-2 bg-red-500 text-white rounded-full hover:bg-red-600 opacity-0 group-hover:opacity-100 transition-opacity z-10"
+          >
+            <Trash2 size={16} />
+          </Button>
+        )}
       </div>
       <div className="p-4">
         <h3 className="font-bold text-lg mb-2">{title}</h3>

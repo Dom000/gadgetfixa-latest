@@ -89,3 +89,43 @@ const categories = [
   "Gaming Console",
 ];
 export { artisansData, categories };
+
+
+export const portfolioOptions = [
+  {
+    id: "1",
+    title: "Smartphone Screen Repair",
+    description:
+      "Professional iPhone 14 screen replacement with original parts",
+    imageUrl:
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300&h=200&fit=crop",
+  },
+  {
+    id: "2",
+    title: "Laptop Battery Replacement",
+    description: "MacBook Pro battery replacement service with 1-year warranty",
+    imageUrl:
+      "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=300&h=200&fit=crop",
+  },
+  {
+    id: "3",
+    title: "Gaming Console Repair",
+    description: "PS5 overheating fix and thermal paste replacement",
+    imageUrl:
+      "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=300&h=200&fit=crop",
+  },
+  {
+    id: "4",
+    title: "Tablet Water Damage Recovery",
+    description: "iPad water damage repair with data recovery service",
+    imageUrl:
+      "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=300&h=200&fit=crop",
+  },
+  {
+    id: "5",
+    title: "Smartwatch Band Replacement",
+    description: "Apple Watch Series 8 band and crown repair service",
+    imageUrl:
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&h=200&fit=crop",
+  },
+];
