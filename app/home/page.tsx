@@ -10,7 +10,7 @@ function page() {
       <BreadCrumb page="My Bussiness" />
       <div className="mt-10 space-y-5">
         <div className="flex justify-end">
-          <Link href={"/home/create-biz"}>
+          <Link href={"/home/my-businesses/create"}>
             {" "}
             <Button className="" variant="hero">
               <Plus className="w-4 h-4 mr-2" />

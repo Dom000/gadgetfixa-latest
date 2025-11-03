@@ -74,6 +74,7 @@ const Auth = () => {
       const { error, data: userData } = await authClient.signIn.email({
         email: data.email,
         password: data.password,
+        callbackURL: "/home",
       });
 
       console.log(userData, "here..");

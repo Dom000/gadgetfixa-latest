@@ -12,10 +12,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { MultiSelect } from "@/components/ui/multi-select";
 import { Textarea } from "@/components/ui/textarea";
+import { createBusiness } from "@/controllers/business/index.controller";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 const createBizForm = z.object({
@@ -57,8 +60,33 @@ function page() {
     },
   });
 
+  const { mutate, isPending: isCreatingBusiness } = useMutation({
+    mutationFn: createBusiness,
+    onSuccess: () => {
+      toast.success(`Successfully created new business`);
+      setIsLoading(false);
+      createBiz.reset();
+    },
+    onError: (error) => {
+      toast.error(`${error.message}. Please contact support.`);
+      setIsLoading(false);
+    },
+  });
+
   const handleCreateBiz = (data: CreateBizFormData) => {
     console.log("Creating Bussiness with data:", data);
+
+    setIsLoading(true);
+    mutate({
+      bussinessName: data.bussinessName,
+      occupation: data.occupation,
+      categories: data.categories,
+      email: data.email,
+      phone: data.phone,
+      website: data.website,
+      address: data.address,
+      description: data.description,
+    });
   };
   return (
     <div className="w-full space-y-4 mt-2x md:space-y-0 bg-gray-100 rounded-md p-2 md:p-5">
@@ -136,8 +164,8 @@ function page() {
                   <FormControl>
                     <MultiSelect
                       options={options}
-                      onValueChange={setSelectedValues}
-                      defaultValue={selectedValues}
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
                     />
                   </FormControl>
                   <FormMessage />
@@ -217,17 +245,17 @@ function page() {
                 </FormItem>
               )}
             />
-          </form>{" "}
-          <Button
-            type="submit"
-            className="w-fit"
-            disabled={isLoading}
-            variant="hero"
-          >
-            {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            Create Bussiness
-          </Button>
-        </Form>{" "}
+            <Button
+              type="submit"
+              className="w-fit col-span-2"
+              disabled={isLoading}
+              variant="hero"
+            >
+              {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+              Create Bussiness
+            </Button>
+          </form>
+        </Form>
       </div>
     </div>
   );
