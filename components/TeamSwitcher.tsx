@@ -27,10 +27,10 @@ export function TeamSwitcher({
   teams,
 }: {
   teams: {
-    name: string;
+    fullName: string;
     logo: React.ElementType;
-    plan: string;
-    role?: string;
+    plan: string[];
+    role?: string[];
   };
 }) {
   const { isMobile } = useSidebar();
@@ -39,7 +39,7 @@ export function TeamSwitcher({
 
   const handleSwitchAdmin = (event: React.MouseEvent<HTMLDivElement>) => {
     const teamName = event.currentTarget.textContent;
-    const selectedTeam = teams.name === teamName ? teams : null;
+    const selectedTeam = teams.fullName === teamName ? teams : null;
 
     if (selectedTeam) {
       if (selectedTeam.role) {
@@ -56,7 +56,7 @@ export function TeamSwitcher({
   };
   const handleSwitchUser = (event: React.MouseEvent<HTMLDivElement>) => {
     const teamName = event.currentTarget.textContent;
-    const selectedTeam = teams.name === teamName ? teams : null;
+    const selectedTeam = teams.fullName === teamName ? teams : null;
 
     if (selectedTeam) {
       setActiveTeam(selectedTeam);
@@ -88,7 +88,7 @@ export function TeamSwitcher({
               </div>
               <Badge variant={"secondary"}>
                 <span className="truncate font-semibold">
-                  {activeTeam.name}
+                  {activeTeam.fullName}
                 </span>
                 <span className="truncate text-xs">{activeTeam.plan}</span>
               </Badge>
@@ -113,18 +113,18 @@ export function TeamSwitcher({
               <div className="flex size-6 items-center justify-center rounded-sm border">
                 <teams.logo className="size-4 shrink-0" />
               </div>
-              {teams.name}
+              {teams.fullName}
             </DropdownMenuItem>
-            {teams.role && (
+            {teams.role?.includes("admin") && (
               <DropdownMenuItem
-                key={teams.name}
+                key={teams.fullName}
                 onClick={handleSwitchAdmin}
                 className="gap-2 p-2"
               >
                 <div className="flex size-6 items-center justify-center rounded-sm border">
                   <Shield className="size-4 shrink-0" />
                 </div>
-                {teams.name}
+                {teams.fullName}
               </DropdownMenuItem>
             )}
           </DropdownMenuContent>

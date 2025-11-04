@@ -22,6 +22,7 @@ export interface Business {
   website: string;
   address: string;
   description: string;
+  profileId: string;
 }
 
 

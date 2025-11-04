@@ -1,12 +1,25 @@
 "use client";
 import { artisansData } from "@/lib/mock-data";
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import ArtisanCard from "../ArtisanCard";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { getBusinessByProfileId } from "@/controllers/business/index.controller";
+import { useAppStore } from "@/stores/store";
+import { Bussiness } from "@/lib/prisma/generated";
 
 function BussinessCard() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const [sortBy, setSortBy] = useState("rating");
+  const user = useAppStore((state) => state.userDetails);
+
+  const { data } = useQuery<Bussiness>({
+    queryKey: ["businessByProfile"],
+    queryFn: () => getBusinessByProfileId(user?.id),
+  });
+
+  console.log("Business data:", data);
+
   const filteredArtisans = artisansData
     .filter((artisan) => {
       const matchesSearch =

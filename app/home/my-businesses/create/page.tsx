@@ -13,8 +13,10 @@ import { Input } from "@/components/ui/input";
 import { MultiSelect } from "@/components/ui/multi-select";
 import { Textarea } from "@/components/ui/textarea";
 import { createBusiness } from "@/controllers/business/index.controller";
+import { useAppStore } from "@/stores/store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
+import { profile } from "console";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -45,7 +47,7 @@ const options = [
 function page() {
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-
+  const user = useAppStore((state) => state.userDetails);
   const createBiz = useForm<CreateBizFormData>({
     resolver: zodResolver(createBizForm),
     defaultValues: {
@@ -86,6 +88,7 @@ function page() {
       website: data.website,
       address: data.address,
       description: data.description,
+      profileId: user.id,
     });
   };
   return (

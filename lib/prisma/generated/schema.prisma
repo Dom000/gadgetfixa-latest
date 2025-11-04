@@ -98,8 +98,8 @@ model Bussiness {
   website     String?
   createdAt   DateTime    @default(now()) @map("created_at")
   updatedAt   DateTime    @updatedAt @map("updated_at")
-  Profile     Profile?    @relation(fields: [profileId], references: [id])
-  profileId   String?
+  Profile     Profile     @relation(fields: [profileId], references: [id])
+  profileId   String
 
   @@map("businesses")
 }

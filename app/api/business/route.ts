@@ -11,12 +11,14 @@ export async function POST(request: Request) {
     email,
     occupation,
     phone,
+    profileId,
     website,
   } = (await request.json()) as Business;
 
   const data = await prisma.bussiness.create({
     data: {
       address,
+      profileId,
       description,
       email,
       name: bussinessName,

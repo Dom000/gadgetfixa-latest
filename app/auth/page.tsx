@@ -26,6 +26,9 @@ import {
 } from "@/components/ui/form";
 import { authClient } from "@/lib/client";
 import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
+import { getProfileById } from "@/controllers/profile/index.controller";
+import { useAppStore } from "@/stores/store";
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -47,6 +50,7 @@ const Auth = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState("login");
 
+  const setUserDetails = useAppStore((state) => state.login);
   const loginForm = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
     defaultValues: { email: "", password: "" },
@@ -68,16 +72,24 @@ const Auth = () => {
     checkUser();
   }, [navigate]);
 
+  const { mutate: getProfileInfo } = useMutation({
+    mutationFn: getProfileById,
+    onSuccess: (data) => {
+      setUserDetails(data.data);
+      console.log(data, "user-profile...");
+    },
+    onError: (error) => {
+      console.log("Error fetching profile:", error);
+    },
+  });
+
   const handleLogin = async (data: LoginFormData) => {
     setIsLoading(true);
     try {
       const { error, data: userData } = await authClient.signIn.email({
         email: data.email,
         password: data.password,
-        callbackURL: "/home",
       });
-
-      console.log(userData, "here..");
 
       if (error) {
         if (error?.message?.includes("Invalid login credentials")) {
@@ -96,11 +108,13 @@ const Auth = () => {
         return;
       }
 
+      getProfileInfo("sTkOBGnzPDypDWn3pkevPI0MnN3CJRNG");
+
       toast({
         title: "Welcome back!",
         description: "You have successfully logged in.",
       });
-      navigate.push("/");
+      navigate.push("/home");
     } catch (error) {
       toast({
         variant: "destructive",

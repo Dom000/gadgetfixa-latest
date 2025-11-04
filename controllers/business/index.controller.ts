@@ -14,3 +14,13 @@ export async function getBusinessById(id: string) {
   const { data } = await axios.get(`/api/business/${id}`);
   return data;
 }
+
+export async function getBusinessByProfileId(id: string) {
+  try {
+    const response = await axios.get(`/api/business/get-all/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching business by profile:", error);
+    throw error;
+  }
+}

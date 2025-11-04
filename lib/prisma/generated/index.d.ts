@@ -6646,7 +6646,7 @@ export namespace Prisma {
     website: string | null
     createdAt: Date
     updatedAt: Date
-    profileId: string | null
+    profileId: string
     _count: BussinessCountAggregateOutputType | null
     _min: BussinessMinAggregateOutputType | null
     _max: BussinessMaxAggregateOutputType | null
@@ -6681,7 +6681,7 @@ export namespace Prisma {
     categories?: boolean | Bussiness$categoriesArgs<ExtArgs>
     portfolios?: boolean | Bussiness$portfoliosArgs<ExtArgs>
     reviews?: boolean | Bussiness$reviewsArgs<ExtArgs>
-    Profile?: boolean | Bussiness$ProfileArgs<ExtArgs>
+    Profile?: boolean | ProfileDefaultArgs<ExtArgs>
     _count?: boolean | BussinessCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["bussiness"]>
 
@@ -6697,7 +6697,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     profileId?: boolean
-    Profile?: boolean | Bussiness$ProfileArgs<ExtArgs>
+    Profile?: boolean | ProfileDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["bussiness"]>
 
   export type BussinessSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6712,7 +6712,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     profileId?: boolean
-    Profile?: boolean | Bussiness$ProfileArgs<ExtArgs>
+    Profile?: boolean | ProfileDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["bussiness"]>
 
   export type BussinessSelectScalar = {
@@ -6734,14 +6734,14 @@ export namespace Prisma {
     categories?: boolean | Bussiness$categoriesArgs<ExtArgs>
     portfolios?: boolean | Bussiness$portfoliosArgs<ExtArgs>
     reviews?: boolean | Bussiness$reviewsArgs<ExtArgs>
-    Profile?: boolean | Bussiness$ProfileArgs<ExtArgs>
+    Profile?: boolean | ProfileDefaultArgs<ExtArgs>
     _count?: boolean | BussinessCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type BussinessIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Profile?: boolean | Bussiness$ProfileArgs<ExtArgs>
+    Profile?: boolean | ProfileDefaultArgs<ExtArgs>
   }
   export type BussinessIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Profile?: boolean | Bussiness$ProfileArgs<ExtArgs>
+    Profile?: boolean | ProfileDefaultArgs<ExtArgs>
   }
 
   export type $BussinessPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6750,7 +6750,7 @@ export namespace Prisma {
       categories: Prisma.$CategoryPayload<ExtArgs>[]
       portfolios: Prisma.$PortfolioPayload<ExtArgs>[]
       reviews: Prisma.$ReviewPayload<ExtArgs>[]
-      Profile: Prisma.$ProfilePayload<ExtArgs> | null
+      Profile: Prisma.$ProfilePayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6763,7 +6763,7 @@ export namespace Prisma {
       website: string | null
       createdAt: Date
       updatedAt: Date
-      profileId: string | null
+      profileId: string
     }, ExtArgs["result"]["bussiness"]>
     composites: {}
   }
@@ -7161,7 +7161,7 @@ export namespace Prisma {
     categories<T extends Bussiness$categoriesArgs<ExtArgs> = {}>(args?: Subset<T, Bussiness$categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     portfolios<T extends Bussiness$portfoliosArgs<ExtArgs> = {}>(args?: Subset<T, Bussiness$portfoliosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PortfolioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     reviews<T extends Bussiness$reviewsArgs<ExtArgs> = {}>(args?: Subset<T, Bussiness$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Profile<T extends Bussiness$ProfileArgs<ExtArgs> = {}>(args?: Subset<T, Bussiness$ProfileArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    Profile<T extends ProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProfileDefaultArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7667,25 +7667,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ReviewScalarFieldEnum | ReviewScalarFieldEnum[]
-  }
-
-  /**
-   * Bussiness.Profile
-   */
-  export type Bussiness$ProfileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Profile
-     */
-    select?: ProfileSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Profile
-     */
-    omit?: ProfileOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProfileInclude<ExtArgs> | null
-    where?: ProfileWhereInput
   }
 
   /**
@@ -13833,11 +13814,11 @@ export namespace Prisma {
     website?: StringNullableFilter<"Bussiness"> | string | null
     createdAt?: DateTimeFilter<"Bussiness"> | Date | string
     updatedAt?: DateTimeFilter<"Bussiness"> | Date | string
-    profileId?: StringNullableFilter<"Bussiness"> | string | null
+    profileId?: StringFilter<"Bussiness"> | string
     categories?: CategoryListRelationFilter
     portfolios?: PortfolioListRelationFilter
     reviews?: ReviewListRelationFilter
-    Profile?: XOR<ProfileNullableScalarRelationFilter, ProfileWhereInput> | null
+    Profile?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
   }
 
   export type BussinessOrderByWithRelationInput = {
@@ -13851,7 +13832,7 @@ export namespace Prisma {
     website?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    profileId?: SortOrderInput | SortOrder
+    profileId?: SortOrder
     categories?: CategoryOrderByRelationAggregateInput
     portfolios?: PortfolioOrderByRelationAggregateInput
     reviews?: ReviewOrderByRelationAggregateInput
@@ -13872,11 +13853,11 @@ export namespace Prisma {
     website?: StringNullableFilter<"Bussiness"> | string | null
     createdAt?: DateTimeFilter<"Bussiness"> | Date | string
     updatedAt?: DateTimeFilter<"Bussiness"> | Date | string
-    profileId?: StringNullableFilter<"Bussiness"> | string | null
+    profileId?: StringFilter<"Bussiness"> | string
     categories?: CategoryListRelationFilter
     portfolios?: PortfolioListRelationFilter
     reviews?: ReviewListRelationFilter
-    Profile?: XOR<ProfileNullableScalarRelationFilter, ProfileWhereInput> | null
+    Profile?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
   }, "id">
 
   export type BussinessOrderByWithAggregationInput = {
@@ -13890,7 +13871,7 @@ export namespace Prisma {
     website?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    profileId?: SortOrderInput | SortOrder
+    profileId?: SortOrder
     _count?: BussinessCountOrderByAggregateInput
     _max?: BussinessMaxOrderByAggregateInput
     _min?: BussinessMinOrderByAggregateInput
@@ -13910,7 +13891,7 @@ export namespace Prisma {
     website?: StringNullableWithAggregatesFilter<"Bussiness"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Bussiness"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Bussiness"> | Date | string
-    profileId?: StringNullableWithAggregatesFilter<"Bussiness"> | string | null
+    profileId?: StringWithAggregatesFilter<"Bussiness"> | string
   }
 
   export type CategoryWhereInput = {
@@ -14663,7 +14644,7 @@ export namespace Prisma {
     categories?: CategoryCreateNestedManyWithoutBussinessInput
     portfolios?: PortfolioCreateNestedManyWithoutBussinessInput
     reviews?: ReviewCreateNestedManyWithoutBussinessInput
-    Profile?: ProfileCreateNestedOneWithoutBussinessesInput
+    Profile: ProfileCreateNestedOneWithoutBussinessesInput
   }
 
   export type BussinessUncheckedCreateInput = {
@@ -14677,7 +14658,7 @@ export namespace Prisma {
     website?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    profileId?: string | null
+    profileId: string
     categories?: CategoryUncheckedCreateNestedManyWithoutBussinessInput
     portfolios?: PortfolioUncheckedCreateNestedManyWithoutBussinessInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutBussinessInput
@@ -14697,7 +14678,7 @@ export namespace Prisma {
     categories?: CategoryUpdateManyWithoutBussinessNestedInput
     portfolios?: PortfolioUpdateManyWithoutBussinessNestedInput
     reviews?: ReviewUpdateManyWithoutBussinessNestedInput
-    Profile?: ProfileUpdateOneWithoutBussinessesNestedInput
+    Profile?: ProfileUpdateOneRequiredWithoutBussinessesNestedInput
   }
 
   export type BussinessUncheckedUpdateInput = {
@@ -14711,7 +14692,7 @@ export namespace Prisma {
     website?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    profileId?: NullableStringFieldUpdateOperationsInput | string | null
+    profileId?: StringFieldUpdateOperationsInput | string
     categories?: CategoryUncheckedUpdateManyWithoutBussinessNestedInput
     portfolios?: PortfolioUncheckedUpdateManyWithoutBussinessNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutBussinessNestedInput
@@ -14728,7 +14709,7 @@ export namespace Prisma {
     website?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    profileId?: string | null
+    profileId: string
   }
 
   export type BussinessUpdateManyMutationInput = {
@@ -14755,7 +14736,7 @@ export namespace Prisma {
     website?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    profileId?: NullableStringFieldUpdateOperationsInput | string | null
+    profileId?: StringFieldUpdateOperationsInput | string
   }
 
   export type CategoryCreateInput = {
@@ -15522,11 +15503,6 @@ export namespace Prisma {
     none?: PortfolioWhereInput
   }
 
-  export type ProfileNullableScalarRelationFilter = {
-    is?: ProfileWhereInput | null
-    isNot?: ProfileWhereInput | null
-  }
-
   export type CategoryOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -15650,6 +15626,11 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type ProfileNullableScalarRelationFilter = {
+    is?: ProfileWhereInput | null
+    isNot?: ProfileWhereInput | null
   }
 
   export type ReviewCountOrderByAggregateInput = {
@@ -16199,12 +16180,10 @@ export namespace Prisma {
     deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
   }
 
-  export type ProfileUpdateOneWithoutBussinessesNestedInput = {
+  export type ProfileUpdateOneRequiredWithoutBussinessesNestedInput = {
     create?: XOR<ProfileCreateWithoutBussinessesInput, ProfileUncheckedCreateWithoutBussinessesInput>
     connectOrCreate?: ProfileCreateOrConnectWithoutBussinessesInput
     upsert?: ProfileUpsertWithoutBussinessesInput
-    disconnect?: ProfileWhereInput | boolean
-    delete?: ProfileWhereInput | boolean
     connect?: ProfileWhereUniqueInput
     update?: XOR<XOR<ProfileUpdateToOneWithWhereWithoutBussinessesInput, ProfileUpdateWithoutBussinessesInput>, ProfileUncheckedUpdateWithoutBussinessesInput>
   }
@@ -16963,7 +16942,7 @@ export namespace Prisma {
     website?: StringNullableFilter<"Bussiness"> | string | null
     createdAt?: DateTimeFilter<"Bussiness"> | Date | string
     updatedAt?: DateTimeFilter<"Bussiness"> | Date | string
-    profileId?: StringNullableFilter<"Bussiness"> | string | null
+    profileId?: StringFilter<"Bussiness"> | string
   }
 
   export type ReviewUpsertWithWhereUniqueWithoutProfileInput = {
@@ -17502,7 +17481,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     portfolios?: PortfolioCreateNestedManyWithoutBussinessInput
     reviews?: ReviewCreateNestedManyWithoutBussinessInput
-    Profile?: ProfileCreateNestedOneWithoutBussinessesInput
+    Profile: ProfileCreateNestedOneWithoutBussinessesInput
   }
 
   export type BussinessUncheckedCreateWithoutCategoriesInput = {
@@ -17516,7 +17495,7 @@ export namespace Prisma {
     website?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    profileId?: string | null
+    profileId: string
     portfolios?: PortfolioUncheckedCreateNestedManyWithoutBussinessInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutBussinessInput
   }
@@ -17550,7 +17529,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     portfolios?: PortfolioUpdateManyWithoutBussinessNestedInput
     reviews?: ReviewUpdateManyWithoutBussinessNestedInput
-    Profile?: ProfileUpdateOneWithoutBussinessesNestedInput
+    Profile?: ProfileUpdateOneRequiredWithoutBussinessesNestedInput
   }
 
   export type BussinessUncheckedUpdateWithoutCategoriesInput = {
@@ -17564,7 +17543,7 @@ export namespace Prisma {
     website?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    profileId?: NullableStringFieldUpdateOperationsInput | string | null
+    profileId?: StringFieldUpdateOperationsInput | string
     portfolios?: PortfolioUncheckedUpdateManyWithoutBussinessNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutBussinessNestedInput
   }
@@ -17582,7 +17561,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     categories?: CategoryCreateNestedManyWithoutBussinessInput
     reviews?: ReviewCreateNestedManyWithoutBussinessInput
-    Profile?: ProfileCreateNestedOneWithoutBussinessesInput
+    Profile: ProfileCreateNestedOneWithoutBussinessesInput
   }
 
   export type BussinessUncheckedCreateWithoutPortfoliosInput = {
@@ -17596,7 +17575,7 @@ export namespace Prisma {
     website?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    profileId?: string | null
+    profileId: string
     categories?: CategoryUncheckedCreateNestedManyWithoutBussinessInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutBussinessInput
   }
@@ -17630,7 +17609,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     categories?: CategoryUpdateManyWithoutBussinessNestedInput
     reviews?: ReviewUpdateManyWithoutBussinessNestedInput
-    Profile?: ProfileUpdateOneWithoutBussinessesNestedInput
+    Profile?: ProfileUpdateOneRequiredWithoutBussinessesNestedInput
   }
 
   export type BussinessUncheckedUpdateWithoutPortfoliosInput = {
@@ -17644,7 +17623,7 @@ export namespace Prisma {
     website?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    profileId?: NullableStringFieldUpdateOperationsInput | string | null
+    profileId?: StringFieldUpdateOperationsInput | string
     categories?: CategoryUncheckedUpdateManyWithoutBussinessNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutBussinessNestedInput
   }
@@ -17715,7 +17694,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     categories?: CategoryCreateNestedManyWithoutBussinessInput
     portfolios?: PortfolioCreateNestedManyWithoutBussinessInput
-    Profile?: ProfileCreateNestedOneWithoutBussinessesInput
+    Profile: ProfileCreateNestedOneWithoutBussinessesInput
   }
 
   export type BussinessUncheckedCreateWithoutReviewsInput = {
@@ -17729,7 +17708,7 @@ export namespace Prisma {
     website?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    profileId?: string | null
+    profileId: string
     categories?: CategoryUncheckedCreateNestedManyWithoutBussinessInput
     portfolios?: PortfolioUncheckedCreateNestedManyWithoutBussinessInput
   }
@@ -17822,7 +17801,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     categories?: CategoryUpdateManyWithoutBussinessNestedInput
     portfolios?: PortfolioUpdateManyWithoutBussinessNestedInput
-    Profile?: ProfileUpdateOneWithoutBussinessesNestedInput
+    Profile?: ProfileUpdateOneRequiredWithoutBussinessesNestedInput
   }
 
   export type BussinessUncheckedUpdateWithoutReviewsInput = {
@@ -17836,7 +17815,7 @@ export namespace Prisma {
     website?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    profileId?: NullableStringFieldUpdateOperationsInput | string | null
+    profileId?: StringFieldUpdateOperationsInput | string
     categories?: CategoryUncheckedUpdateManyWithoutBussinessNestedInput
     portfolios?: PortfolioUncheckedUpdateManyWithoutBussinessNestedInput
   }

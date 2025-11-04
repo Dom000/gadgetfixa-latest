@@ -1,9 +1,13 @@
+"use client";
 import BreadCrumb from "@/components/CustomBreadcrumb";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { authClient } from "@/lib/client";
 import React from "react";
 
 function page() {
+  const user = authClient.getSession()
   return (
     <div className="w-full space-y-4 mt-2x md:space-y-0 bg-gray-100 rounded-md p-2 md:p-5">
       <BreadCrumb page="Account Information" />
@@ -14,19 +18,21 @@ function page() {
       </div>
       <div className="mt-10 bg-gray-50 rounded p-5 space-y-5 max-w-3xl ">
         <form className="space-y-4 ">
-          {" "}
+          <Label>Full Name</Label>
           <Input
             type="text"
             placeholder="John Doe"
             defaultValue={""}
             disabled
           />{" "}
+          <Label>Full Name</Label>
           <Input
             type="text"
             placeholder="John Doe"
             disabled
             defaultValue={""}
           />{" "}
+          <Label>Full Name</Label>
           <Input
             type="text"
             placeholder="John Doe"

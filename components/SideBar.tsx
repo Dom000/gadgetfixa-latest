@@ -94,17 +94,17 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   const data = {
     user: {
-      name: user?.name,
+      fullName: user?.fullName,
       email: user?.email ?? user?.phoneNumber,
       avatar:
         user?.profileUrl ??
-        `https://ui-avatars.com/api/?name=${user?.name}&background=random&size=128`,
+        `https://ui-avatars.com/api/?name=${user?.fullName}&background=random&size=128`,
     },
     teams: {
-      name: user?.name,
+      fullName: user?.fullName,
       logo: SquareUser,
-      plan: "User",
-      role: user?.role,
+      plan: ["User"],
+      role: user?.role as string[],
     },
     navMain: [
       {
