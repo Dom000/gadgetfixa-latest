@@ -1,43 +1,53 @@
 "use client";
 import { artisansData } from "@/lib/mock-data";
-import React, { use, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import ArtisanCard from "../ArtisanCard";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { getBusinessByProfileId } from "@/controllers/business/index.controller";
 import { useAppStore } from "@/stores/store";
 import { Bussiness } from "@/lib/prisma/generated";
+import { authClient } from "@/lib/client";
 
 function BussinessCard() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const [sortBy, setSortBy] = useState("rating");
   const user = useAppStore((state) => state.userDetails);
+  const userSession = authClient.getSession();
 
-  const { data } = useQuery<Bussiness>({
+  const { data, refetch, isLoading } = useQuery<{ data: Bussiness[] }>({
     queryKey: ["businessByProfile"],
-    queryFn: () => getBusinessByProfileId(user?.id),
+    queryFn: async () =>
+      getBusinessByProfileId(user?.id || (await userSession).data?.user.id),
+    retry: 1,
   });
 
   console.log("Business data:", data);
 
-  const filteredArtisans = artisansData
-    .filter((artisan) => {
-      const matchesSearch =
-        artisan.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        artisan.shopName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        artisan.specialties.some((s) =>
-          s.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-      const matchesCategory =
-        selectedCategory === "All Categories" ||
-        artisan.category === selectedCategory;
-      return matchesSearch && matchesCategory;
-    })
-    .sort((a, b) => {
-      if (sortBy === "rating") return b.rating - a.rating;
-      if (sortBy === "reviews") return b.reviewCount - a.reviewCount;
-      return a.name.localeCompare(b.name);
-    });
+  const filteredArtisans =
+    data?.data.filter((artisan) => {
+      const matchesSearch = artisan.name
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
+      // artisan.s.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      // artisan.specialties.some((s) =>
+      //   s.toLowerCase().includes(searchTerm.toLowerCase())
+      // );
+      //   const matchesCategory =
+      //     selectedCategory === "All Categories" ||
+      //     artisan.category === selectedCategory;
+      return matchesSearch;
+    }) || [];
+  // .sort((a, b) => {
+  //   if (sortBy === "rating") return b.rating - a.rating;
+  //   if (sortBy === "reviews") return b.reviewCount - a.reviewCount;
+  //   return a.name.localeCompare(b.name);
+  // });
+
+  useEffect(() => {
+    refetch();
+  }, [refetch]);
+
   return (
     <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-6">
       {filteredArtisans.map((artisan) => (

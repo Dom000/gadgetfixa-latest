@@ -1,12 +1,13 @@
 import { Star } from "lucide-react";
 
 interface StarRatingProps {
-  rating: number;
+  reviews?: { rating: number }[];
   maxRating?: number;
   size?: "sm" | "md" | "lg";
 }
 
-const StarRating = ({ rating, maxRating = 5, size = "md" }: StarRatingProps) => {
+const StarRating = ({  reviews, maxRating = 5, size = "md" }: StarRatingProps) => {
+  const averageRating = (reviews?.length ? reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length : 0);
   const sizeClasses = {
     sm: "w-3 h-3",
     md: "w-4 h-4", 
@@ -19,16 +20,16 @@ const StarRating = ({ rating, maxRating = 5, size = "md" }: StarRatingProps) => 
         <Star
           key={index}
           className={`${sizeClasses[size]} ${
-            index < Math.floor(rating)
+            index < Math.floor(averageRating)
               ? "fill-accent text-accent"
-              : index < rating
+              : index < averageRating
               ? "fill-accent/50 text-accent"
               : "text-muted-foreground"
           }`}
         />
       ))}
       <span className="text-sm text-muted-foreground ml-2">
-        ({rating.toFixed(1)})
+        ({averageRating.toFixed(1)})
       </span>
     </div>
   );

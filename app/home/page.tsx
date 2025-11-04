@@ -8,7 +8,7 @@ function page() {
   return (
     <div className="w-full space-y-4 mt-2x md:space-y-0 bg-gray-100 rounded-md p-2 md:p-5">
       <BreadCrumb page="My Bussiness" />
-      <div className="mt-10 space-y-5">
+      <div className="mt-5 space-y-5">
         <div className="flex justify-end">
           <Link href={"/home/my-businesses/create"}>
             {" "}

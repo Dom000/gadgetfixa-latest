@@ -4,21 +4,16 @@ import { Badge } from "@/components/ui/badge";
 import { Phone, MapPin, Clock, MessageCircle, Settings } from "lucide-react";
 import StarRating from "./StarRating";
 import Link from "next/link";
+import { Bussiness } from "@/lib/prisma/generated";
 
 interface ArtisanCardProps {
-  artisan: {
-    id: string;
-    name: string;
-    shopName: string;
-    description: string;
-    category: string;
-    rating: number;
-    reviewCount: number;
-    phone: string;
-    location: string;
-    isOnline: boolean;
-    profileImage: string;
-    specialties: string[];
+  artisan: Bussiness & {
+    isPrivate?: boolean;
+    isOnline?: boolean;
+    reviews?: { rating: number }[];
+    categories?: { name: string; id: string }[];
+    specialties?: string[];
+    location?: string;
     private?: boolean;
   };
 }
@@ -31,8 +26,12 @@ const ArtisanCard = ({ artisan }: ArtisanCardProps) => {
           {/* Header */}
           <div className="flex items-start space-x-4">
             <img
-              src={artisan.profileImage}
-              alt={artisan.name}
+              src={`https://avatar.vercel.sh/${encodeURIComponent(
+                artisan.name || "Unknown"
+              )}.svg?text=${encodeURIComponent(
+                (artisan.name || "U").charAt(0).toUpperCase()
+              )}`}
+              alt={artisan.name || "Artisan"}
               className="w-16 h-16 rounded-full object-cover border-2 border-border"
             />
             <div className="flex-1">
@@ -41,7 +40,7 @@ const ArtisanCard = ({ artisan }: ArtisanCardProps) => {
                   <h3 className="font-semibold text-lg text-foreground">
                     {artisan.name}
                   </h3>
-                  <p className="text-primary font-medium">{artisan.shopName}</p>
+                  {/* <p className="text-primary font-medium">{artisan.name}</p> */}
                 </div>
                 {!artisan.private && (
                   <div className="flex items-center space-x-2">
@@ -63,8 +62,8 @@ const ArtisanCard = ({ artisan }: ArtisanCardProps) => {
 
           {/* Rating */}
           <div className="flex items-center justify-between">
-            <StarRating rating={artisan.rating} />
-            <Badge variant="secondary">{artisan.category}</Badge>
+            <StarRating reviews={artisan.reviews || []} />
+            <Badge variant="secondary">{artisan.occupation}</Badge>
           </div>
 
           {/* Description */}
@@ -74,9 +73,9 @@ const ArtisanCard = ({ artisan }: ArtisanCardProps) => {
 
           {/* Specialties */}
           <div className="flex flex-wrap gap-2">
-            {artisan.specialties.map((specialty, index) => (
+            {artisan?.categories?.map((specialty, index) => (
               <Badge key={index} variant="outline" className="text-xs">
-                {specialty}
+                {specialty.name}
               </Badge>
             ))}
           </div>
@@ -89,7 +88,7 @@ const ArtisanCard = ({ artisan }: ArtisanCardProps) => {
             </div>
             <div className="flex items-center space-x-2 text-muted-foreground">
               <MapPin className="w-4 h-4" />
-              <span>{artisan.location}</span>
+              <span>{artisan.address}</span>
             </div>
           </div>
 
@@ -100,7 +99,10 @@ const ArtisanCard = ({ artisan }: ArtisanCardProps) => {
                 <MessageCircle className="w-4 h-4 mr-2" />
                 View Inboxes
               </Button>
-              <Link className="w-full" href={"/home/my-businesses/edit"}>
+              <Link
+                className="w-full"
+                href={`/home/my-businesses/${artisan.id}`}
+              >
                 <Button variant="outline" className="flex-1">
                   <Settings className="w-4 h-4 mr-2" />
                   Manage
