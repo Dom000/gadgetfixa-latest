@@ -1,3 +1,5 @@
+import { Bussiness } from "@/lib/prisma/generated";
+
 export enum DefaultView {
   USER = "user",
   ADMIN = "admin",
@@ -13,16 +15,18 @@ export interface AuthState {
   setAnonymousUser: (user: any) => void;
 }
 
-export interface Business {
-  bussinessName: string;
-  occupation: string;
-  categories: string[];
-  email: string;
-  phone: string;
-  website: string;
-  address: string;
-  description: string;
-  profileId: string;
-}
-
-
+export type BusinessType = Bussiness & {
+  isPrivate?: boolean;
+  isOnline?: boolean;
+  reviews?: { rating: number }[];
+  categories: { name: string; id: string }[];
+  portfolios?: {
+    id: string;
+    title: string;
+    imageUrl: string;
+    description: string;
+  }[];
+  specialties?: string[];
+  location?: string;
+  private?: boolean;
+};

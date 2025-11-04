@@ -1,11 +1,11 @@
 import prisma from "@/lib/prisma/prisma";
-import { Business } from "@/types";
+import { BusinessType } from "@/types";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   const {
     address,
-    bussinessName,
+    name,
     categories,
     description,
     email,
@@ -13,7 +13,7 @@ export async function POST(request: Request) {
     phone,
     profileId,
     website,
-  } = (await request.json()) as Business;
+  } = (await request.json()) as BusinessType;
 
   const data = await prisma.bussiness.create({
     data: {
@@ -21,14 +21,14 @@ export async function POST(request: Request) {
       profileId,
       description,
       email,
-      name: bussinessName,
+      name,
       occupation,
       phone,
       website,
       categories: {
         createMany: {
-          data: categories.map((i) => ({
-            name: i,
+          data: categories?.map((category) => ({
+            name: typeof category === 'string' ? category : category.name,
           })),
         },
       },

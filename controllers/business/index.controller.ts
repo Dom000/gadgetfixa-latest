@@ -1,3 +1,4 @@
+import { BusinessType } from "@/types";
 import axios from "axios";
 
 export async function createBusiness(arg: any) {
@@ -12,7 +13,7 @@ export async function getBusiness(page = 1, limit = 10) {
 
 export async function getBusinessById(id: string) {
   const { data } = await axios.get(`/api/business/${id}`);
-  return data;
+  return data as { data: BusinessType };
 }
 
 export async function getBusinessByProfileId(id: string) {
