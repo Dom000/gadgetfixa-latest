@@ -29,8 +29,8 @@ model Profile {
   inboxes          Inbox[]
   image            String?
   data             Json?
-
   bussinesses Bussiness[]
+  reviews         Review[]
 
   @@map("profiles")
 }
@@ -130,7 +130,8 @@ model Portfolio {
 
 model Review {
   id            String    @id @default(cuid())
-  userId        String?   @map("user_id")
+  profileId     String?   @map("profile_id")
+  profile       Profile?  @relation(fields: [profileId], references: [id])
   anonymous     Boolean   @default(false)
   anonymousName String?   @map("anonymous_name")
   bussinessId   String    @map("bussiness_id")

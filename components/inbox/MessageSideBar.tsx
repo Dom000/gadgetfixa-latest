@@ -35,7 +35,7 @@ const messages = [
 ];
 function MessageSideBar() {
   return (
-    <div className="bg-primary/5 w-full md:w-96 h-[90vh] rounded-tl rounded-bl overflow-y-auto">
+    <div className="bg-primary/5 w-full md:w-96 h-[90vh] rounded-tl pt-5 rounded-bl overflow-y-auto">
       {messages.map((message) => (
         <MessageCard key={message.id} {...message} />
       ))}

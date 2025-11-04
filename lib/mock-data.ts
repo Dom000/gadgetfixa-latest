@@ -90,7 +90,6 @@ const categories = [
 ];
 export { artisansData, categories };
 
-
 export const portfolioOptions = [
   {
     id: "1",
@@ -127,5 +126,53 @@ export const portfolioOptions = [
     description: "Apple Watch Series 8 band and crown repair service",
     imageUrl:
       "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&h=200&fit=crop",
+  },
+];
+
+export const reviewSamples = [
+  {
+    id: "1",
+    anonymous: false,
+    anonymousName: null,
+    name: "Alice Johnson",
+    rating: 5,
+    comment: "Excellent service! My phone looks brand new after the repair.",
+    createdAt: new Date("2024-05-01"),
+  },
+  {
+    id: "2",
+    anonymous: false,
+    anonymousName: null,
+    name: "Bob Smith",
+    rating: 4,
+    comment: "Quick turnaround and fair pricing. Highly recommend!",
+    createdAt: new Date("2024-04-15"),
+  },
+  {
+    id: "3",
+    anonymous: true,
+    anonymousName: "Tech Enthusiast",
+    name: undefined,
+    rating: 5,
+    comment: "Very professional and knowledgeable technician.",
+    createdAt: new Date("2024-03-22"),
+  },
+  {
+    id: "4",
+    anonymous: false,
+    anonymousName: null,
+    name: "David Kim",
+    rating: 3,
+    comment: "Good service but took longer than expected.",
+    createdAt: new Date("2024-02-10"),
+  },
+  {
+    id: "5",
+    anonymous: true,
+    anonymousName: "Happy Customer",
+    name: undefined,
+    rating: 4,
+    comment: "Affordable prices and friendly staff.",
+    createdAt: new Date("2024-01-30"),
   },
 ];

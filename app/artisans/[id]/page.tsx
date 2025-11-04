@@ -1,11 +1,13 @@
 "use client";
 
 import BreadCrumb from "@/components/CustomBreadcrumb";
+import CommentRatingCard from "@/components/my-bussiness/CommentRatingCard";
 import PortfolioCard from "@/components/my-bussiness/PorfolioCard";
 import StarRating from "@/components/StarRating";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { artisansData, portfolioOptions } from "@/lib/mock-data";
+import { Textarea } from "@/components/ui/textarea";
+import { artisansData, portfolioOptions, reviewSamples } from "@/lib/mock-data";
 import { MapPin, MessageCircle, Phone } from "lucide-react";
 import React from "react";
 const artisan = artisansData[0];
@@ -74,10 +76,29 @@ function page() {
           </div>
 
           <div>
+            <h3 className="text-xl font-bold my-3">Portfolios</h3>
             <div className="w-full space-y-2 overflow-y-auto max-h-96 pb-4 grid md:grid-cols-2 gap-4">
               {portfolioOptions.map((item) => (
                 <PortfolioCard key={item.id} {...item} />
               ))}
+            </div>
+            <div>
+              <h3 className="text-xl font-bold my-3">Reviews</h3>
+              <div className="w-full space-y-5 overflow-y-auto max-h-96 pb-4">
+                {reviewSamples.map((review) => (
+                  <CommentRatingCard key={review.id} {...review} />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-bold my-3">Leave a Review</h3>
+            <div className="w-full">
+              <Textarea placeholder="Write your review here..." />
+              <div className="flex justify-end mt-2">
+                <Button variant="hero">Submit Review</Button>
+              </div>
             </div>
           </div>
         </div>

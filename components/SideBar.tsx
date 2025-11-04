@@ -35,6 +35,7 @@ import {
   Building2Icon,
   User,
   ConstructionIcon,
+  Star,
 } from "lucide-react";
 import { LiaCoinsSolid } from "react-icons/lia";
 import {
@@ -132,6 +133,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         title: "Inbox",
         url: "/home/inbox",
         icon: Inbox,
+      },
+      {
+        title: "Reviews",
+        url: "/home/reviews",
+        icon: Star,
       },
 
       {

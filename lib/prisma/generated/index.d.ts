@@ -1686,6 +1686,7 @@ export namespace Prisma {
     receivedMessages: number
     inboxes: number
     bussinesses: number
+    reviews: number
   }
 
   export type ProfileCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1695,6 +1696,7 @@ export namespace Prisma {
     receivedMessages?: boolean | ProfileCountOutputTypeCountReceivedMessagesArgs
     inboxes?: boolean | ProfileCountOutputTypeCountInboxesArgs
     bussinesses?: boolean | ProfileCountOutputTypeCountBussinessesArgs
+    reviews?: boolean | ProfileCountOutputTypeCountReviewsArgs
   }
 
   // Custom InputTypes
@@ -1748,6 +1750,13 @@ export namespace Prisma {
    */
   export type ProfileCountOutputTypeCountBussinessesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: BussinessWhereInput
+  }
+
+  /**
+   * ProfileCountOutputType without action
+   */
+  export type ProfileCountOutputTypeCountReviewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReviewWhereInput
   }
 
 
@@ -2046,6 +2055,7 @@ export namespace Prisma {
     receivedMessages?: boolean | Profile$receivedMessagesArgs<ExtArgs>
     inboxes?: boolean | Profile$inboxesArgs<ExtArgs>
     bussinesses?: boolean | Profile$bussinessesArgs<ExtArgs>
+    reviews?: boolean | Profile$reviewsArgs<ExtArgs>
     _count?: boolean | ProfileCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["profile"]>
 
@@ -2111,6 +2121,7 @@ export namespace Prisma {
     receivedMessages?: boolean | Profile$receivedMessagesArgs<ExtArgs>
     inboxes?: boolean | Profile$inboxesArgs<ExtArgs>
     bussinesses?: boolean | Profile$bussinessesArgs<ExtArgs>
+    reviews?: boolean | Profile$reviewsArgs<ExtArgs>
     _count?: boolean | ProfileCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProfileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2125,6 +2136,7 @@ export namespace Prisma {
       receivedMessages: Prisma.$MessagePayload<ExtArgs>[]
       inboxes: Prisma.$InboxPayload<ExtArgs>[]
       bussinesses: Prisma.$BussinessPayload<ExtArgs>[]
+      reviews: Prisma.$ReviewPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2542,6 +2554,7 @@ export namespace Prisma {
     receivedMessages<T extends Profile$receivedMessagesArgs<ExtArgs> = {}>(args?: Subset<T, Profile$receivedMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     inboxes<T extends Profile$inboxesArgs<ExtArgs> = {}>(args?: Subset<T, Profile$inboxesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InboxPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     bussinesses<T extends Profile$bussinessesArgs<ExtArgs> = {}>(args?: Subset<T, Profile$bussinessesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BussinessPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    reviews<T extends Profile$reviewsArgs<ExtArgs> = {}>(args?: Subset<T, Profile$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3115,6 +3128,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: BussinessScalarFieldEnum | BussinessScalarFieldEnum[]
+  }
+
+  /**
+   * Profile.reviews
+   */
+  export type Profile$reviewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Review
+     */
+    select?: ReviewSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Review
+     */
+    omit?: ReviewOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReviewInclude<ExtArgs> | null
+    where?: ReviewWhereInput
+    orderBy?: ReviewOrderByWithRelationInput | ReviewOrderByWithRelationInput[]
+    cursor?: ReviewWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReviewScalarFieldEnum | ReviewScalarFieldEnum[]
   }
 
   /**
@@ -9853,7 +9890,7 @@ export namespace Prisma {
 
   export type ReviewMinAggregateOutputType = {
     id: string | null
-    userId: string | null
+    profileId: string | null
     anonymous: boolean | null
     anonymousName: string | null
     bussinessId: string | null
@@ -9865,7 +9902,7 @@ export namespace Prisma {
 
   export type ReviewMaxAggregateOutputType = {
     id: string | null
-    userId: string | null
+    profileId: string | null
     anonymous: boolean | null
     anonymousName: string | null
     bussinessId: string | null
@@ -9877,7 +9914,7 @@ export namespace Prisma {
 
   export type ReviewCountAggregateOutputType = {
     id: number
-    userId: number
+    profileId: number
     anonymous: number
     anonymousName: number
     bussinessId: number
@@ -9899,7 +9936,7 @@ export namespace Prisma {
 
   export type ReviewMinAggregateInputType = {
     id?: true
-    userId?: true
+    profileId?: true
     anonymous?: true
     anonymousName?: true
     bussinessId?: true
@@ -9911,7 +9948,7 @@ export namespace Prisma {
 
   export type ReviewMaxAggregateInputType = {
     id?: true
-    userId?: true
+    profileId?: true
     anonymous?: true
     anonymousName?: true
     bussinessId?: true
@@ -9923,7 +9960,7 @@ export namespace Prisma {
 
   export type ReviewCountAggregateInputType = {
     id?: true
-    userId?: true
+    profileId?: true
     anonymous?: true
     anonymousName?: true
     bussinessId?: true
@@ -10022,7 +10059,7 @@ export namespace Prisma {
 
   export type ReviewGroupByOutputType = {
     id: string
-    userId: string | null
+    profileId: string | null
     anonymous: boolean
     anonymousName: string | null
     bussinessId: string
@@ -10053,7 +10090,7 @@ export namespace Prisma {
 
   export type ReviewSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    userId?: boolean
+    profileId?: boolean
     anonymous?: boolean
     anonymousName?: boolean
     bussinessId?: boolean
@@ -10061,12 +10098,13 @@ export namespace Prisma {
     comment?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    profile?: boolean | Review$profileArgs<ExtArgs>
     Bussiness?: boolean | BussinessDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["review"]>
 
   export type ReviewSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    userId?: boolean
+    profileId?: boolean
     anonymous?: boolean
     anonymousName?: boolean
     bussinessId?: boolean
@@ -10074,12 +10112,13 @@ export namespace Prisma {
     comment?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    profile?: boolean | Review$profileArgs<ExtArgs>
     Bussiness?: boolean | BussinessDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["review"]>
 
   export type ReviewSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    userId?: boolean
+    profileId?: boolean
     anonymous?: boolean
     anonymousName?: boolean
     bussinessId?: boolean
@@ -10087,12 +10126,13 @@ export namespace Prisma {
     comment?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    profile?: boolean | Review$profileArgs<ExtArgs>
     Bussiness?: boolean | BussinessDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["review"]>
 
   export type ReviewSelectScalar = {
     id?: boolean
-    userId?: boolean
+    profileId?: boolean
     anonymous?: boolean
     anonymousName?: boolean
     bussinessId?: boolean
@@ -10102,25 +10142,29 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type ReviewOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "anonymous" | "anonymousName" | "bussinessId" | "rating" | "comment" | "createdAt" | "updatedAt", ExtArgs["result"]["review"]>
+  export type ReviewOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "profileId" | "anonymous" | "anonymousName" | "bussinessId" | "rating" | "comment" | "createdAt" | "updatedAt", ExtArgs["result"]["review"]>
   export type ReviewInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    profile?: boolean | Review$profileArgs<ExtArgs>
     Bussiness?: boolean | BussinessDefaultArgs<ExtArgs>
   }
   export type ReviewIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    profile?: boolean | Review$profileArgs<ExtArgs>
     Bussiness?: boolean | BussinessDefaultArgs<ExtArgs>
   }
   export type ReviewIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    profile?: boolean | Review$profileArgs<ExtArgs>
     Bussiness?: boolean | BussinessDefaultArgs<ExtArgs>
   }
 
   export type $ReviewPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Review"
     objects: {
+      profile: Prisma.$ProfilePayload<ExtArgs> | null
       Bussiness: Prisma.$BussinessPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      userId: string | null
+      profileId: string | null
       anonymous: boolean
       anonymousName: string | null
       bussinessId: string
@@ -10522,6 +10566,7 @@ export namespace Prisma {
    */
   export interface Prisma__ReviewClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    profile<T extends Review$profileArgs<ExtArgs> = {}>(args?: Subset<T, Review$profileArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     Bussiness<T extends BussinessDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BussinessDefaultArgs<ExtArgs>>): Prisma__BussinessClient<$Result.GetResult<Prisma.$BussinessPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -10553,7 +10598,7 @@ export namespace Prisma {
    */
   interface ReviewFieldRefs {
     readonly id: FieldRef<"Review", 'String'>
-    readonly userId: FieldRef<"Review", 'String'>
+    readonly profileId: FieldRef<"Review", 'String'>
     readonly anonymous: FieldRef<"Review", 'Boolean'>
     readonly anonymousName: FieldRef<"Review", 'String'>
     readonly bussinessId: FieldRef<"Review", 'String'>
@@ -10954,6 +10999,25 @@ export namespace Prisma {
      * Limit how many Reviews to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Review.profile
+   */
+  export type Review$profileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Profile
+     */
+    select?: ProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Profile
+     */
+    omit?: ProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileInclude<ExtArgs> | null
+    where?: ProfileWhereInput
   }
 
   /**
@@ -13237,7 +13301,7 @@ export namespace Prisma {
 
   export const ReviewScalarFieldEnum: {
     id: 'id',
-    userId: 'userId',
+    profileId: 'profileId',
     anonymous: 'anonymous',
     anonymousName: 'anonymousName',
     bussinessId: 'bussinessId',
@@ -13424,6 +13488,7 @@ export namespace Prisma {
     receivedMessages?: MessageListRelationFilter
     inboxes?: InboxListRelationFilter
     bussinesses?: BussinessListRelationFilter
+    reviews?: ReviewListRelationFilter
   }
 
   export type ProfileOrderByWithRelationInput = {
@@ -13448,6 +13513,7 @@ export namespace Prisma {
     receivedMessages?: MessageOrderByRelationAggregateInput
     inboxes?: InboxOrderByRelationAggregateInput
     bussinesses?: BussinessOrderByRelationAggregateInput
+    reviews?: ReviewOrderByRelationAggregateInput
   }
 
   export type ProfileWhereUniqueInput = Prisma.AtLeast<{
@@ -13475,6 +13541,7 @@ export namespace Prisma {
     receivedMessages?: MessageListRelationFilter
     inboxes?: InboxListRelationFilter
     bussinesses?: BussinessListRelationFilter
+    reviews?: ReviewListRelationFilter
   }, "id" | "email">
 
   export type ProfileOrderByWithAggregationInput = {
@@ -13971,7 +14038,7 @@ export namespace Prisma {
     OR?: ReviewWhereInput[]
     NOT?: ReviewWhereInput | ReviewWhereInput[]
     id?: StringFilter<"Review"> | string
-    userId?: StringNullableFilter<"Review"> | string | null
+    profileId?: StringNullableFilter<"Review"> | string | null
     anonymous?: BoolFilter<"Review"> | boolean
     anonymousName?: StringNullableFilter<"Review"> | string | null
     bussinessId?: StringFilter<"Review"> | string
@@ -13979,12 +14046,13 @@ export namespace Prisma {
     comment?: StringFilter<"Review"> | string
     createdAt?: DateTimeFilter<"Review"> | Date | string
     updatedAt?: DateTimeFilter<"Review"> | Date | string
+    profile?: XOR<ProfileNullableScalarRelationFilter, ProfileWhereInput> | null
     Bussiness?: XOR<BussinessScalarRelationFilter, BussinessWhereInput>
   }
 
   export type ReviewOrderByWithRelationInput = {
     id?: SortOrder
-    userId?: SortOrderInput | SortOrder
+    profileId?: SortOrderInput | SortOrder
     anonymous?: SortOrder
     anonymousName?: SortOrderInput | SortOrder
     bussinessId?: SortOrder
@@ -13992,6 +14060,7 @@ export namespace Prisma {
     comment?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    profile?: ProfileOrderByWithRelationInput
     Bussiness?: BussinessOrderByWithRelationInput
   }
 
@@ -14000,7 +14069,7 @@ export namespace Prisma {
     AND?: ReviewWhereInput | ReviewWhereInput[]
     OR?: ReviewWhereInput[]
     NOT?: ReviewWhereInput | ReviewWhereInput[]
-    userId?: StringNullableFilter<"Review"> | string | null
+    profileId?: StringNullableFilter<"Review"> | string | null
     anonymous?: BoolFilter<"Review"> | boolean
     anonymousName?: StringNullableFilter<"Review"> | string | null
     bussinessId?: StringFilter<"Review"> | string
@@ -14008,12 +14077,13 @@ export namespace Prisma {
     comment?: StringFilter<"Review"> | string
     createdAt?: DateTimeFilter<"Review"> | Date | string
     updatedAt?: DateTimeFilter<"Review"> | Date | string
+    profile?: XOR<ProfileNullableScalarRelationFilter, ProfileWhereInput> | null
     Bussiness?: XOR<BussinessScalarRelationFilter, BussinessWhereInput>
   }, "id">
 
   export type ReviewOrderByWithAggregationInput = {
     id?: SortOrder
-    userId?: SortOrderInput | SortOrder
+    profileId?: SortOrderInput | SortOrder
     anonymous?: SortOrder
     anonymousName?: SortOrderInput | SortOrder
     bussinessId?: SortOrder
@@ -14033,7 +14103,7 @@ export namespace Prisma {
     OR?: ReviewScalarWhereWithAggregatesInput[]
     NOT?: ReviewScalarWhereWithAggregatesInput | ReviewScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Review"> | string
-    userId?: StringNullableWithAggregatesFilter<"Review"> | string | null
+    profileId?: StringNullableWithAggregatesFilter<"Review"> | string | null
     anonymous?: BoolWithAggregatesFilter<"Review"> | boolean
     anonymousName?: StringNullableWithAggregatesFilter<"Review"> | string | null
     bussinessId?: StringWithAggregatesFilter<"Review"> | string
@@ -14183,6 +14253,7 @@ export namespace Prisma {
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
     inboxes?: InboxCreateNestedManyWithoutUserInput
     bussinesses?: BussinessCreateNestedManyWithoutProfileInput
+    reviews?: ReviewCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileUncheckedCreateInput = {
@@ -14207,6 +14278,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
     inboxes?: InboxUncheckedCreateNestedManyWithoutUserInput
     bussinesses?: BussinessUncheckedCreateNestedManyWithoutProfileInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileUpdateInput = {
@@ -14231,6 +14303,7 @@ export namespace Prisma {
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
     inboxes?: InboxUpdateManyWithoutUserNestedInput
     bussinesses?: BussinessUpdateManyWithoutProfileNestedInput
+    reviews?: ReviewUpdateManyWithoutProfileNestedInput
   }
 
   export type ProfileUncheckedUpdateInput = {
@@ -14255,6 +14328,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
     inboxes?: InboxUncheckedUpdateManyWithoutUserNestedInput
     bussinesses?: BussinessUncheckedUpdateManyWithoutProfileNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutProfileNestedInput
   }
 
   export type ProfileCreateManyInput = {
@@ -14810,19 +14884,19 @@ export namespace Prisma {
 
   export type ReviewCreateInput = {
     id?: string
-    userId?: string | null
     anonymous?: boolean
     anonymousName?: string | null
     rating: number
     comment: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    profile?: ProfileCreateNestedOneWithoutReviewsInput
     Bussiness: BussinessCreateNestedOneWithoutReviewsInput
   }
 
   export type ReviewUncheckedCreateInput = {
     id?: string
-    userId?: string | null
+    profileId?: string | null
     anonymous?: boolean
     anonymousName?: string | null
     bussinessId: string
@@ -14834,19 +14908,19 @@ export namespace Prisma {
 
   export type ReviewUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
     anonymous?: BoolFieldUpdateOperationsInput | boolean
     anonymousName?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
     comment?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profile?: ProfileUpdateOneWithoutReviewsNestedInput
     Bussiness?: BussinessUpdateOneRequiredWithoutReviewsNestedInput
   }
 
   export type ReviewUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    profileId?: NullableStringFieldUpdateOperationsInput | string | null
     anonymous?: BoolFieldUpdateOperationsInput | boolean
     anonymousName?: NullableStringFieldUpdateOperationsInput | string | null
     bussinessId?: StringFieldUpdateOperationsInput | string
@@ -14858,7 +14932,7 @@ export namespace Prisma {
 
   export type ReviewCreateManyInput = {
     id?: string
-    userId?: string | null
+    profileId?: string | null
     anonymous?: boolean
     anonymousName?: string | null
     bussinessId: string
@@ -14870,7 +14944,6 @@ export namespace Prisma {
 
   export type ReviewUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
     anonymous?: BoolFieldUpdateOperationsInput | boolean
     anonymousName?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
@@ -14881,7 +14954,7 @@ export namespace Prisma {
 
   export type ReviewUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    profileId?: NullableStringFieldUpdateOperationsInput | string | null
     anonymous?: BoolFieldUpdateOperationsInput | boolean
     anonymousName?: NullableStringFieldUpdateOperationsInput | string | null
     bussinessId?: StringFieldUpdateOperationsInput | string
@@ -15122,6 +15195,12 @@ export namespace Prisma {
     none?: BussinessWhereInput
   }
 
+  export type ReviewListRelationFilter = {
+    every?: ReviewWhereInput
+    some?: ReviewWhereInput
+    none?: ReviewWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -15144,6 +15223,10 @@ export namespace Prisma {
   }
 
   export type BussinessOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ReviewOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -15439,12 +15522,6 @@ export namespace Prisma {
     none?: PortfolioWhereInput
   }
 
-  export type ReviewListRelationFilter = {
-    every?: ReviewWhereInput
-    some?: ReviewWhereInput
-    none?: ReviewWhereInput
-  }
-
   export type ProfileNullableScalarRelationFilter = {
     is?: ProfileWhereInput | null
     isNot?: ProfileWhereInput | null
@@ -15455,10 +15532,6 @@ export namespace Prisma {
   }
 
   export type PortfolioOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type ReviewOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -15581,7 +15654,7 @@ export namespace Prisma {
 
   export type ReviewCountOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
+    profileId?: SortOrder
     anonymous?: SortOrder
     anonymousName?: SortOrder
     bussinessId?: SortOrder
@@ -15597,7 +15670,7 @@ export namespace Prisma {
 
   export type ReviewMaxOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
+    profileId?: SortOrder
     anonymous?: SortOrder
     anonymousName?: SortOrder
     bussinessId?: SortOrder
@@ -15609,7 +15682,7 @@ export namespace Prisma {
 
   export type ReviewMinOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
+    profileId?: SortOrder
     anonymous?: SortOrder
     anonymousName?: SortOrder
     bussinessId?: SortOrder
@@ -15732,6 +15805,13 @@ export namespace Prisma {
     connect?: BussinessWhereUniqueInput | BussinessWhereUniqueInput[]
   }
 
+  export type ReviewCreateNestedManyWithoutProfileInput = {
+    create?: XOR<ReviewCreateWithoutProfileInput, ReviewUncheckedCreateWithoutProfileInput> | ReviewCreateWithoutProfileInput[] | ReviewUncheckedCreateWithoutProfileInput[]
+    connectOrCreate?: ReviewCreateOrConnectWithoutProfileInput | ReviewCreateOrConnectWithoutProfileInput[]
+    createMany?: ReviewCreateManyProfileInputEnvelope
+    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+  }
+
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -15772,6 +15852,13 @@ export namespace Prisma {
     connectOrCreate?: BussinessCreateOrConnectWithoutProfileInput | BussinessCreateOrConnectWithoutProfileInput[]
     createMany?: BussinessCreateManyProfileInputEnvelope
     connect?: BussinessWhereUniqueInput | BussinessWhereUniqueInput[]
+  }
+
+  export type ReviewUncheckedCreateNestedManyWithoutProfileInput = {
+    create?: XOR<ReviewCreateWithoutProfileInput, ReviewUncheckedCreateWithoutProfileInput> | ReviewCreateWithoutProfileInput[] | ReviewUncheckedCreateWithoutProfileInput[]
+    connectOrCreate?: ReviewCreateOrConnectWithoutProfileInput | ReviewCreateOrConnectWithoutProfileInput[]
+    createMany?: ReviewCreateManyProfileInputEnvelope
+    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -15882,6 +15969,20 @@ export namespace Prisma {
     deleteMany?: BussinessScalarWhereInput | BussinessScalarWhereInput[]
   }
 
+  export type ReviewUpdateManyWithoutProfileNestedInput = {
+    create?: XOR<ReviewCreateWithoutProfileInput, ReviewUncheckedCreateWithoutProfileInput> | ReviewCreateWithoutProfileInput[] | ReviewUncheckedCreateWithoutProfileInput[]
+    connectOrCreate?: ReviewCreateOrConnectWithoutProfileInput | ReviewCreateOrConnectWithoutProfileInput[]
+    upsert?: ReviewUpsertWithWhereUniqueWithoutProfileInput | ReviewUpsertWithWhereUniqueWithoutProfileInput[]
+    createMany?: ReviewCreateManyProfileInputEnvelope
+    set?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    disconnect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    delete?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    update?: ReviewUpdateWithWhereUniqueWithoutProfileInput | ReviewUpdateWithWhereUniqueWithoutProfileInput[]
+    updateMany?: ReviewUpdateManyWithWhereWithoutProfileInput | ReviewUpdateManyWithWhereWithoutProfileInput[]
+    deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
+  }
+
   export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -15964,6 +16065,20 @@ export namespace Prisma {
     update?: BussinessUpdateWithWhereUniqueWithoutProfileInput | BussinessUpdateWithWhereUniqueWithoutProfileInput[]
     updateMany?: BussinessUpdateManyWithWhereWithoutProfileInput | BussinessUpdateManyWithWhereWithoutProfileInput[]
     deleteMany?: BussinessScalarWhereInput | BussinessScalarWhereInput[]
+  }
+
+  export type ReviewUncheckedUpdateManyWithoutProfileNestedInput = {
+    create?: XOR<ReviewCreateWithoutProfileInput, ReviewUncheckedCreateWithoutProfileInput> | ReviewCreateWithoutProfileInput[] | ReviewUncheckedCreateWithoutProfileInput[]
+    connectOrCreate?: ReviewCreateOrConnectWithoutProfileInput | ReviewCreateOrConnectWithoutProfileInput[]
+    upsert?: ReviewUpsertWithWhereUniqueWithoutProfileInput | ReviewUpsertWithWhereUniqueWithoutProfileInput[]
+    createMany?: ReviewCreateManyProfileInputEnvelope
+    set?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    disconnect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    delete?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    update?: ReviewUpdateWithWhereUniqueWithoutProfileInput | ReviewUpdateWithWhereUniqueWithoutProfileInput[]
+    updateMany?: ReviewUpdateManyWithWhereWithoutProfileInput | ReviewUpdateManyWithWhereWithoutProfileInput[]
+    deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
   }
 
   export type ProfileCreateNestedOneWithoutAccountsInput = {
@@ -16166,6 +16281,12 @@ export namespace Prisma {
     update?: XOR<XOR<BussinessUpdateToOneWithWhereWithoutPortfoliosInput, BussinessUpdateWithoutPortfoliosInput>, BussinessUncheckedUpdateWithoutPortfoliosInput>
   }
 
+  export type ProfileCreateNestedOneWithoutReviewsInput = {
+    create?: XOR<ProfileCreateWithoutReviewsInput, ProfileUncheckedCreateWithoutReviewsInput>
+    connectOrCreate?: ProfileCreateOrConnectWithoutReviewsInput
+    connect?: ProfileWhereUniqueInput
+  }
+
   export type BussinessCreateNestedOneWithoutReviewsInput = {
     create?: XOR<BussinessCreateWithoutReviewsInput, BussinessUncheckedCreateWithoutReviewsInput>
     connectOrCreate?: BussinessCreateOrConnectWithoutReviewsInput
@@ -16178,6 +16299,16 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type ProfileUpdateOneWithoutReviewsNestedInput = {
+    create?: XOR<ProfileCreateWithoutReviewsInput, ProfileUncheckedCreateWithoutReviewsInput>
+    connectOrCreate?: ProfileCreateOrConnectWithoutReviewsInput
+    upsert?: ProfileUpsertWithoutReviewsInput
+    disconnect?: ProfileWhereInput | boolean
+    delete?: ProfileWhereInput | boolean
+    connect?: ProfileWhereUniqueInput
+    update?: XOR<XOR<ProfileUpdateToOneWithWhereWithoutReviewsInput, ProfileUpdateWithoutReviewsInput>, ProfileUncheckedUpdateWithoutReviewsInput>
   }
 
   export type BussinessUpdateOneRequiredWithoutReviewsNestedInput = {
@@ -16632,6 +16763,38 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ReviewCreateWithoutProfileInput = {
+    id?: string
+    anonymous?: boolean
+    anonymousName?: string | null
+    rating: number
+    comment: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Bussiness: BussinessCreateNestedOneWithoutReviewsInput
+  }
+
+  export type ReviewUncheckedCreateWithoutProfileInput = {
+    id?: string
+    anonymous?: boolean
+    anonymousName?: string | null
+    bussinessId: string
+    rating: number
+    comment: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ReviewCreateOrConnectWithoutProfileInput = {
+    where: ReviewWhereUniqueInput
+    create: XOR<ReviewCreateWithoutProfileInput, ReviewUncheckedCreateWithoutProfileInput>
+  }
+
+  export type ReviewCreateManyProfileInputEnvelope = {
+    data: ReviewCreateManyProfileInput | ReviewCreateManyProfileInput[]
+    skipDuplicates?: boolean
+  }
+
   export type AccountUpsertWithWhereUniqueWithoutUserInput = {
     where: AccountWhereUniqueInput
     update: XOR<AccountUpdateWithoutUserInput, AccountUncheckedUpdateWithoutUserInput>
@@ -16803,6 +16966,37 @@ export namespace Prisma {
     profileId?: StringNullableFilter<"Bussiness"> | string | null
   }
 
+  export type ReviewUpsertWithWhereUniqueWithoutProfileInput = {
+    where: ReviewWhereUniqueInput
+    update: XOR<ReviewUpdateWithoutProfileInput, ReviewUncheckedUpdateWithoutProfileInput>
+    create: XOR<ReviewCreateWithoutProfileInput, ReviewUncheckedCreateWithoutProfileInput>
+  }
+
+  export type ReviewUpdateWithWhereUniqueWithoutProfileInput = {
+    where: ReviewWhereUniqueInput
+    data: XOR<ReviewUpdateWithoutProfileInput, ReviewUncheckedUpdateWithoutProfileInput>
+  }
+
+  export type ReviewUpdateManyWithWhereWithoutProfileInput = {
+    where: ReviewScalarWhereInput
+    data: XOR<ReviewUpdateManyMutationInput, ReviewUncheckedUpdateManyWithoutProfileInput>
+  }
+
+  export type ReviewScalarWhereInput = {
+    AND?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
+    OR?: ReviewScalarWhereInput[]
+    NOT?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
+    id?: StringFilter<"Review"> | string
+    profileId?: StringNullableFilter<"Review"> | string | null
+    anonymous?: BoolFilter<"Review"> | boolean
+    anonymousName?: StringNullableFilter<"Review"> | string | null
+    bussinessId?: StringFilter<"Review"> | string
+    rating?: IntFilter<"Review"> | number
+    comment?: StringFilter<"Review"> | string
+    createdAt?: DateTimeFilter<"Review"> | Date | string
+    updatedAt?: DateTimeFilter<"Review"> | Date | string
+  }
+
   export type ProfileCreateWithoutAccountsInput = {
     id?: string
     fullName?: string | null
@@ -16824,6 +17018,7 @@ export namespace Prisma {
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
     inboxes?: InboxCreateNestedManyWithoutUserInput
     bussinesses?: BussinessCreateNestedManyWithoutProfileInput
+    reviews?: ReviewCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileUncheckedCreateWithoutAccountsInput = {
@@ -16847,6 +17042,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
     inboxes?: InboxUncheckedCreateNestedManyWithoutUserInput
     bussinesses?: BussinessUncheckedCreateNestedManyWithoutProfileInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileCreateOrConnectWithoutAccountsInput = {
@@ -16886,6 +17082,7 @@ export namespace Prisma {
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
     inboxes?: InboxUpdateManyWithoutUserNestedInput
     bussinesses?: BussinessUpdateManyWithoutProfileNestedInput
+    reviews?: ReviewUpdateManyWithoutProfileNestedInput
   }
 
   export type ProfileUncheckedUpdateWithoutAccountsInput = {
@@ -16909,6 +17106,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
     inboxes?: InboxUncheckedUpdateManyWithoutUserNestedInput
     bussinesses?: BussinessUncheckedUpdateManyWithoutProfileNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutProfileNestedInput
   }
 
   export type ProfileCreateWithoutSessionsInput = {
@@ -16932,6 +17130,7 @@ export namespace Prisma {
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
     inboxes?: InboxCreateNestedManyWithoutUserInput
     bussinesses?: BussinessCreateNestedManyWithoutProfileInput
+    reviews?: ReviewCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileUncheckedCreateWithoutSessionsInput = {
@@ -16955,6 +17154,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
     inboxes?: InboxUncheckedCreateNestedManyWithoutUserInput
     bussinesses?: BussinessUncheckedCreateNestedManyWithoutProfileInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileCreateOrConnectWithoutSessionsInput = {
@@ -16994,6 +17194,7 @@ export namespace Prisma {
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
     inboxes?: InboxUpdateManyWithoutUserNestedInput
     bussinesses?: BussinessUpdateManyWithoutProfileNestedInput
+    reviews?: ReviewUpdateManyWithoutProfileNestedInput
   }
 
   export type ProfileUncheckedUpdateWithoutSessionsInput = {
@@ -17017,6 +17218,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
     inboxes?: InboxUncheckedUpdateManyWithoutUserNestedInput
     bussinesses?: BussinessUncheckedUpdateManyWithoutProfileNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutProfileNestedInput
   }
 
   export type CategoryCreateWithoutBussinessInput = {
@@ -17073,18 +17275,18 @@ export namespace Prisma {
 
   export type ReviewCreateWithoutBussinessInput = {
     id?: string
-    userId?: string | null
     anonymous?: boolean
     anonymousName?: string | null
     rating: number
     comment: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    profile?: ProfileCreateNestedOneWithoutReviewsInput
   }
 
   export type ReviewUncheckedCreateWithoutBussinessInput = {
     id?: string
-    userId?: string | null
+    profileId?: string | null
     anonymous?: boolean
     anonymousName?: string | null
     rating: number
@@ -17124,6 +17326,7 @@ export namespace Prisma {
     sentMessages?: MessageCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
     inboxes?: InboxCreateNestedManyWithoutUserInput
+    reviews?: ReviewCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileUncheckedCreateWithoutBussinessesInput = {
@@ -17147,6 +17350,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
     inboxes?: InboxUncheckedCreateNestedManyWithoutUserInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileCreateOrConnectWithoutBussinessesInput = {
@@ -17226,21 +17430,6 @@ export namespace Prisma {
     data: XOR<ReviewUpdateManyMutationInput, ReviewUncheckedUpdateManyWithoutBussinessInput>
   }
 
-  export type ReviewScalarWhereInput = {
-    AND?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
-    OR?: ReviewScalarWhereInput[]
-    NOT?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
-    id?: StringFilter<"Review"> | string
-    userId?: StringNullableFilter<"Review"> | string | null
-    anonymous?: BoolFilter<"Review"> | boolean
-    anonymousName?: StringNullableFilter<"Review"> | string | null
-    bussinessId?: StringFilter<"Review"> | string
-    rating?: IntFilter<"Review"> | number
-    comment?: StringFilter<"Review"> | string
-    createdAt?: DateTimeFilter<"Review"> | Date | string
-    updatedAt?: DateTimeFilter<"Review"> | Date | string
-  }
-
   export type ProfileUpsertWithoutBussinessesInput = {
     update: XOR<ProfileUpdateWithoutBussinessesInput, ProfileUncheckedUpdateWithoutBussinessesInput>
     create: XOR<ProfileCreateWithoutBussinessesInput, ProfileUncheckedCreateWithoutBussinessesInput>
@@ -17273,6 +17462,7 @@ export namespace Prisma {
     sentMessages?: MessageUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
     inboxes?: InboxUpdateManyWithoutUserNestedInput
+    reviews?: ReviewUpdateManyWithoutProfileNestedInput
   }
 
   export type ProfileUncheckedUpdateWithoutBussinessesInput = {
@@ -17296,6 +17486,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
     inboxes?: InboxUncheckedUpdateManyWithoutUserNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutProfileNestedInput
   }
 
   export type BussinessCreateWithoutCategoriesInput = {
@@ -17458,6 +17649,59 @@ export namespace Prisma {
     reviews?: ReviewUncheckedUpdateManyWithoutBussinessNestedInput
   }
 
+  export type ProfileCreateWithoutReviewsInput = {
+    id?: string
+    fullName?: string | null
+    avatarUrl?: string | null
+    phone?: string | null
+    email?: string | null
+    password?: string | null
+    emailVerified?: boolean
+    role?: NullableJsonNullValueInput | InputJsonValue
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    image?: string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    sentMessages?: MessageCreateNestedManyWithoutSenderInput
+    receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
+    inboxes?: InboxCreateNestedManyWithoutUserInput
+    bussinesses?: BussinessCreateNestedManyWithoutProfileInput
+  }
+
+  export type ProfileUncheckedCreateWithoutReviewsInput = {
+    id?: string
+    fullName?: string | null
+    avatarUrl?: string | null
+    phone?: string | null
+    email?: string | null
+    password?: string | null
+    emailVerified?: boolean
+    role?: NullableJsonNullValueInput | InputJsonValue
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    image?: string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    sentMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
+    receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
+    inboxes?: InboxUncheckedCreateNestedManyWithoutUserInput
+    bussinesses?: BussinessUncheckedCreateNestedManyWithoutProfileInput
+  }
+
+  export type ProfileCreateOrConnectWithoutReviewsInput = {
+    where: ProfileWhereUniqueInput
+    create: XOR<ProfileCreateWithoutReviewsInput, ProfileUncheckedCreateWithoutReviewsInput>
+  }
+
   export type BussinessCreateWithoutReviewsInput = {
     id?: string
     name: string
@@ -17493,6 +17737,65 @@ export namespace Prisma {
   export type BussinessCreateOrConnectWithoutReviewsInput = {
     where: BussinessWhereUniqueInput
     create: XOR<BussinessCreateWithoutReviewsInput, BussinessUncheckedCreateWithoutReviewsInput>
+  }
+
+  export type ProfileUpsertWithoutReviewsInput = {
+    update: XOR<ProfileUpdateWithoutReviewsInput, ProfileUncheckedUpdateWithoutReviewsInput>
+    create: XOR<ProfileCreateWithoutReviewsInput, ProfileUncheckedCreateWithoutReviewsInput>
+    where?: ProfileWhereInput
+  }
+
+  export type ProfileUpdateToOneWithWhereWithoutReviewsInput = {
+    where?: ProfileWhereInput
+    data: XOR<ProfileUpdateWithoutReviewsInput, ProfileUncheckedUpdateWithoutReviewsInput>
+  }
+
+  export type ProfileUpdateWithoutReviewsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    role?: NullableJsonNullValueInput | InputJsonValue
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    sentMessages?: MessageUpdateManyWithoutSenderNestedInput
+    receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
+    inboxes?: InboxUpdateManyWithoutUserNestedInput
+    bussinesses?: BussinessUpdateManyWithoutProfileNestedInput
+  }
+
+  export type ProfileUncheckedUpdateWithoutReviewsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    role?: NullableJsonNullValueInput | InputJsonValue
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    sentMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
+    receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
+    inboxes?: InboxUncheckedUpdateManyWithoutUserNestedInput
+    bussinesses?: BussinessUncheckedUpdateManyWithoutProfileNestedInput
   }
 
   export type BussinessUpsertWithoutReviewsInput = {
@@ -17559,6 +17862,7 @@ export namespace Prisma {
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
     inboxes?: InboxCreateNestedManyWithoutUserInput
     bussinesses?: BussinessCreateNestedManyWithoutProfileInput
+    reviews?: ReviewCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileUncheckedCreateWithoutSentMessagesInput = {
@@ -17582,6 +17886,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
     inboxes?: InboxUncheckedCreateNestedManyWithoutUserInput
     bussinesses?: BussinessUncheckedCreateNestedManyWithoutProfileInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileCreateOrConnectWithoutSentMessagesInput = {
@@ -17610,6 +17915,7 @@ export namespace Prisma {
     sentMessages?: MessageCreateNestedManyWithoutSenderInput
     inboxes?: InboxCreateNestedManyWithoutUserInput
     bussinesses?: BussinessCreateNestedManyWithoutProfileInput
+    reviews?: ReviewCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileUncheckedCreateWithoutReceivedMessagesInput = {
@@ -17633,6 +17939,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
     inboxes?: InboxUncheckedCreateNestedManyWithoutUserInput
     bussinesses?: BussinessUncheckedCreateNestedManyWithoutProfileInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileCreateOrConnectWithoutReceivedMessagesInput = {
@@ -17672,6 +17979,7 @@ export namespace Prisma {
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
     inboxes?: InboxUpdateManyWithoutUserNestedInput
     bussinesses?: BussinessUpdateManyWithoutProfileNestedInput
+    reviews?: ReviewUpdateManyWithoutProfileNestedInput
   }
 
   export type ProfileUncheckedUpdateWithoutSentMessagesInput = {
@@ -17695,6 +18003,7 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
     inboxes?: InboxUncheckedUpdateManyWithoutUserNestedInput
     bussinesses?: BussinessUncheckedUpdateManyWithoutProfileNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutProfileNestedInput
   }
 
   export type ProfileUpsertWithoutReceivedMessagesInput = {
@@ -17729,6 +18038,7 @@ export namespace Prisma {
     sentMessages?: MessageUpdateManyWithoutSenderNestedInput
     inboxes?: InboxUpdateManyWithoutUserNestedInput
     bussinesses?: BussinessUpdateManyWithoutProfileNestedInput
+    reviews?: ReviewUpdateManyWithoutProfileNestedInput
   }
 
   export type ProfileUncheckedUpdateWithoutReceivedMessagesInput = {
@@ -17752,6 +18062,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
     inboxes?: InboxUncheckedUpdateManyWithoutUserNestedInput
     bussinesses?: BussinessUncheckedUpdateManyWithoutProfileNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutProfileNestedInput
   }
 
   export type ProfileCreateWithoutInboxesInput = {
@@ -17775,6 +18086,7 @@ export namespace Prisma {
     sentMessages?: MessageCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
     bussinesses?: BussinessCreateNestedManyWithoutProfileInput
+    reviews?: ReviewCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileUncheckedCreateWithoutInboxesInput = {
@@ -17798,6 +18110,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
     bussinesses?: BussinessUncheckedCreateNestedManyWithoutProfileInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileCreateOrConnectWithoutInboxesInput = {
@@ -17837,6 +18150,7 @@ export namespace Prisma {
     sentMessages?: MessageUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
     bussinesses?: BussinessUpdateManyWithoutProfileNestedInput
+    reviews?: ReviewUpdateManyWithoutProfileNestedInput
   }
 
   export type ProfileUncheckedUpdateWithoutInboxesInput = {
@@ -17860,6 +18174,7 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
     bussinesses?: BussinessUncheckedUpdateManyWithoutProfileNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutProfileNestedInput
   }
 
   export type AccountCreateManyUserInput = {
@@ -17921,6 +18236,17 @@ export namespace Prisma {
     phone: string
     email: string
     website?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ReviewCreateManyProfileInput = {
+    id?: string
+    anonymous?: boolean
+    anonymousName?: string | null
+    bussinessId: string
+    rating: number
+    comment: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -18120,6 +18446,39 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ReviewUpdateWithoutProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    anonymous?: BoolFieldUpdateOperationsInput | boolean
+    anonymousName?: NullableStringFieldUpdateOperationsInput | string | null
+    rating?: IntFieldUpdateOperationsInput | number
+    comment?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Bussiness?: BussinessUpdateOneRequiredWithoutReviewsNestedInput
+  }
+
+  export type ReviewUncheckedUpdateWithoutProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    anonymous?: BoolFieldUpdateOperationsInput | boolean
+    anonymousName?: NullableStringFieldUpdateOperationsInput | string | null
+    bussinessId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    comment?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReviewUncheckedUpdateManyWithoutProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    anonymous?: BoolFieldUpdateOperationsInput | boolean
+    anonymousName?: NullableStringFieldUpdateOperationsInput | string | null
+    bussinessId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    comment?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type CategoryCreateManyBussinessInput = {
     id?: string
     name: string
@@ -18138,7 +18497,7 @@ export namespace Prisma {
 
   export type ReviewCreateManyBussinessInput = {
     id?: string
-    userId?: string | null
+    profileId?: string | null
     anonymous?: boolean
     anonymousName?: string | null
     rating: number
@@ -18197,18 +18556,18 @@ export namespace Prisma {
 
   export type ReviewUpdateWithoutBussinessInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
     anonymous?: BoolFieldUpdateOperationsInput | boolean
     anonymousName?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
     comment?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profile?: ProfileUpdateOneWithoutReviewsNestedInput
   }
 
   export type ReviewUncheckedUpdateWithoutBussinessInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    profileId?: NullableStringFieldUpdateOperationsInput | string | null
     anonymous?: BoolFieldUpdateOperationsInput | boolean
     anonymousName?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
@@ -18219,7 +18578,7 @@ export namespace Prisma {
 
   export type ReviewUncheckedUpdateManyWithoutBussinessInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    profileId?: NullableStringFieldUpdateOperationsInput | string | null
     anonymous?: BoolFieldUpdateOperationsInput | boolean
     anonymousName?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
