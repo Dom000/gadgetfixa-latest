@@ -4,11 +4,9 @@ export type Params = {
   }>;
 };
 
-export async function POST(request: Request, { params }: Params) {
-  const { id } = await params;
-
+export async function POST(request: Request) {
   return new Response(
-    JSON.stringify({ message: `Add portfolio item for business ID: ${id}` }),
+    JSON.stringify({ message: `Add portfolio item for business ID: ` }),
     { status: 200 }
   );
 }
