@@ -181,13 +181,7 @@ function page({ params }: { params: Promise<{ id: string }> }) {
   };
 
   const handleAddPortfolio = (data: AddPortfolioFormData) => {
-    console.log("Adding portfolio item", data);
-    // Call your update business API here
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!;
-
-    console.log(supabaseUrl, "url...");
-    console.log(supabaseKey, "key...");
+  
     const fdata = new FormData();
     if (files && files.length > 0) {
       files.forEach((file) => {
