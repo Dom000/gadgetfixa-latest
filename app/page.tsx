@@ -11,7 +11,7 @@ const testimonials = [
     id: "1",
     name: "Sarah Johnson",
     avatar: "/customer1.jpg",
-    rating: 5,
+    reviews: [{ rating: 5 }],
     text: "Amazing service! My phone screen was replaced perfectly and faster than expected. The technician was professional and explained everything clearly.",
     service: "Phone Screen Repair",
   },
@@ -19,7 +19,7 @@ const testimonials = [
     id: "2",
     name: "Michael Chen",
     avatar: "/customer2.jpg",
-    rating: 5,
+    reviws: [{ rating: 4 }],
     text: "Found the perfect repair shop for my laptop through Gadget Fixa. Great communication and fair pricing. Highly recommend!",
     service: "Laptop Repair",
   },
@@ -28,7 +28,6 @@ const testimonials = [
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
-
       {/* Hero Section */}
       <section className="relative py-20 px-4 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-hero opacity-10" />

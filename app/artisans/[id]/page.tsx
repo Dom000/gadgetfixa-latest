@@ -39,7 +39,7 @@ function page() {
 
           {/* Rating */}
           <div className="flex items-center justify-between">
-            <StarRating rating={artisan.rating} />
+            {/* <StarRating rating={artisan.r} /> */}
             <Badge variant="secondary">{artisan.category}</Badge>
           </div>
 

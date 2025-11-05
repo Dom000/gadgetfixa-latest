@@ -14,32 +14,41 @@ import Header from "@/components/Header";
 import ArtisanCard from "@/components/ArtisanCard";
 import { Search, Filter, MapPin } from "lucide-react";
 import { artisansData, categories } from "@/lib/mock-data";
-
-
+import { useQuery } from "@tanstack/react-query";
+import { Bussiness } from "@/lib/prisma/generated";
+import { getBusiness } from "@/controllers/business/index.controller";
 
 const Artisans = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const [sortBy, setSortBy] = useState("rating");
+  const [pageNumber, setPageNumber] = useState(1);
 
-  const filteredArtisans = artisansData
-    .filter((artisan) => {
-      const matchesSearch =
-        artisan.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        artisan.shopName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        artisan.specialties.some((s) =>
-          s.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-      const matchesCategory =
-        selectedCategory === "All Categories" ||
-        artisan.category === selectedCategory;
-      return matchesSearch && matchesCategory;
-    })
-    .sort((a, b) => {
-      if (sortBy === "rating") return b.rating - a.rating;
-      if (sortBy === "reviews") return b.reviewCount - a.reviewCount;
-      return a.name.localeCompare(b.name);
-    });
+  const { data, refetch, isLoading } = useQuery<{ data: Bussiness[] }>({
+    queryKey: ["businessByProfile"],
+    queryFn: () => getBusiness(pageNumber),
+    retry: 1,
+  });
+
+  const filteredArtisans =
+    data?.data.filter((artisan) => {
+      const matchesSearch = artisan.name
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
+      // artisan.s.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      // artisan.specialties.some((s) =>
+      //   s.toLowerCase().includes(searchTerm.toLowerCase())
+      // );
+      //   const matchesCategory =
+      //     selectedCategory === "All Categories" ||
+      //     artisan.category === selectedCategory;
+      return matchesSearch;
+    }) || [];
+  // .sort((a, b) => {
+  //   if (sortBy === "rating") return b.rating - a.rating;
+  //   if (sortBy === "reviews") return b.reviewCount - a.reviewCount;
+  //   return a.name.localeCompare(b.name);
+  // });
 
   return (
     <div className="min-h-screen bg-background">

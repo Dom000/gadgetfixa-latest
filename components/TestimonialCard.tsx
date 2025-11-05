@@ -7,7 +7,7 @@ interface TestimonialCardProps {
     id: string;
     name: string;
     avatar: string;
-    rating: number;
+    reviews?: { rating: number }[];
     text: string;
     service: string;
   };
@@ -20,13 +20,13 @@ const TestimonialCard = ({ testimonial }: TestimonialCardProps) => {
         <div className="flex flex-col space-y-4">
           <div className="flex items-center space-x-1">
             <Quote className="w-5 h-5 text-accent" />
-            <StarRating rating={testimonial.rating} size="sm" />
+            <StarRating reviews={testimonial.reviews} size="sm" />
           </div>
-          
+
           <p className="text-muted-foreground italic leading-relaxed">
             "{testimonial.text}"
           </p>
-          
+
           <div className="flex items-center space-x-3 pt-2 border-t border-border">
             <img
               src={testimonial.avatar}
@@ -35,7 +35,9 @@ const TestimonialCard = ({ testimonial }: TestimonialCardProps) => {
             />
             <div>
               <p className="font-medium text-foreground">{testimonial.name}</p>
-              <p className="text-sm text-muted-foreground">{testimonial.service}</p>
+              <p className="text-sm text-muted-foreground">
+                {testimonial.service}
+              </p>
             </div>
           </div>
         </div>
