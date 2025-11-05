@@ -29,8 +29,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import PortfolioCard from "@/components/my-bussiness/PorfolioCard";
 import { portfolioOptions } from "@/lib/mock-data";
-import { useQuery } from "@tanstack/react-query";
-import { getBusinessById } from "@/controllers/business/index.controller";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import {
+  addPortfolioItem,
+  getBusinessById,
+} from "@/controllers/business/index.controller";
 import {
   Empty,
   EmptyDescription,
@@ -149,8 +152,18 @@ function page({ params }: { params: Promise<{ id: string }> }) {
     }
   }, [data]);
 
+  const { mutate } = useMutation({
+    mutationFn: (formData: FormData) => addPortfolioItem(id, formData),
+    onSuccess: (data) => {
+      console.log("Portfolio item added successfully", data);
+    },
+    onError: (error) => {
+      console.error("Error adding portfolio item:", error);
+    },
+  });
+
   const handleUpdateBiz = (data: UpdateBizFormData) => {
-    console.log("Updating Bussiness with data:", data);
+    console.log("Updating business with data:", data);
   };
 
   const handleDrop = (files: File[]) => {
@@ -169,6 +182,22 @@ function page({ params }: { params: Promise<{ id: string }> }) {
 
   const handleAddPortfolio = (data: AddPortfolioFormData) => {
     console.log("Adding portfolio item", data);
+    // Call your update business API here
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!;
+
+    console.log(supabaseUrl, "url...");
+    console.log(supabaseKey, "key...");
+    const fdata = new FormData();
+    if (files && files.length > 0) {
+      files.forEach((file) => {
+        fdata.append("image", file);
+      });
+    }
+    fdata.append("title", data.portfolioTitle);
+    fdata.append("description", data.portfolioDescription);
+
+    mutate(fdata);
   };
   return (
     <div className="w-full space-y-4 mt-2x md:space-y-0 bg-gray-100 rounded-md p-2 md:p-5">

@@ -25,3 +25,16 @@ export async function getBusinessByProfileId(id: string) {
     throw error;
   }
 }
+
+export async function addPortfolioItem(businessId: string, formData: FormData) {
+  const { data } = await axios.post(
+    `/api/business/${businessId}/portfolio`,
+    formData,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  return data;
+}
