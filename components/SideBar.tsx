@@ -59,6 +59,7 @@ import { cn } from "@/lib/utils";
 import { NavMain } from "./NavbarMain";
 import { NavUser } from "./NavbarUser";
 import { TeamSwitcher } from "./TeamSwitcher";
+import { clearAnonymousUser } from "@/lib/anonymous-user";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const user = useAppStore((state) => state.userDetails);

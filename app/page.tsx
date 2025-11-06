@@ -26,6 +26,8 @@ const testimonials = [
 ];
 
 const Index = () => {
+ 
+
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -53,7 +55,11 @@ const Index = () => {
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
-                <Button variant="outline" size="lg" className="text-lg w-fit px-3">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="text-lg w-fit px-3"
+                >
                   Join as Artisan
                 </Button>
               </div>

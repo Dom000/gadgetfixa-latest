@@ -1,3 +1,4 @@
+import { clearAnonymousUser } from "@/lib/anonymous-user";
 import { authClient } from "@/lib/client";
 import { AuthState, DefaultView } from "@/types";
 import { getCookie } from "cookies-next";

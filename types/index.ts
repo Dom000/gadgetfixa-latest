@@ -18,7 +18,15 @@ export interface AuthState {
 export type BusinessType = Bussiness & {
   isPrivate?: boolean;
   isOnline?: boolean;
-  reviews?: { rating: number }[];
+  reviews?: {
+    id: string;
+    anonymous: boolean;
+    anonymousName?: string | null;
+    createdAt: Date;
+    comment: string;
+    rating: number;
+    name?: string;
+  }[];
   categories: { name: string; id: string }[];
   portfolios?: {
     id: string;
@@ -30,3 +38,12 @@ export type BusinessType = Bussiness & {
   location?: string;
   private?: boolean;
 };
+
+export interface ReviewInput {
+  profileId?: string | null;
+  anonymous: boolean;
+  anonymousName?: string | null;
+  bussinessId: string;
+  rating: number;
+  comment: string;
+}

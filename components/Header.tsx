@@ -36,6 +36,7 @@ import { authClient } from "@/lib/client";
 import { User } from "better-auth";
 import { Prisma } from "@prisma/client";
 import { Profile } from "@/lib/prisma/generated";
+import { clearAnonymousUser, getAnonymousUser } from "@/lib/anonymous-user";
 const Header = () => {
   const [user, setUser] = useState<Profile | null>(null);
   const navigate = useRouter();
@@ -49,6 +50,7 @@ const Header = () => {
       setUser((session?.user as unknown as Profile) ?? null);
     } else {
       setUser(null);
+      getAnonymousUser();
     }
   }, [session]);
 

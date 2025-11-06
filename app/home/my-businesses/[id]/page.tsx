@@ -96,10 +96,13 @@ function page({ params }: { params: Promise<{ id: string }> }) {
   const [filePreview, setFilePreview] = useState<string | undefined>();
   const [files, setFiles] = useState<File[] | undefined>();
   const [portfolioModal, setPortfolioModal] = useState(false);
+
   const { data, isLoading } = useQuery({
-    queryKey: ["businessDetails"],
+    queryKey: ["artisanDetails"],
     queryFn: () => getBusinessById(id),
   });
+
+  console.log("Business details data:", data);
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
 
   const updateBiz = useForm<UpdateBizFormData>({
