@@ -28,7 +28,9 @@ import { sendReview } from "@/controllers/review/index.controller";
 import { getAnonymousUser } from "@/lib/anonymous-user";
 import { authClient } from "@/lib/client";
 import { artisansData, portfolioOptions, reviewSamples } from "@/lib/mock-data";
+import { useAppStore } from "@/stores/store";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { set } from "better-auth";
 import { Grid, Loader2, MapPin, MessageCircle, Phone } from "lucide-react";
 import React, { use } from "react";
 
@@ -40,6 +42,8 @@ function page({ params }: { params: Promise<{ id: string }> }) {
     rating: 0,
     comment: "",
   });
+
+  const userDetails = useAppStore((state) => state.userDetails);
   const {
     data: artisan,
     isLoading,
@@ -53,6 +57,7 @@ function page({ params }: { params: Promise<{ id: string }> }) {
     onSuccess: () => {
       setRatingModal(false);
       refetch();
+      setReviewData({ rating: 0, comment: "" });
     },
   });
 
@@ -80,6 +85,14 @@ function page({ params }: { params: Promise<{ id: string }> }) {
     });
   };
 
+  const handleMessage = async () => {
+    const data = await user;
+    const isAnonymous = !data.data?.session;
+    if (isAnonymous) {
+      alert("Please log in to message the artisan.");
+      return;
+    }
+  };
   return (
     <div className="w-full space-y-4 mt-2x md:space-y-0  p-2 md:p-5">
       <BreadCrumb page="Artisan Details" />
@@ -139,7 +152,12 @@ function page({ params }: { params: Promise<{ id: string }> }) {
             </div>
           </div>
           <div className="flex space-x-2 pt-2">
-            <Button className="w-fit cursor-pointer" variant="hero">
+            <Button
+              className="w-fit cursor-pointer"
+              variant="hero"
+              disabled={artisan?.data.profileId === userDetails?.id}
+              onClick={handleMessage}
+            >
               <MessageCircle className="w-4 h-4 mr-2" />
               Message
             </Button>
@@ -171,7 +189,7 @@ function page({ params }: { params: Promise<{ id: string }> }) {
               <h3 className="text-xl font-bold my-3">Reviews</h3>
               <div className="w-full space-y-5 overflow-y-auto max-h-96 pb-4">
                 {artisan?.data.reviews && artisan?.data.reviews.length > 0 ? (
-                  <div className="w-full space-y-2 overflow-y-auto max-h-96 pb-4 grid md:grid-cols-2 gap-4">
+                  <div className="w-full space-y-2 overflow-y-auto max-h-96 pb-4">
                     {artisan?.data.reviews.map((review) => (
                       <CommentRatingCard key={review.id} {...review} />
                     ))}
@@ -205,7 +223,11 @@ function page({ params }: { params: Promise<{ id: string }> }) {
               />
               <div className="flex justify-end mt-2">
                 <Button
-                  disabled={isPending || !reviewData.comment}
+                  disabled={
+                    isPending ||
+                    !reviewData.comment ||
+                    artisan?.data.profileId === userDetails?.id
+                  }
                   onClick={() => setRatingModal(true)}
                   variant="hero"
                 >
