@@ -3,9 +3,7 @@ import BreadCrumb from "@/components/CustomBreadcrumb";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { authClient } from "@/lib/client";
 import { useAppStore } from "@/stores/store";
-import React from "react";
 
 function page() {
   const user = useAppStore((state) => state.userDetails);
@@ -23,7 +21,7 @@ function page() {
           <Input
             type="text"
             placeholder="John Doe"
-            defaultValue={user.fullName}
+            defaultValue={user?.fullName}
             disabled
           />{" "}
           <Label>Email</Label>
@@ -31,14 +29,14 @@ function page() {
             type="text"
             placeholder="John Doe"
             disabled
-            defaultValue={user.email}
+            defaultValue={user?.email}
           />{" "}
           <Label>Phone</Label>
           <Input
             type="text"
             placeholder="John Doe"
             disabled
-            defaultValue={user.phone ?? "Not Set"}
+            defaultValue={user?.phone ?? "Not Set"}
           />
           <Button className="w-fit" disabled variant="hero">
             Edit Account Info
