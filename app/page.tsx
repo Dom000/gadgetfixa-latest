@@ -33,27 +33,27 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-hero opacity-10" />
         <div className="container mx-auto relative">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
+            <div className="md:space-y-8 space-y-3">
+              <h1 className="text-3xl text-center md:text-left lg:text-6xl font-bold leading-tight">
                 Find Expert{" "}
                 <span className="bg-gradient-primary bg-clip-text text-transparent">
                   Artisans
                 </span>{" "}
                 Near You
               </h1>
-              <p className="text-xl text-muted-foreground leading-relaxed">
+              <p className="md:text-xl text-center md:text-left text-muted-foreground leading-relaxed">
                 Connect with skilled phone repairers, electronics engineers, and
                 gadget specialists. Get your devices fixed quickly by trusted
                 professionals in your area.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col items-center justify-center sm:flex-row gap-4">
                 <Link href="#">
                   <Button size="lg" variant="hero" className="text-lg px-8">
                     Find Artisans
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
-                <Button variant="outline" size="lg" className="text-lg px-8">
+                <Button variant="outline" size="lg" className="text-lg w-fit px-3">
                   Join as Artisan
                 </Button>
               </div>

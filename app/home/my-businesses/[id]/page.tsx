@@ -152,10 +152,11 @@ function page({ params }: { params: Promise<{ id: string }> }) {
     }
   }, [data]);
 
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: (formData: FormData) => addPortfolioItem(id, formData),
     onSuccess: (data) => {
-      console.log("Portfolio item added successfully", data);
+      addPortfolio.reset();
+      setPortfolioModal(false);
     },
     onError: (error) => {
       console.error("Error adding portfolio item:", error);
@@ -181,7 +182,6 @@ function page({ params }: { params: Promise<{ id: string }> }) {
   };
 
   const handleAddPortfolio = (data: AddPortfolioFormData) => {
-  
     const fdata = new FormData();
     if (files && files.length > 0) {
       files.forEach((file) => {
@@ -199,10 +199,10 @@ function page({ params }: { params: Promise<{ id: string }> }) {
         page="Edit Bussiness"
         breadcrumbs={[{ name: "My Bussiness", href: "/home" }]}
       />
-      <div className="mt-10 bg-gray-50 rounded p-5 space-y-5 max-w-3xl ">
+      <div className="mt-10 bg-gray-50 rounded p-5 space-y-5 md:max-w-3xl ">
         <Form {...updateBiz}>
           <form onSubmit={updateBiz.handleSubmit(handleUpdateBiz)}>
-            <div className="space-y-4 grid md:grid-cols-2 gap-2">
+            <div className="space-y-4 grid grid-cols-1 md:grid-cols-2 gap-2">
               {" "}
               <FormField
                 control={updateBiz.control}
@@ -240,7 +240,7 @@ function page({ params }: { params: Promise<{ id: string }> }) {
                   </FormItem>
                 )}
               />
-              <div className="col-span-2">
+              <div className="md:col-span-2">
                 <FormField
                   control={updateBiz.control}
                   name="description"
@@ -471,9 +471,9 @@ function page({ params }: { params: Promise<{ id: string }> }) {
                   variant={"hero"}
                   type="submit"
                   className="w-fit"
-                  disabled={isLoading}
+                  disabled={isPending}
                 >
-                  {isLoading && (
+                  {isPending && (
                     <Loader2 className="m-2 h-4 w-4 animate-spin" />
                   )}
                   Save Portfolio Item

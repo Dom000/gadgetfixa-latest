@@ -49,11 +49,20 @@ function BussinessCard() {
   }, [refetch]);
 
   return (
-    <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-6">
-      {filteredArtisans.map((artisan) => (
-        <ArtisanCard key={artisan.id} artisan={{ private: true, ...artisan }} />
-      ))}
-    </div>
+    <>
+      {isLoading ? (
+        <div className="flex items-center justify-center">Loading...</div>
+      ) : (
+        <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-6">
+          {filteredArtisans.map((artisan) => (
+            <ArtisanCard
+              key={artisan.id}
+              artisan={{ private: true, ...artisan }}
+            />
+          ))}
+        </div>
+      )}
+    </>
   );
 }
 

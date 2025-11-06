@@ -4,10 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { authClient } from "@/lib/client";
+import { useAppStore } from "@/stores/store";
 import React from "react";
 
 function page() {
-  const user = authClient.getSession()
+  const user = useAppStore((state) => state.userDetails);
   return (
     <div className="w-full space-y-4 mt-2x md:space-y-0 bg-gray-100 rounded-md p-2 md:p-5">
       <BreadCrumb page="Account Information" />
@@ -22,22 +23,22 @@ function page() {
           <Input
             type="text"
             placeholder="John Doe"
-            defaultValue={""}
+            defaultValue={user.fullName}
             disabled
           />{" "}
-          <Label>Full Name</Label>
+          <Label>Email</Label>
           <Input
             type="text"
             placeholder="John Doe"
             disabled
-            defaultValue={""}
+            defaultValue={user.email}
           />{" "}
-          <Label>Full Name</Label>
+          <Label>Phone</Label>
           <Input
             type="text"
             placeholder="John Doe"
             disabled
-            defaultValue={""}
+            defaultValue={user.phone ?? "Not Set"}
           />
           <Button className="w-fit" disabled variant="hero">
             Edit Account Info

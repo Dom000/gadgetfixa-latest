@@ -19,6 +19,14 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -149,9 +157,32 @@ const Header = () => {
             </Link>
           )}
 
-          <Button variant="ghost" size="sm" className="md:hidden">
-            <Menu className="w-4 h-4" />
-          </Button>
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="sm" className="md:hidden">
+                <Menu className="w-4 h-4" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left">
+              <SheetHeader>
+                <SheetTitle className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+                  Gadget Fixa
+                </SheetTitle>
+              </SheetHeader>
+              <div className="flex flex-col space-y-4 mt-6 pl-4">
+                <SheetClose asChild>
+                  <Link href="/" className=" font-medium">
+                    Home
+                  </Link>
+                </SheetClose>
+                <SheetClose asChild>
+                  <Link href="/artisans" className=" font-medium">
+                    Find Artisans
+                  </Link>
+                </SheetClose>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </header>

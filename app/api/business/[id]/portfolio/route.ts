@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma/prisma";
-import { supabase } from "@/supabase/client";
+import cloudinary from "@/lib/cloudinary";
 import { NextResponse } from "next/server";
 
 export type Params = {
@@ -42,17 +42,25 @@ export async function POST(request: Request, { params }: Params) {
   );
 }
 
-async function uploadFile(file: File) {
-  const { data, error } = await supabase.storage
-    .from("gadget-fixa")
-    .upload(`portfolio/${file.name}`, file);
-  if (error) {
-    console.log(error,'error...');
+async function uploadFile(file: File): Promise<string> {
+  const bytes = await file.arrayBuffer();
+  const buffer = Buffer.from(bytes);
 
-    throw new Error("File upload failed");
-  } else {
-    console.log(data, "from supabase");
-
-    return data.fullPath;
-  }
+  return new Promise<string>((resolve, reject) => {
+    cloudinary.uploader
+      .upload_stream(
+        {
+          folder: "gadget-fixa/portfolio",
+          resource_type: "auto",
+        },
+        (error, result) => {
+          if (error) {
+            reject(new Error("File upload failed"));
+          } else {
+            resolve(result?.secure_url || "");
+          }
+        }
+      )
+      .end(buffer);
+  });
 }

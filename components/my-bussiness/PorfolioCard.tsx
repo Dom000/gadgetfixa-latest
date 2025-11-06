@@ -44,7 +44,9 @@ function PortfolioCard({
       </div>
       <div className="p-4">
         <h3 className="font-bold text-lg mb-2">{title}</h3>
-        <p className="text-gray-600 text-sm">{description}</p>
+        <p className="text-gray-600 text-sm">
+          {viewOnly ? description.substring(0, 100) + "..." : description}
+        </p>
       </div>
     </div>
   );
