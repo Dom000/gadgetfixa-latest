@@ -13,6 +13,7 @@ import { Input } from "@/components/ui/input";
 import { MultiSelect } from "@/components/ui/multi-select";
 import { Textarea } from "@/components/ui/textarea";
 import { createBusiness } from "@/controllers/business/index.controller";
+import { options } from "@/lib/mock-data";
 import { useAppStore } from "@/stores/store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
@@ -37,12 +38,6 @@ const createBizForm = z.object({
 });
 
 type CreateBizFormData = z.infer<typeof createBizForm>;
-
-const options = [
-  { value: "react", label: "React" },
-  { value: "vue", label: "Vue.js" },
-  { value: "angular", label: "Angular" },
-];
 
 function page() {
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
@@ -99,56 +94,146 @@ function page() {
       />
       <div className="mt-10 bg-gray-50 rounded p-5 space-y-5 max-w-3xl ">
         <Form {...createBiz}>
-          <form
-            onSubmit={createBiz.handleSubmit(handleCreateBiz)}
-            className="space-y-4 grid md:grid-cols-2 gap-2"
-          >
-            <FormField
-              control={createBiz.control}
-              name="bussinessName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Bussiness Name</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="text"
-                      placeholder="John Doe"
-                      {...field}
-                      disabled={isLoading}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={createBiz.control}
-              name="occupation"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Occupation</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="text"
-                      placeholder="Occupation"
-                      {...field}
-                      disabled={isLoading}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <div className="col-span-2">
+          <form onSubmit={createBiz.handleSubmit(handleCreateBiz)}>
+            {" "}
+            <div className="space-y-4 mb-2 grid grid-cols-1 md:grid-cols-2 gap-2">
+              {" "}
               <FormField
                 control={createBiz.control}
-                name="description"
+                name="bussinessName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="my-20">Description</FormLabel>
+                    <FormLabel>Bussiness Name</FormLabel>
                     <FormControl>
-                      <Textarea
-                        placeholder="Description"
+                      <Input
+                        type="text"
+                        placeholder="John Doe"
+                        {...field}
+                        disabled={isLoading}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={createBiz.control}
+                name="occupation"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Occupation</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="text"
+                        placeholder="Occupation"
+                        {...field}
+                        disabled={isLoading}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <div className=" md:col-span-2">
+                <FormField
+                  control={createBiz.control}
+                  name="description"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="my-20">Description</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="Description"
+                          {...field}
+                          disabled={isLoading}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <FormField
+                control={createBiz.control}
+                name="categories"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Categories</FormLabel>
+                    <FormControl>
+                      <MultiSelect
+                        options={options}
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={createBiz.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Bussiness Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="email"
+                        placeholder="Bussiness Email"
+                        {...field}
+                        disabled={isLoading}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={createBiz.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Phone</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="tel"
+                        placeholder="Phone"
+                        {...field}
+                        disabled={isLoading}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={createBiz.control}
+                name="address"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Bussiness Address</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="text"
+                        placeholder="Address"
+                        {...field}
+                        disabled={isLoading}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={createBiz.control}
+                name="website"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Website</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="url"
+                        placeholder="Website"
                         {...field}
                         disabled={isLoading}
                       />
@@ -158,96 +243,6 @@ function page() {
                 )}
               />
             </div>
-            <FormField
-              control={createBiz.control}
-              name="categories"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Categories</FormLabel>
-                  <FormControl>
-                    <MultiSelect
-                      options={options}
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={createBiz.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Bussiness Email</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="email"
-                      placeholder="Bussiness Email"
-                      {...field}
-                      disabled={isLoading}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={createBiz.control}
-              name="phone"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Phone</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="tel"
-                      placeholder="Phone"
-                      {...field}
-                      disabled={isLoading}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={createBiz.control}
-              name="address"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Bussiness Address</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="text"
-                      placeholder="Address"
-                      {...field}
-                      disabled={isLoading}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={createBiz.control}
-              name="website"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Website</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="url"
-                      placeholder="Website"
-                      {...field}
-                      disabled={isLoading}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
             <Button
               type="submit"
               className="w-fit col-span-2"

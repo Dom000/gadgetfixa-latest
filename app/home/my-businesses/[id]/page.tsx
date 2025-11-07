@@ -28,7 +28,7 @@ import { Grid, Loader2 } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import PortfolioCard from "@/components/my-bussiness/PorfolioCard";
-import { portfolioOptions } from "@/lib/mock-data";
+import { options, portfolioOptions } from "@/lib/mock-data";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   addPortfolioItem,
@@ -72,24 +72,7 @@ type AddPortfolioFormData = z.infer<typeof addPortfolio>;
 
 type UpdateBizFormData = z.infer<typeof updateBizForm>;
 
-const options = [
-  { label: "Plumbing", value: "Plumbing" },
-  { label: "Electrical", value: "Electrical" },
-  { label: "Carpentry", value: "Carpentry" },
-  { label: "Landscaping", value: "Landscaping" },
-  { label: "Cleaning", value: "Cleaning" },
-  { label: "Painting", value: "Painting" },
-  { label: "Roofing", value: "Roofing" },
-  { label: "HVAC", value: "HVAC" },
-  { label: "Flooring", value: "Flooring" },
-  { label: "Masonry", value: "Masonry" },
-  { label: "Fencing", value: "Fencing" },
-  { label: "Iphone Repair", value: "Iphone Repair" },
-  { label: "Computer Repair", value: "Computer Repair" },
-  { label: "Appliance Repair", value: "Appliance Repair" },
-  { label: "Auto Repair", value: "Auto Repair" },
-  { label: "Other", value: "Other" },
-];
+
 
 function page({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -102,7 +85,6 @@ function page({ params }: { params: Promise<{ id: string }> }) {
     queryFn: () => getBusinessById(id),
   });
 
-  console.log("Business details data:", data);
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
 
   const updateBiz = useForm<UpdateBizFormData>({

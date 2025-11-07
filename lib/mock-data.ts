@@ -176,3 +176,22 @@ export const reviewSamples = [
     createdAt: new Date("2024-01-30"),
   },
 ];
+
+export const options = [
+  { label: "Plumbing", value: "Plumbing" },
+  { label: "Electrical", value: "Electrical" },
+  { label: "Carpentry", value: "Carpentry" },
+  { label: "Landscaping", value: "Landscaping" },
+  { label: "Cleaning", value: "Cleaning" },
+  { label: "Painting", value: "Painting" },
+  { label: "Roofing", value: "Roofing" },
+  { label: "HVAC", value: "HVAC" },
+  { label: "Flooring", value: "Flooring" },
+  { label: "Masonry", value: "Masonry" },
+  { label: "Fencing", value: "Fencing" },
+  { label: "Iphone Repair", value: "Iphone Repair" },
+  { label: "Computer Repair", value: "Computer Repair" },
+  { label: "Appliance Repair", value: "Appliance Repair" },
+  { label: "Auto Repair", value: "Auto Repair" },
+  { label: "Other", value: "Other" },
+];
