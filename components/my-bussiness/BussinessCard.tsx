@@ -7,6 +7,14 @@ import { getBusinessByProfileId } from "@/controllers/business/index.controller"
 import { useAppStore } from "@/stores/store";
 import { Bussiness } from "@/lib/prisma/generated";
 import { authClient } from "@/lib/client";
+import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "../ui/empty";
+import { Grid } from "lucide-react";
 
 function BussinessCard() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -52,6 +60,19 @@ function BussinessCard() {
     <>
       {isLoading ? (
         <div className="flex items-center justify-center">Loading...</div>
+      ) : filteredArtisans.length === 0 ? (
+        <Empty>
+          <EmptyHeader>
+            <EmptyMedia variant="icon">
+              <Grid />
+            </EmptyMedia>
+            <EmptyTitle>No Business created yet</EmptyTitle>
+            <EmptyDescription>
+              You have not created any business. Create a business to see it
+              listed here.
+            </EmptyDescription>
+          </EmptyHeader>
+        </Empty>
       ) : (
         <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-6">
           {filteredArtisans.map((artisan) => (

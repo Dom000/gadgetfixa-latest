@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/empty";
 import { Textarea } from "@/components/ui/textarea";
 import { getBusinessById } from "@/controllers/business/index.controller";
+import { sendMessage } from "@/controllers/message/index.controller";
 import { sendReview } from "@/controllers/review/index.controller";
 import { getAnonymousUser } from "@/lib/anonymous-user";
 import { authClient } from "@/lib/client";
@@ -32,16 +33,19 @@ import { useAppStore } from "@/stores/store";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { set } from "better-auth";
 import { Grid, Loader2, MapPin, MessageCircle, Phone } from "lucide-react";
+import { useRouter } from "next/navigation";
 import React, { use } from "react";
 
 function page({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
-
+  const router = useRouter();
   const [ratingModal, setRatingModal] = React.useState(false);
   const [reviewData, setReviewData] = React.useState({
     rating: 0,
     comment: "",
   });
+  const [messageModal, setMessageModal] = React.useState(false);
+  const [messageData, setMessageData] = React.useState("");
 
   const userDetails = useAppStore((state) => state.userDetails);
   const {
@@ -60,6 +64,17 @@ function page({ params }: { params: Promise<{ id: string }> }) {
       setReviewData({ rating: 0, comment: "" });
     },
   });
+
+  const { mutate: sendMessageMutation, isPending: isSendingMessage } =
+    useMutation({
+      mutationFn: sendMessage,
+      onSuccess: () => {
+        setMessageModal(false);
+        setMessageData("");
+        refetch();
+        router.push("/home/inbox");
+      },
+    });
 
   const user = authClient.getSession();
 
@@ -92,6 +107,15 @@ function page({ params }: { params: Promise<{ id: string }> }) {
       alert("Please log in to message the artisan.");
       return;
     }
+    setMessageModal(true);
+  };
+
+  const handleSendMessage = async () => {
+    sendMessageMutation({
+      senderId: (await user).data?.user.id!,
+      receiverId: artisan?.data.profileId!,
+      content: messageData,
+    });
   };
   return (
     <div className="w-full space-y-4 mt-2x md:space-y-0  p-2 md:p-5">
@@ -267,6 +291,38 @@ function page({ params }: { params: Promise<{ id: string }> }) {
               {isPending && <Loader2 className="m-2 h-4 w-4 animate-spin" />}
               Submit Ratings & Review
             </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={messageModal}>
+        <DialogContent className="w-5/6 md:w-1/3">
+          <DialogHeader>
+            <DialogTitle>Send Message</DialogTitle>
+            <DialogDescription>
+              Please provide your message for this artisan.
+            </DialogDescription>
+          </DialogHeader>
+          <div>
+            <div className="w-full">
+              <Textarea
+                placeholder="Write your message here..."
+                value={messageData}
+                onChange={(e) => setMessageData(e.target.value)}
+              />
+              <div className="flex justify-end mt-2">
+                <Button
+                  disabled={isSendingMessage || !messageData}
+                  onClick={handleSendMessage}
+                  variant="hero"
+                >
+                  Send Message{" "}
+                  {isSendingMessage && (
+                    <Loader2 className="m-2 h-4 w-4 animate-spin" />
+                  )}
+                </Button>
+              </div>
+            </div>
           </div>
         </DialogContent>
       </Dialog>

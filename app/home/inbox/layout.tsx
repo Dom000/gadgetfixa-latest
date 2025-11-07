@@ -1,4 +1,5 @@
 import BreadCrumb from "@/components/CustomBreadcrumb";
+import LayoutWrapper from "@/components/inbox/LayoutWrapper";
 import MessageSideBar from "@/components/inbox/MessageSideBar";
 import { AppSidebar } from "@/components/SideBar";
 import React from "react";
@@ -17,9 +18,8 @@ function InboxLayout({
           Manage your conversations and stay connected with your clients.
         </p>
       </div>
-      <div className="w-full md:flex relative md:w-[calc(100vw-240px)] p-1 md:p-2">
-        <MessageSideBar />
-        {children}
+      <div>
+        <LayoutWrapper>{children}</LayoutWrapper>
       </div>
     </div>
   );

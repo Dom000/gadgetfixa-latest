@@ -26,8 +26,6 @@ const testimonials = [
 ];
 
 const Index = () => {
- 
-
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -48,20 +46,22 @@ const Index = () => {
                 gadget specialists. Get your devices fixed quickly by trusted
                 professionals in your area.
               </p>
-              <div className="flex flex-col items-center justify-center sm:flex-row gap-4">
-                <Link href="#">
+              <div className="flex flex-col items-center justify-center md:justify-start sm:flex-row gap-4">
+                <Link href="/artisans">
                   <Button size="lg" variant="hero" className="text-lg px-8">
                     Find Artisans
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="text-lg w-fit px-3"
-                >
-                  Join as Artisan
-                </Button>
+                <Link href="/auth">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="text-lg w-fit px-3"
+                  >
+                    Join as Artisan
+                  </Button>
+                </Link>
               </div>
             </div>
             <div className="relative">
@@ -208,10 +208,12 @@ const Index = () => {
                   Browse Artisans
                 </Button>
               </Link>
-              <Button variant="outline" size="lg" className="text-lg px-8">
-                <Users className="mr-2 w-5 h-5" />
-                Join Our Network
-              </Button>
+              <Link href="/auth">
+                <Button variant="outline" size="lg" className="text-lg px-8">
+                  <Users className="mr-2 w-5 h-5" />
+                  Join Our Network
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

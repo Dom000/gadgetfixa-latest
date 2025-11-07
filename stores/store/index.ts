@@ -2,13 +2,15 @@ import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import { createAuthSlice } from "../slice";
 import { mountStoreDevtool } from "simple-zustand-devtools";
-import { AuthState } from "@/types";
+import { AuthState, ChatView } from "@/types";
 
 export type AppState = AuthState;
 export type AppActions = {
   login: (user: any) => void;
   logout: () => void;
   getIsAdmin: () => boolean;
+  setChatCurrentView: (view: ChatView) => void;
+  chatCurrentView: ChatView;
 };
 
 export const useAppStore = create<AppState>()(

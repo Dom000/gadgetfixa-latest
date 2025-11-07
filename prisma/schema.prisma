@@ -27,7 +27,8 @@ model Profile {
   sessions         Session[]
   sentMessages     Message[]   @relation("SentMessages")
   receivedMessages Message[]   @relation("ReceivedMessages")
-  inboxes          Inbox[]
+  inboxesAsUser1   Inbox[]     @relation("InboxParticipant1")
+  inboxesAsUser2   Inbox[]     @relation("InboxParticipant2")
   image            String?
   data             Json?
   bussinesses      Bussiness[]
@@ -147,12 +148,13 @@ model Review {
 
 model Message {
   id         String   @id @default(cuid())
+  inboxId    String   @map("inbox_id")
   senderId   String   @map("sender_id")
   receiverId String   @map("receiver_id")
   content    String
   createdAt  DateTime @default(now()) @map("created_at")
   updatedAt  DateTime @updatedAt @map("updated_at")
-
+  inbox    Inbox   @relation(fields: [inboxId], references: [id], onDelete: Cascade)
   sender   Profile @relation("SentMessages", fields: [senderId], references: [id], onDelete: Cascade)
   receiver Profile @relation("ReceivedMessages", fields: [receiverId], references: [id], onDelete: Cascade)
 
@@ -160,13 +162,15 @@ model Message {
 }
 
 model Inbox {
-  id        String   @id @default(cuid())
-  userId    String   @map("user_id")
-  subject   String
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  id           String    @id @default(cuid())
+  participant1 String    @map("participant1_id")
+  participant2 String    @map("participant2_id")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+  messages     Message[]
+  user1        Profile   @relation("InboxParticipant1", fields: [participant1], references: [id], onDelete: Cascade)
+  user2        Profile   @relation("InboxParticipant2", fields: [participant2], references: [id], onDelete: Cascade)
 
-  user Profile @relation(fields: [userId], references: [id], onDelete: Cascade)
-
+  @@unique([participant1, participant2])
   @@map("inboxes")
 }

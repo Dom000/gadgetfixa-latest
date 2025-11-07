@@ -108,7 +108,7 @@ const Auth = () => {
         return;
       }
 
-      getProfileInfo("sTkOBGnzPDypDWn3pkevPI0MnN3CJRNG");
+      getProfileInfo(userData?.user.id as string);
 
       toast({
         title: "Welcome back!",

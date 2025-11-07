@@ -28,7 +28,6 @@ export async function GET(
       status: 404,
     });
   }
-  console.log(data, "data...");
 
   return NextResponse.json({
     message: "Business fetched successfully",

@@ -90,7 +90,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const handleLogout = () => {
     deleteCookie(process.env.NEXT_PUBLIC_USER_LOGGEDIN_COOKIE!);
     logout();
-    router.push("/auth");
   };
 
   const data = {

@@ -1,6 +1,6 @@
 import { clearAnonymousUser } from "@/lib/anonymous-user";
 import { authClient } from "@/lib/client";
-import { AuthState, DefaultView } from "@/types";
+import { AuthState, ChatView, DefaultView } from "@/types";
 import { getCookie } from "cookies-next";
 import { StateCreator } from "zustand";
 
@@ -9,6 +9,7 @@ export const createAuthSlice: StateCreator<AuthState> = (set) => ({
   isAdmin: getCookie(process.env.NEXT_PUBLIC_ADMIN_LOGGEDIN_COOKIE!) as any,
   userDetails: null as any,
   anonymousUser: null as any,
+  chatCurrentView: ChatView.INBOX as ChatView,
   login: (user) => set({ isAuthenticated: true, userDetails: user }),
   logout: () => {
     set({
@@ -34,4 +35,5 @@ export const createAuthSlice: StateCreator<AuthState> = (set) => ({
     return getCookie(process.env.NEXT_PUBLIC_ADMIN_LOGGEDIN_COOKIE!) as any;
   },
   setAnonymousUser: (user) => set({ anonymousUser: user }),
+  setChatCurrentView: (view) => set({ chatCurrentView: view }),
 });

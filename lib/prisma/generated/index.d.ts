@@ -1684,7 +1684,8 @@ export namespace Prisma {
     sessions: number
     sentMessages: number
     receivedMessages: number
-    inboxes: number
+    inboxesAsUser1: number
+    inboxesAsUser2: number
     bussinesses: number
     reviews: number
   }
@@ -1694,7 +1695,8 @@ export namespace Prisma {
     sessions?: boolean | ProfileCountOutputTypeCountSessionsArgs
     sentMessages?: boolean | ProfileCountOutputTypeCountSentMessagesArgs
     receivedMessages?: boolean | ProfileCountOutputTypeCountReceivedMessagesArgs
-    inboxes?: boolean | ProfileCountOutputTypeCountInboxesArgs
+    inboxesAsUser1?: boolean | ProfileCountOutputTypeCountInboxesAsUser1Args
+    inboxesAsUser2?: boolean | ProfileCountOutputTypeCountInboxesAsUser2Args
     bussinesses?: boolean | ProfileCountOutputTypeCountBussinessesArgs
     reviews?: boolean | ProfileCountOutputTypeCountReviewsArgs
   }
@@ -1741,7 +1743,14 @@ export namespace Prisma {
   /**
    * ProfileCountOutputType without action
    */
-  export type ProfileCountOutputTypeCountInboxesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProfileCountOutputTypeCountInboxesAsUser1Args<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InboxWhereInput
+  }
+
+  /**
+   * ProfileCountOutputType without action
+   */
+  export type ProfileCountOutputTypeCountInboxesAsUser2Args<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: InboxWhereInput
   }
 
@@ -1806,6 +1815,37 @@ export namespace Prisma {
    */
   export type BussinessCountOutputTypeCountReviewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ReviewWhereInput
+  }
+
+
+  /**
+   * Count Type InboxCountOutputType
+   */
+
+  export type InboxCountOutputType = {
+    messages: number
+  }
+
+  export type InboxCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    messages?: boolean | InboxCountOutputTypeCountMessagesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * InboxCountOutputType without action
+   */
+  export type InboxCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InboxCountOutputType
+     */
+    select?: InboxCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * InboxCountOutputType without action
+   */
+  export type InboxCountOutputTypeCountMessagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MessageWhereInput
   }
 
 
@@ -2053,7 +2093,8 @@ export namespace Prisma {
     sessions?: boolean | Profile$sessionsArgs<ExtArgs>
     sentMessages?: boolean | Profile$sentMessagesArgs<ExtArgs>
     receivedMessages?: boolean | Profile$receivedMessagesArgs<ExtArgs>
-    inboxes?: boolean | Profile$inboxesArgs<ExtArgs>
+    inboxesAsUser1?: boolean | Profile$inboxesAsUser1Args<ExtArgs>
+    inboxesAsUser2?: boolean | Profile$inboxesAsUser2Args<ExtArgs>
     bussinesses?: boolean | Profile$bussinessesArgs<ExtArgs>
     reviews?: boolean | Profile$reviewsArgs<ExtArgs>
     _count?: boolean | ProfileCountOutputTypeDefaultArgs<ExtArgs>
@@ -2119,7 +2160,8 @@ export namespace Prisma {
     sessions?: boolean | Profile$sessionsArgs<ExtArgs>
     sentMessages?: boolean | Profile$sentMessagesArgs<ExtArgs>
     receivedMessages?: boolean | Profile$receivedMessagesArgs<ExtArgs>
-    inboxes?: boolean | Profile$inboxesArgs<ExtArgs>
+    inboxesAsUser1?: boolean | Profile$inboxesAsUser1Args<ExtArgs>
+    inboxesAsUser2?: boolean | Profile$inboxesAsUser2Args<ExtArgs>
     bussinesses?: boolean | Profile$bussinessesArgs<ExtArgs>
     reviews?: boolean | Profile$reviewsArgs<ExtArgs>
     _count?: boolean | ProfileCountOutputTypeDefaultArgs<ExtArgs>
@@ -2134,7 +2176,8 @@ export namespace Prisma {
       sessions: Prisma.$SessionPayload<ExtArgs>[]
       sentMessages: Prisma.$MessagePayload<ExtArgs>[]
       receivedMessages: Prisma.$MessagePayload<ExtArgs>[]
-      inboxes: Prisma.$InboxPayload<ExtArgs>[]
+      inboxesAsUser1: Prisma.$InboxPayload<ExtArgs>[]
+      inboxesAsUser2: Prisma.$InboxPayload<ExtArgs>[]
       bussinesses: Prisma.$BussinessPayload<ExtArgs>[]
       reviews: Prisma.$ReviewPayload<ExtArgs>[]
     }
@@ -2552,7 +2595,8 @@ export namespace Prisma {
     sessions<T extends Profile$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, Profile$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sentMessages<T extends Profile$sentMessagesArgs<ExtArgs> = {}>(args?: Subset<T, Profile$sentMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     receivedMessages<T extends Profile$receivedMessagesArgs<ExtArgs> = {}>(args?: Subset<T, Profile$receivedMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    inboxes<T extends Profile$inboxesArgs<ExtArgs> = {}>(args?: Subset<T, Profile$inboxesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InboxPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    inboxesAsUser1<T extends Profile$inboxesAsUser1Args<ExtArgs> = {}>(args?: Subset<T, Profile$inboxesAsUser1Args<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InboxPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    inboxesAsUser2<T extends Profile$inboxesAsUser2Args<ExtArgs> = {}>(args?: Subset<T, Profile$inboxesAsUser2Args<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InboxPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     bussinesses<T extends Profile$bussinessesArgs<ExtArgs> = {}>(args?: Subset<T, Profile$bussinessesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BussinessPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     reviews<T extends Profile$reviewsArgs<ExtArgs> = {}>(args?: Subset<T, Profile$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -3083,9 +3127,33 @@ export namespace Prisma {
   }
 
   /**
-   * Profile.inboxes
+   * Profile.inboxesAsUser1
    */
-  export type Profile$inboxesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Profile$inboxesAsUser1Args<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Inbox
+     */
+    select?: InboxSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Inbox
+     */
+    omit?: InboxOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InboxInclude<ExtArgs> | null
+    where?: InboxWhereInput
+    orderBy?: InboxOrderByWithRelationInput | InboxOrderByWithRelationInput[]
+    cursor?: InboxWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: InboxScalarFieldEnum | InboxScalarFieldEnum[]
+  }
+
+  /**
+   * Profile.inboxesAsUser2
+   */
+  export type Profile$inboxesAsUser2Args<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Inbox
      */
@@ -11032,6 +11100,7 @@ export namespace Prisma {
 
   export type MessageMinAggregateOutputType = {
     id: string | null
+    inboxId: string | null
     senderId: string | null
     receiverId: string | null
     content: string | null
@@ -11041,6 +11110,7 @@ export namespace Prisma {
 
   export type MessageMaxAggregateOutputType = {
     id: string | null
+    inboxId: string | null
     senderId: string | null
     receiverId: string | null
     content: string | null
@@ -11050,6 +11120,7 @@ export namespace Prisma {
 
   export type MessageCountAggregateOutputType = {
     id: number
+    inboxId: number
     senderId: number
     receiverId: number
     content: number
@@ -11061,6 +11132,7 @@ export namespace Prisma {
 
   export type MessageMinAggregateInputType = {
     id?: true
+    inboxId?: true
     senderId?: true
     receiverId?: true
     content?: true
@@ -11070,6 +11142,7 @@ export namespace Prisma {
 
   export type MessageMaxAggregateInputType = {
     id?: true
+    inboxId?: true
     senderId?: true
     receiverId?: true
     content?: true
@@ -11079,6 +11152,7 @@ export namespace Prisma {
 
   export type MessageCountAggregateInputType = {
     id?: true
+    inboxId?: true
     senderId?: true
     receiverId?: true
     content?: true
@@ -11161,6 +11235,7 @@ export namespace Prisma {
 
   export type MessageGroupByOutputType = {
     id: string
+    inboxId: string
     senderId: string
     receiverId: string
     content: string
@@ -11187,39 +11262,46 @@ export namespace Prisma {
 
   export type MessageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    inboxId?: boolean
     senderId?: boolean
     receiverId?: boolean
     content?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    inbox?: boolean | InboxDefaultArgs<ExtArgs>
     sender?: boolean | ProfileDefaultArgs<ExtArgs>
     receiver?: boolean | ProfileDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["message"]>
 
   export type MessageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    inboxId?: boolean
     senderId?: boolean
     receiverId?: boolean
     content?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    inbox?: boolean | InboxDefaultArgs<ExtArgs>
     sender?: boolean | ProfileDefaultArgs<ExtArgs>
     receiver?: boolean | ProfileDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["message"]>
 
   export type MessageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    inboxId?: boolean
     senderId?: boolean
     receiverId?: boolean
     content?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    inbox?: boolean | InboxDefaultArgs<ExtArgs>
     sender?: boolean | ProfileDefaultArgs<ExtArgs>
     receiver?: boolean | ProfileDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["message"]>
 
   export type MessageSelectScalar = {
     id?: boolean
+    inboxId?: boolean
     senderId?: boolean
     receiverId?: boolean
     content?: boolean
@@ -11227,16 +11309,19 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type MessageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "senderId" | "receiverId" | "content" | "createdAt" | "updatedAt", ExtArgs["result"]["message"]>
+  export type MessageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "inboxId" | "senderId" | "receiverId" | "content" | "createdAt" | "updatedAt", ExtArgs["result"]["message"]>
   export type MessageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    inbox?: boolean | InboxDefaultArgs<ExtArgs>
     sender?: boolean | ProfileDefaultArgs<ExtArgs>
     receiver?: boolean | ProfileDefaultArgs<ExtArgs>
   }
   export type MessageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    inbox?: boolean | InboxDefaultArgs<ExtArgs>
     sender?: boolean | ProfileDefaultArgs<ExtArgs>
     receiver?: boolean | ProfileDefaultArgs<ExtArgs>
   }
   export type MessageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    inbox?: boolean | InboxDefaultArgs<ExtArgs>
     sender?: boolean | ProfileDefaultArgs<ExtArgs>
     receiver?: boolean | ProfileDefaultArgs<ExtArgs>
   }
@@ -11244,11 +11329,13 @@ export namespace Prisma {
   export type $MessagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Message"
     objects: {
+      inbox: Prisma.$InboxPayload<ExtArgs>
       sender: Prisma.$ProfilePayload<ExtArgs>
       receiver: Prisma.$ProfilePayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      inboxId: string
       senderId: string
       receiverId: string
       content: string
@@ -11648,6 +11735,7 @@ export namespace Prisma {
    */
   export interface Prisma__MessageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    inbox<T extends InboxDefaultArgs<ExtArgs> = {}>(args?: Subset<T, InboxDefaultArgs<ExtArgs>>): Prisma__InboxClient<$Result.GetResult<Prisma.$InboxPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     sender<T extends ProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProfileDefaultArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     receiver<T extends ProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProfileDefaultArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
@@ -11680,6 +11768,7 @@ export namespace Prisma {
    */
   interface MessageFieldRefs {
     readonly id: FieldRef<"Message", 'String'>
+    readonly inboxId: FieldRef<"Message", 'String'>
     readonly senderId: FieldRef<"Message", 'String'>
     readonly receiverId: FieldRef<"Message", 'String'>
     readonly content: FieldRef<"Message", 'String'>
@@ -12111,24 +12200,24 @@ export namespace Prisma {
 
   export type InboxMinAggregateOutputType = {
     id: string | null
-    userId: string | null
-    subject: string | null
+    participant1: string | null
+    participant2: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
   export type InboxMaxAggregateOutputType = {
     id: string | null
-    userId: string | null
-    subject: string | null
+    participant1: string | null
+    participant2: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
   export type InboxCountAggregateOutputType = {
     id: number
-    userId: number
-    subject: number
+    participant1: number
+    participant2: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -12137,24 +12226,24 @@ export namespace Prisma {
 
   export type InboxMinAggregateInputType = {
     id?: true
-    userId?: true
-    subject?: true
+    participant1?: true
+    participant2?: true
     createdAt?: true
     updatedAt?: true
   }
 
   export type InboxMaxAggregateInputType = {
     id?: true
-    userId?: true
-    subject?: true
+    participant1?: true
+    participant2?: true
     createdAt?: true
     updatedAt?: true
   }
 
   export type InboxCountAggregateInputType = {
     id?: true
-    userId?: true
-    subject?: true
+    participant1?: true
+    participant2?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -12234,8 +12323,8 @@ export namespace Prisma {
 
   export type InboxGroupByOutputType = {
     id: string
-    userId: string
-    subject: string
+    participant1: string
+    participant2: string
     createdAt: Date
     updatedAt: Date
     _count: InboxCountAggregateOutputType | null
@@ -12259,59 +12348,71 @@ export namespace Prisma {
 
   export type InboxSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    userId?: boolean
-    subject?: boolean
+    participant1?: boolean
+    participant2?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | ProfileDefaultArgs<ExtArgs>
+    messages?: boolean | Inbox$messagesArgs<ExtArgs>
+    user1?: boolean | ProfileDefaultArgs<ExtArgs>
+    user2?: boolean | ProfileDefaultArgs<ExtArgs>
+    _count?: boolean | InboxCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["inbox"]>
 
   export type InboxSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    userId?: boolean
-    subject?: boolean
+    participant1?: boolean
+    participant2?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | ProfileDefaultArgs<ExtArgs>
+    user1?: boolean | ProfileDefaultArgs<ExtArgs>
+    user2?: boolean | ProfileDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["inbox"]>
 
   export type InboxSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    userId?: boolean
-    subject?: boolean
+    participant1?: boolean
+    participant2?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | ProfileDefaultArgs<ExtArgs>
+    user1?: boolean | ProfileDefaultArgs<ExtArgs>
+    user2?: boolean | ProfileDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["inbox"]>
 
   export type InboxSelectScalar = {
     id?: boolean
-    userId?: boolean
-    subject?: boolean
+    participant1?: boolean
+    participant2?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type InboxOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "subject" | "createdAt" | "updatedAt", ExtArgs["result"]["inbox"]>
+  export type InboxOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "participant1" | "participant2" | "createdAt" | "updatedAt", ExtArgs["result"]["inbox"]>
   export type InboxInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | ProfileDefaultArgs<ExtArgs>
+    messages?: boolean | Inbox$messagesArgs<ExtArgs>
+    user1?: boolean | ProfileDefaultArgs<ExtArgs>
+    user2?: boolean | ProfileDefaultArgs<ExtArgs>
+    _count?: boolean | InboxCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type InboxIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | ProfileDefaultArgs<ExtArgs>
+    user1?: boolean | ProfileDefaultArgs<ExtArgs>
+    user2?: boolean | ProfileDefaultArgs<ExtArgs>
   }
   export type InboxIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | ProfileDefaultArgs<ExtArgs>
+    user1?: boolean | ProfileDefaultArgs<ExtArgs>
+    user2?: boolean | ProfileDefaultArgs<ExtArgs>
   }
 
   export type $InboxPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Inbox"
     objects: {
-      user: Prisma.$ProfilePayload<ExtArgs>
+      messages: Prisma.$MessagePayload<ExtArgs>[]
+      user1: Prisma.$ProfilePayload<ExtArgs>
+      user2: Prisma.$ProfilePayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      userId: string
-      subject: string
+      participant1: string
+      participant2: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["inbox"]>
@@ -12708,7 +12809,9 @@ export namespace Prisma {
    */
   export interface Prisma__InboxClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends ProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProfileDefaultArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    messages<T extends Inbox$messagesArgs<ExtArgs> = {}>(args?: Subset<T, Inbox$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    user1<T extends ProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProfileDefaultArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user2<T extends ProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProfileDefaultArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12739,8 +12842,8 @@ export namespace Prisma {
    */
   interface InboxFieldRefs {
     readonly id: FieldRef<"Inbox", 'String'>
-    readonly userId: FieldRef<"Inbox", 'String'>
-    readonly subject: FieldRef<"Inbox", 'String'>
+    readonly participant1: FieldRef<"Inbox", 'String'>
+    readonly participant2: FieldRef<"Inbox", 'String'>
     readonly createdAt: FieldRef<"Inbox", 'DateTime'>
     readonly updatedAt: FieldRef<"Inbox", 'DateTime'>
   }
@@ -13139,6 +13242,30 @@ export namespace Prisma {
   }
 
   /**
+   * Inbox.messages
+   */
+  export type Inbox$messagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Message
+     */
+    select?: MessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Message
+     */
+    omit?: MessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MessageInclude<ExtArgs> | null
+    where?: MessageWhereInput
+    orderBy?: MessageOrderByWithRelationInput | MessageOrderByWithRelationInput[]
+    cursor?: MessageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MessageScalarFieldEnum | MessageScalarFieldEnum[]
+  }
+
+  /**
    * Inbox without action
    */
   export type InboxDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -13297,6 +13424,7 @@ export namespace Prisma {
 
   export const MessageScalarFieldEnum: {
     id: 'id',
+    inboxId: 'inboxId',
     senderId: 'senderId',
     receiverId: 'receiverId',
     content: 'content',
@@ -13309,8 +13437,8 @@ export namespace Prisma {
 
   export const InboxScalarFieldEnum: {
     id: 'id',
-    userId: 'userId',
-    subject: 'subject',
+    participant1: 'participant1',
+    participant2: 'participant2',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -13467,7 +13595,8 @@ export namespace Prisma {
     sessions?: SessionListRelationFilter
     sentMessages?: MessageListRelationFilter
     receivedMessages?: MessageListRelationFilter
-    inboxes?: InboxListRelationFilter
+    inboxesAsUser1?: InboxListRelationFilter
+    inboxesAsUser2?: InboxListRelationFilter
     bussinesses?: BussinessListRelationFilter
     reviews?: ReviewListRelationFilter
   }
@@ -13492,7 +13621,8 @@ export namespace Prisma {
     sessions?: SessionOrderByRelationAggregateInput
     sentMessages?: MessageOrderByRelationAggregateInput
     receivedMessages?: MessageOrderByRelationAggregateInput
-    inboxes?: InboxOrderByRelationAggregateInput
+    inboxesAsUser1?: InboxOrderByRelationAggregateInput
+    inboxesAsUser2?: InboxOrderByRelationAggregateInput
     bussinesses?: BussinessOrderByRelationAggregateInput
     reviews?: ReviewOrderByRelationAggregateInput
   }
@@ -13520,7 +13650,8 @@ export namespace Prisma {
     sessions?: SessionListRelationFilter
     sentMessages?: MessageListRelationFilter
     receivedMessages?: MessageListRelationFilter
-    inboxes?: InboxListRelationFilter
+    inboxesAsUser1?: InboxListRelationFilter
+    inboxesAsUser2?: InboxListRelationFilter
     bussinesses?: BussinessListRelationFilter
     reviews?: ReviewListRelationFilter
   }, "id" | "email">
@@ -14099,22 +14230,26 @@ export namespace Prisma {
     OR?: MessageWhereInput[]
     NOT?: MessageWhereInput | MessageWhereInput[]
     id?: StringFilter<"Message"> | string
+    inboxId?: StringFilter<"Message"> | string
     senderId?: StringFilter<"Message"> | string
     receiverId?: StringFilter<"Message"> | string
     content?: StringFilter<"Message"> | string
     createdAt?: DateTimeFilter<"Message"> | Date | string
     updatedAt?: DateTimeFilter<"Message"> | Date | string
+    inbox?: XOR<InboxScalarRelationFilter, InboxWhereInput>
     sender?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
     receiver?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
   }
 
   export type MessageOrderByWithRelationInput = {
     id?: SortOrder
+    inboxId?: SortOrder
     senderId?: SortOrder
     receiverId?: SortOrder
     content?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    inbox?: InboxOrderByWithRelationInput
     sender?: ProfileOrderByWithRelationInput
     receiver?: ProfileOrderByWithRelationInput
   }
@@ -14124,17 +14259,20 @@ export namespace Prisma {
     AND?: MessageWhereInput | MessageWhereInput[]
     OR?: MessageWhereInput[]
     NOT?: MessageWhereInput | MessageWhereInput[]
+    inboxId?: StringFilter<"Message"> | string
     senderId?: StringFilter<"Message"> | string
     receiverId?: StringFilter<"Message"> | string
     content?: StringFilter<"Message"> | string
     createdAt?: DateTimeFilter<"Message"> | Date | string
     updatedAt?: DateTimeFilter<"Message"> | Date | string
+    inbox?: XOR<InboxScalarRelationFilter, InboxWhereInput>
     sender?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
     receiver?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
   }, "id">
 
   export type MessageOrderByWithAggregationInput = {
     id?: SortOrder
+    inboxId?: SortOrder
     senderId?: SortOrder
     receiverId?: SortOrder
     content?: SortOrder
@@ -14150,6 +14288,7 @@ export namespace Prisma {
     OR?: MessageScalarWhereWithAggregatesInput[]
     NOT?: MessageScalarWhereWithAggregatesInput | MessageScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Message"> | string
+    inboxId?: StringWithAggregatesFilter<"Message"> | string
     senderId?: StringWithAggregatesFilter<"Message"> | string
     receiverId?: StringWithAggregatesFilter<"Message"> | string
     content?: StringWithAggregatesFilter<"Message"> | string
@@ -14162,38 +14301,45 @@ export namespace Prisma {
     OR?: InboxWhereInput[]
     NOT?: InboxWhereInput | InboxWhereInput[]
     id?: StringFilter<"Inbox"> | string
-    userId?: StringFilter<"Inbox"> | string
-    subject?: StringFilter<"Inbox"> | string
+    participant1?: StringFilter<"Inbox"> | string
+    participant2?: StringFilter<"Inbox"> | string
     createdAt?: DateTimeFilter<"Inbox"> | Date | string
     updatedAt?: DateTimeFilter<"Inbox"> | Date | string
-    user?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
+    messages?: MessageListRelationFilter
+    user1?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
+    user2?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
   }
 
   export type InboxOrderByWithRelationInput = {
     id?: SortOrder
-    userId?: SortOrder
-    subject?: SortOrder
+    participant1?: SortOrder
+    participant2?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    user?: ProfileOrderByWithRelationInput
+    messages?: MessageOrderByRelationAggregateInput
+    user1?: ProfileOrderByWithRelationInput
+    user2?: ProfileOrderByWithRelationInput
   }
 
   export type InboxWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    participant1_participant2?: InboxParticipant1Participant2CompoundUniqueInput
     AND?: InboxWhereInput | InboxWhereInput[]
     OR?: InboxWhereInput[]
     NOT?: InboxWhereInput | InboxWhereInput[]
-    userId?: StringFilter<"Inbox"> | string
-    subject?: StringFilter<"Inbox"> | string
+    participant1?: StringFilter<"Inbox"> | string
+    participant2?: StringFilter<"Inbox"> | string
     createdAt?: DateTimeFilter<"Inbox"> | Date | string
     updatedAt?: DateTimeFilter<"Inbox"> | Date | string
-    user?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
-  }, "id">
+    messages?: MessageListRelationFilter
+    user1?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
+    user2?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
+  }, "id" | "participant1_participant2">
 
   export type InboxOrderByWithAggregationInput = {
     id?: SortOrder
-    userId?: SortOrder
-    subject?: SortOrder
+    participant1?: SortOrder
+    participant2?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: InboxCountOrderByAggregateInput
@@ -14206,8 +14352,8 @@ export namespace Prisma {
     OR?: InboxScalarWhereWithAggregatesInput[]
     NOT?: InboxScalarWhereWithAggregatesInput | InboxScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Inbox"> | string
-    userId?: StringWithAggregatesFilter<"Inbox"> | string
-    subject?: StringWithAggregatesFilter<"Inbox"> | string
+    participant1?: StringWithAggregatesFilter<"Inbox"> | string
+    participant2?: StringWithAggregatesFilter<"Inbox"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Inbox"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Inbox"> | Date | string
   }
@@ -14232,7 +14378,8 @@ export namespace Prisma {
     sessions?: SessionCreateNestedManyWithoutUserInput
     sentMessages?: MessageCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
-    inboxes?: InboxCreateNestedManyWithoutUserInput
+    inboxesAsUser1?: InboxCreateNestedManyWithoutUser1Input
+    inboxesAsUser2?: InboxCreateNestedManyWithoutUser2Input
     bussinesses?: BussinessCreateNestedManyWithoutProfileInput
     reviews?: ReviewCreateNestedManyWithoutProfileInput
   }
@@ -14257,7 +14404,8 @@ export namespace Prisma {
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     sentMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
-    inboxes?: InboxUncheckedCreateNestedManyWithoutUserInput
+    inboxesAsUser1?: InboxUncheckedCreateNestedManyWithoutUser1Input
+    inboxesAsUser2?: InboxUncheckedCreateNestedManyWithoutUser2Input
     bussinesses?: BussinessUncheckedCreateNestedManyWithoutProfileInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutProfileInput
   }
@@ -14282,7 +14430,8 @@ export namespace Prisma {
     sessions?: SessionUpdateManyWithoutUserNestedInput
     sentMessages?: MessageUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
-    inboxes?: InboxUpdateManyWithoutUserNestedInput
+    inboxesAsUser1?: InboxUpdateManyWithoutUser1NestedInput
+    inboxesAsUser2?: InboxUpdateManyWithoutUser2NestedInput
     bussinesses?: BussinessUpdateManyWithoutProfileNestedInput
     reviews?: ReviewUpdateManyWithoutProfileNestedInput
   }
@@ -14307,7 +14456,8 @@ export namespace Prisma {
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     sentMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
-    inboxes?: InboxUncheckedUpdateManyWithoutUserNestedInput
+    inboxesAsUser1?: InboxUncheckedUpdateManyWithoutUser1NestedInput
+    inboxesAsUser2?: InboxUncheckedUpdateManyWithoutUser2NestedInput
     bussinesses?: BussinessUncheckedUpdateManyWithoutProfileNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutProfileNestedInput
   }
@@ -14950,12 +15100,14 @@ export namespace Prisma {
     content: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    inbox: InboxCreateNestedOneWithoutMessagesInput
     sender: ProfileCreateNestedOneWithoutSentMessagesInput
     receiver: ProfileCreateNestedOneWithoutReceivedMessagesInput
   }
 
   export type MessageUncheckedCreateInput = {
     id?: string
+    inboxId: string
     senderId: string
     receiverId: string
     content: string
@@ -14968,12 +15120,14 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    inbox?: InboxUpdateOneRequiredWithoutMessagesNestedInput
     sender?: ProfileUpdateOneRequiredWithoutSentMessagesNestedInput
     receiver?: ProfileUpdateOneRequiredWithoutReceivedMessagesNestedInput
   }
 
   export type MessageUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    inboxId?: StringFieldUpdateOperationsInput | string
     senderId?: StringFieldUpdateOperationsInput | string
     receiverId?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
@@ -14983,6 +15137,7 @@ export namespace Prisma {
 
   export type MessageCreateManyInput = {
     id?: string
+    inboxId: string
     senderId: string
     receiverId: string
     content: string
@@ -14999,6 +15154,7 @@ export namespace Prisma {
 
   export type MessageUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    inboxId?: StringFieldUpdateOperationsInput | string
     senderId?: StringFieldUpdateOperationsInput | string
     receiverId?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
@@ -15008,55 +15164,58 @@ export namespace Prisma {
 
   export type InboxCreateInput = {
     id?: string
-    subject: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    user: ProfileCreateNestedOneWithoutInboxesInput
+    messages?: MessageCreateNestedManyWithoutInboxInput
+    user1: ProfileCreateNestedOneWithoutInboxesAsUser1Input
+    user2: ProfileCreateNestedOneWithoutInboxesAsUser2Input
   }
 
   export type InboxUncheckedCreateInput = {
     id?: string
-    userId: string
-    subject: string
+    participant1: string
+    participant2: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    messages?: MessageUncheckedCreateNestedManyWithoutInboxInput
   }
 
   export type InboxUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subject?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: ProfileUpdateOneRequiredWithoutInboxesNestedInput
+    messages?: MessageUpdateManyWithoutInboxNestedInput
+    user1?: ProfileUpdateOneRequiredWithoutInboxesAsUser1NestedInput
+    user2?: ProfileUpdateOneRequiredWithoutInboxesAsUser2NestedInput
   }
 
   export type InboxUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    subject?: StringFieldUpdateOperationsInput | string
+    participant1?: StringFieldUpdateOperationsInput | string
+    participant2?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    messages?: MessageUncheckedUpdateManyWithoutInboxNestedInput
   }
 
   export type InboxCreateManyInput = {
     id?: string
-    userId: string
-    subject: string
+    participant1: string
+    participant2: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type InboxUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subject?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type InboxUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    subject?: StringFieldUpdateOperationsInput | string
+    participant1?: StringFieldUpdateOperationsInput | string
+    participant2?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15693,8 +15852,14 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+  export type InboxScalarRelationFilter = {
+    is?: InboxWhereInput
+    isNot?: InboxWhereInput
+  }
+
   export type MessageCountOrderByAggregateInput = {
     id?: SortOrder
+    inboxId?: SortOrder
     senderId?: SortOrder
     receiverId?: SortOrder
     content?: SortOrder
@@ -15704,6 +15869,7 @@ export namespace Prisma {
 
   export type MessageMaxOrderByAggregateInput = {
     id?: SortOrder
+    inboxId?: SortOrder
     senderId?: SortOrder
     receiverId?: SortOrder
     content?: SortOrder
@@ -15713,6 +15879,7 @@ export namespace Prisma {
 
   export type MessageMinOrderByAggregateInput = {
     id?: SortOrder
+    inboxId?: SortOrder
     senderId?: SortOrder
     receiverId?: SortOrder
     content?: SortOrder
@@ -15720,26 +15887,31 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type InboxParticipant1Participant2CompoundUniqueInput = {
+    participant1: string
+    participant2: string
+  }
+
   export type InboxCountOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
-    subject?: SortOrder
+    participant1?: SortOrder
+    participant2?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type InboxMaxOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
-    subject?: SortOrder
+    participant1?: SortOrder
+    participant2?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type InboxMinOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
-    subject?: SortOrder
+    participant1?: SortOrder
+    participant2?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -15772,10 +15944,17 @@ export namespace Prisma {
     connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
   }
 
-  export type InboxCreateNestedManyWithoutUserInput = {
-    create?: XOR<InboxCreateWithoutUserInput, InboxUncheckedCreateWithoutUserInput> | InboxCreateWithoutUserInput[] | InboxUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: InboxCreateOrConnectWithoutUserInput | InboxCreateOrConnectWithoutUserInput[]
-    createMany?: InboxCreateManyUserInputEnvelope
+  export type InboxCreateNestedManyWithoutUser1Input = {
+    create?: XOR<InboxCreateWithoutUser1Input, InboxUncheckedCreateWithoutUser1Input> | InboxCreateWithoutUser1Input[] | InboxUncheckedCreateWithoutUser1Input[]
+    connectOrCreate?: InboxCreateOrConnectWithoutUser1Input | InboxCreateOrConnectWithoutUser1Input[]
+    createMany?: InboxCreateManyUser1InputEnvelope
+    connect?: InboxWhereUniqueInput | InboxWhereUniqueInput[]
+  }
+
+  export type InboxCreateNestedManyWithoutUser2Input = {
+    create?: XOR<InboxCreateWithoutUser2Input, InboxUncheckedCreateWithoutUser2Input> | InboxCreateWithoutUser2Input[] | InboxUncheckedCreateWithoutUser2Input[]
+    connectOrCreate?: InboxCreateOrConnectWithoutUser2Input | InboxCreateOrConnectWithoutUser2Input[]
+    createMany?: InboxCreateManyUser2InputEnvelope
     connect?: InboxWhereUniqueInput | InboxWhereUniqueInput[]
   }
 
@@ -15821,10 +16000,17 @@ export namespace Prisma {
     connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
   }
 
-  export type InboxUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<InboxCreateWithoutUserInput, InboxUncheckedCreateWithoutUserInput> | InboxCreateWithoutUserInput[] | InboxUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: InboxCreateOrConnectWithoutUserInput | InboxCreateOrConnectWithoutUserInput[]
-    createMany?: InboxCreateManyUserInputEnvelope
+  export type InboxUncheckedCreateNestedManyWithoutUser1Input = {
+    create?: XOR<InboxCreateWithoutUser1Input, InboxUncheckedCreateWithoutUser1Input> | InboxCreateWithoutUser1Input[] | InboxUncheckedCreateWithoutUser1Input[]
+    connectOrCreate?: InboxCreateOrConnectWithoutUser1Input | InboxCreateOrConnectWithoutUser1Input[]
+    createMany?: InboxCreateManyUser1InputEnvelope
+    connect?: InboxWhereUniqueInput | InboxWhereUniqueInput[]
+  }
+
+  export type InboxUncheckedCreateNestedManyWithoutUser2Input = {
+    create?: XOR<InboxCreateWithoutUser2Input, InboxUncheckedCreateWithoutUser2Input> | InboxCreateWithoutUser2Input[] | InboxUncheckedCreateWithoutUser2Input[]
+    connectOrCreate?: InboxCreateOrConnectWithoutUser2Input | InboxCreateOrConnectWithoutUser2Input[]
+    createMany?: InboxCreateManyUser2InputEnvelope
     connect?: InboxWhereUniqueInput | InboxWhereUniqueInput[]
   }
 
@@ -15922,17 +16108,31 @@ export namespace Prisma {
     deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
   }
 
-  export type InboxUpdateManyWithoutUserNestedInput = {
-    create?: XOR<InboxCreateWithoutUserInput, InboxUncheckedCreateWithoutUserInput> | InboxCreateWithoutUserInput[] | InboxUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: InboxCreateOrConnectWithoutUserInput | InboxCreateOrConnectWithoutUserInput[]
-    upsert?: InboxUpsertWithWhereUniqueWithoutUserInput | InboxUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: InboxCreateManyUserInputEnvelope
+  export type InboxUpdateManyWithoutUser1NestedInput = {
+    create?: XOR<InboxCreateWithoutUser1Input, InboxUncheckedCreateWithoutUser1Input> | InboxCreateWithoutUser1Input[] | InboxUncheckedCreateWithoutUser1Input[]
+    connectOrCreate?: InboxCreateOrConnectWithoutUser1Input | InboxCreateOrConnectWithoutUser1Input[]
+    upsert?: InboxUpsertWithWhereUniqueWithoutUser1Input | InboxUpsertWithWhereUniqueWithoutUser1Input[]
+    createMany?: InboxCreateManyUser1InputEnvelope
     set?: InboxWhereUniqueInput | InboxWhereUniqueInput[]
     disconnect?: InboxWhereUniqueInput | InboxWhereUniqueInput[]
     delete?: InboxWhereUniqueInput | InboxWhereUniqueInput[]
     connect?: InboxWhereUniqueInput | InboxWhereUniqueInput[]
-    update?: InboxUpdateWithWhereUniqueWithoutUserInput | InboxUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: InboxUpdateManyWithWhereWithoutUserInput | InboxUpdateManyWithWhereWithoutUserInput[]
+    update?: InboxUpdateWithWhereUniqueWithoutUser1Input | InboxUpdateWithWhereUniqueWithoutUser1Input[]
+    updateMany?: InboxUpdateManyWithWhereWithoutUser1Input | InboxUpdateManyWithWhereWithoutUser1Input[]
+    deleteMany?: InboxScalarWhereInput | InboxScalarWhereInput[]
+  }
+
+  export type InboxUpdateManyWithoutUser2NestedInput = {
+    create?: XOR<InboxCreateWithoutUser2Input, InboxUncheckedCreateWithoutUser2Input> | InboxCreateWithoutUser2Input[] | InboxUncheckedCreateWithoutUser2Input[]
+    connectOrCreate?: InboxCreateOrConnectWithoutUser2Input | InboxCreateOrConnectWithoutUser2Input[]
+    upsert?: InboxUpsertWithWhereUniqueWithoutUser2Input | InboxUpsertWithWhereUniqueWithoutUser2Input[]
+    createMany?: InboxCreateManyUser2InputEnvelope
+    set?: InboxWhereUniqueInput | InboxWhereUniqueInput[]
+    disconnect?: InboxWhereUniqueInput | InboxWhereUniqueInput[]
+    delete?: InboxWhereUniqueInput | InboxWhereUniqueInput[]
+    connect?: InboxWhereUniqueInput | InboxWhereUniqueInput[]
+    update?: InboxUpdateWithWhereUniqueWithoutUser2Input | InboxUpdateWithWhereUniqueWithoutUser2Input[]
+    updateMany?: InboxUpdateManyWithWhereWithoutUser2Input | InboxUpdateManyWithWhereWithoutUser2Input[]
     deleteMany?: InboxScalarWhereInput | InboxScalarWhereInput[]
   }
 
@@ -16020,17 +16220,31 @@ export namespace Prisma {
     deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
   }
 
-  export type InboxUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<InboxCreateWithoutUserInput, InboxUncheckedCreateWithoutUserInput> | InboxCreateWithoutUserInput[] | InboxUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: InboxCreateOrConnectWithoutUserInput | InboxCreateOrConnectWithoutUserInput[]
-    upsert?: InboxUpsertWithWhereUniqueWithoutUserInput | InboxUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: InboxCreateManyUserInputEnvelope
+  export type InboxUncheckedUpdateManyWithoutUser1NestedInput = {
+    create?: XOR<InboxCreateWithoutUser1Input, InboxUncheckedCreateWithoutUser1Input> | InboxCreateWithoutUser1Input[] | InboxUncheckedCreateWithoutUser1Input[]
+    connectOrCreate?: InboxCreateOrConnectWithoutUser1Input | InboxCreateOrConnectWithoutUser1Input[]
+    upsert?: InboxUpsertWithWhereUniqueWithoutUser1Input | InboxUpsertWithWhereUniqueWithoutUser1Input[]
+    createMany?: InboxCreateManyUser1InputEnvelope
     set?: InboxWhereUniqueInput | InboxWhereUniqueInput[]
     disconnect?: InboxWhereUniqueInput | InboxWhereUniqueInput[]
     delete?: InboxWhereUniqueInput | InboxWhereUniqueInput[]
     connect?: InboxWhereUniqueInput | InboxWhereUniqueInput[]
-    update?: InboxUpdateWithWhereUniqueWithoutUserInput | InboxUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: InboxUpdateManyWithWhereWithoutUserInput | InboxUpdateManyWithWhereWithoutUserInput[]
+    update?: InboxUpdateWithWhereUniqueWithoutUser1Input | InboxUpdateWithWhereUniqueWithoutUser1Input[]
+    updateMany?: InboxUpdateManyWithWhereWithoutUser1Input | InboxUpdateManyWithWhereWithoutUser1Input[]
+    deleteMany?: InboxScalarWhereInput | InboxScalarWhereInput[]
+  }
+
+  export type InboxUncheckedUpdateManyWithoutUser2NestedInput = {
+    create?: XOR<InboxCreateWithoutUser2Input, InboxUncheckedCreateWithoutUser2Input> | InboxCreateWithoutUser2Input[] | InboxUncheckedCreateWithoutUser2Input[]
+    connectOrCreate?: InboxCreateOrConnectWithoutUser2Input | InboxCreateOrConnectWithoutUser2Input[]
+    upsert?: InboxUpsertWithWhereUniqueWithoutUser2Input | InboxUpsertWithWhereUniqueWithoutUser2Input[]
+    createMany?: InboxCreateManyUser2InputEnvelope
+    set?: InboxWhereUniqueInput | InboxWhereUniqueInput[]
+    disconnect?: InboxWhereUniqueInput | InboxWhereUniqueInput[]
+    delete?: InboxWhereUniqueInput | InboxWhereUniqueInput[]
+    connect?: InboxWhereUniqueInput | InboxWhereUniqueInput[]
+    update?: InboxUpdateWithWhereUniqueWithoutUser2Input | InboxUpdateWithWhereUniqueWithoutUser2Input[]
+    updateMany?: InboxUpdateManyWithWhereWithoutUser2Input | InboxUpdateManyWithWhereWithoutUser2Input[]
     deleteMany?: InboxScalarWhereInput | InboxScalarWhereInput[]
   }
 
@@ -16298,6 +16512,12 @@ export namespace Prisma {
     update?: XOR<XOR<BussinessUpdateToOneWithWhereWithoutReviewsInput, BussinessUpdateWithoutReviewsInput>, BussinessUncheckedUpdateWithoutReviewsInput>
   }
 
+  export type InboxCreateNestedOneWithoutMessagesInput = {
+    create?: XOR<InboxCreateWithoutMessagesInput, InboxUncheckedCreateWithoutMessagesInput>
+    connectOrCreate?: InboxCreateOrConnectWithoutMessagesInput
+    connect?: InboxWhereUniqueInput
+  }
+
   export type ProfileCreateNestedOneWithoutSentMessagesInput = {
     create?: XOR<ProfileCreateWithoutSentMessagesInput, ProfileUncheckedCreateWithoutSentMessagesInput>
     connectOrCreate?: ProfileCreateOrConnectWithoutSentMessagesInput
@@ -16308,6 +16528,14 @@ export namespace Prisma {
     create?: XOR<ProfileCreateWithoutReceivedMessagesInput, ProfileUncheckedCreateWithoutReceivedMessagesInput>
     connectOrCreate?: ProfileCreateOrConnectWithoutReceivedMessagesInput
     connect?: ProfileWhereUniqueInput
+  }
+
+  export type InboxUpdateOneRequiredWithoutMessagesNestedInput = {
+    create?: XOR<InboxCreateWithoutMessagesInput, InboxUncheckedCreateWithoutMessagesInput>
+    connectOrCreate?: InboxCreateOrConnectWithoutMessagesInput
+    upsert?: InboxUpsertWithoutMessagesInput
+    connect?: InboxWhereUniqueInput
+    update?: XOR<XOR<InboxUpdateToOneWithWhereWithoutMessagesInput, InboxUpdateWithoutMessagesInput>, InboxUncheckedUpdateWithoutMessagesInput>
   }
 
   export type ProfileUpdateOneRequiredWithoutSentMessagesNestedInput = {
@@ -16326,18 +16554,74 @@ export namespace Prisma {
     update?: XOR<XOR<ProfileUpdateToOneWithWhereWithoutReceivedMessagesInput, ProfileUpdateWithoutReceivedMessagesInput>, ProfileUncheckedUpdateWithoutReceivedMessagesInput>
   }
 
-  export type ProfileCreateNestedOneWithoutInboxesInput = {
-    create?: XOR<ProfileCreateWithoutInboxesInput, ProfileUncheckedCreateWithoutInboxesInput>
-    connectOrCreate?: ProfileCreateOrConnectWithoutInboxesInput
+  export type MessageCreateNestedManyWithoutInboxInput = {
+    create?: XOR<MessageCreateWithoutInboxInput, MessageUncheckedCreateWithoutInboxInput> | MessageCreateWithoutInboxInput[] | MessageUncheckedCreateWithoutInboxInput[]
+    connectOrCreate?: MessageCreateOrConnectWithoutInboxInput | MessageCreateOrConnectWithoutInboxInput[]
+    createMany?: MessageCreateManyInboxInputEnvelope
+    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+  }
+
+  export type ProfileCreateNestedOneWithoutInboxesAsUser1Input = {
+    create?: XOR<ProfileCreateWithoutInboxesAsUser1Input, ProfileUncheckedCreateWithoutInboxesAsUser1Input>
+    connectOrCreate?: ProfileCreateOrConnectWithoutInboxesAsUser1Input
     connect?: ProfileWhereUniqueInput
   }
 
-  export type ProfileUpdateOneRequiredWithoutInboxesNestedInput = {
-    create?: XOR<ProfileCreateWithoutInboxesInput, ProfileUncheckedCreateWithoutInboxesInput>
-    connectOrCreate?: ProfileCreateOrConnectWithoutInboxesInput
-    upsert?: ProfileUpsertWithoutInboxesInput
+  export type ProfileCreateNestedOneWithoutInboxesAsUser2Input = {
+    create?: XOR<ProfileCreateWithoutInboxesAsUser2Input, ProfileUncheckedCreateWithoutInboxesAsUser2Input>
+    connectOrCreate?: ProfileCreateOrConnectWithoutInboxesAsUser2Input
     connect?: ProfileWhereUniqueInput
-    update?: XOR<XOR<ProfileUpdateToOneWithWhereWithoutInboxesInput, ProfileUpdateWithoutInboxesInput>, ProfileUncheckedUpdateWithoutInboxesInput>
+  }
+
+  export type MessageUncheckedCreateNestedManyWithoutInboxInput = {
+    create?: XOR<MessageCreateWithoutInboxInput, MessageUncheckedCreateWithoutInboxInput> | MessageCreateWithoutInboxInput[] | MessageUncheckedCreateWithoutInboxInput[]
+    connectOrCreate?: MessageCreateOrConnectWithoutInboxInput | MessageCreateOrConnectWithoutInboxInput[]
+    createMany?: MessageCreateManyInboxInputEnvelope
+    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+  }
+
+  export type MessageUpdateManyWithoutInboxNestedInput = {
+    create?: XOR<MessageCreateWithoutInboxInput, MessageUncheckedCreateWithoutInboxInput> | MessageCreateWithoutInboxInput[] | MessageUncheckedCreateWithoutInboxInput[]
+    connectOrCreate?: MessageCreateOrConnectWithoutInboxInput | MessageCreateOrConnectWithoutInboxInput[]
+    upsert?: MessageUpsertWithWhereUniqueWithoutInboxInput | MessageUpsertWithWhereUniqueWithoutInboxInput[]
+    createMany?: MessageCreateManyInboxInputEnvelope
+    set?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    disconnect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    delete?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    update?: MessageUpdateWithWhereUniqueWithoutInboxInput | MessageUpdateWithWhereUniqueWithoutInboxInput[]
+    updateMany?: MessageUpdateManyWithWhereWithoutInboxInput | MessageUpdateManyWithWhereWithoutInboxInput[]
+    deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
+  }
+
+  export type ProfileUpdateOneRequiredWithoutInboxesAsUser1NestedInput = {
+    create?: XOR<ProfileCreateWithoutInboxesAsUser1Input, ProfileUncheckedCreateWithoutInboxesAsUser1Input>
+    connectOrCreate?: ProfileCreateOrConnectWithoutInboxesAsUser1Input
+    upsert?: ProfileUpsertWithoutInboxesAsUser1Input
+    connect?: ProfileWhereUniqueInput
+    update?: XOR<XOR<ProfileUpdateToOneWithWhereWithoutInboxesAsUser1Input, ProfileUpdateWithoutInboxesAsUser1Input>, ProfileUncheckedUpdateWithoutInboxesAsUser1Input>
+  }
+
+  export type ProfileUpdateOneRequiredWithoutInboxesAsUser2NestedInput = {
+    create?: XOR<ProfileCreateWithoutInboxesAsUser2Input, ProfileUncheckedCreateWithoutInboxesAsUser2Input>
+    connectOrCreate?: ProfileCreateOrConnectWithoutInboxesAsUser2Input
+    upsert?: ProfileUpsertWithoutInboxesAsUser2Input
+    connect?: ProfileWhereUniqueInput
+    update?: XOR<XOR<ProfileUpdateToOneWithWhereWithoutInboxesAsUser2Input, ProfileUpdateWithoutInboxesAsUser2Input>, ProfileUncheckedUpdateWithoutInboxesAsUser2Input>
+  }
+
+  export type MessageUncheckedUpdateManyWithoutInboxNestedInput = {
+    create?: XOR<MessageCreateWithoutInboxInput, MessageUncheckedCreateWithoutInboxInput> | MessageCreateWithoutInboxInput[] | MessageUncheckedCreateWithoutInboxInput[]
+    connectOrCreate?: MessageCreateOrConnectWithoutInboxInput | MessageCreateOrConnectWithoutInboxInput[]
+    upsert?: MessageUpsertWithWhereUniqueWithoutInboxInput | MessageUpsertWithWhereUniqueWithoutInboxInput[]
+    createMany?: MessageCreateManyInboxInputEnvelope
+    set?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    disconnect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    delete?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    update?: MessageUpdateWithWhereUniqueWithoutInboxInput | MessageUpdateWithWhereUniqueWithoutInboxInput[]
+    updateMany?: MessageUpdateManyWithWhereWithoutInboxInput | MessageUpdateManyWithWhereWithoutInboxInput[]
+    deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -16629,11 +16913,13 @@ export namespace Prisma {
     content: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    inbox: InboxCreateNestedOneWithoutMessagesInput
     receiver: ProfileCreateNestedOneWithoutReceivedMessagesInput
   }
 
   export type MessageUncheckedCreateWithoutSenderInput = {
     id?: string
+    inboxId: string
     receiverId: string
     content: string
     createdAt?: Date | string
@@ -16655,11 +16941,13 @@ export namespace Prisma {
     content: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    inbox: InboxCreateNestedOneWithoutMessagesInput
     sender: ProfileCreateNestedOneWithoutSentMessagesInput
   }
 
   export type MessageUncheckedCreateWithoutReceiverInput = {
     id?: string
+    inboxId: string
     senderId: string
     content: string
     createdAt?: Date | string
@@ -16676,27 +16964,55 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type InboxCreateWithoutUserInput = {
+  export type InboxCreateWithoutUser1Input = {
     id?: string
-    subject: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    messages?: MessageCreateNestedManyWithoutInboxInput
+    user2: ProfileCreateNestedOneWithoutInboxesAsUser2Input
   }
 
-  export type InboxUncheckedCreateWithoutUserInput = {
+  export type InboxUncheckedCreateWithoutUser1Input = {
     id?: string
-    subject: string
+    participant2: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    messages?: MessageUncheckedCreateNestedManyWithoutInboxInput
   }
 
-  export type InboxCreateOrConnectWithoutUserInput = {
+  export type InboxCreateOrConnectWithoutUser1Input = {
     where: InboxWhereUniqueInput
-    create: XOR<InboxCreateWithoutUserInput, InboxUncheckedCreateWithoutUserInput>
+    create: XOR<InboxCreateWithoutUser1Input, InboxUncheckedCreateWithoutUser1Input>
   }
 
-  export type InboxCreateManyUserInputEnvelope = {
-    data: InboxCreateManyUserInput | InboxCreateManyUserInput[]
+  export type InboxCreateManyUser1InputEnvelope = {
+    data: InboxCreateManyUser1Input | InboxCreateManyUser1Input[]
+    skipDuplicates?: boolean
+  }
+
+  export type InboxCreateWithoutUser2Input = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    messages?: MessageCreateNestedManyWithoutInboxInput
+    user1: ProfileCreateNestedOneWithoutInboxesAsUser1Input
+  }
+
+  export type InboxUncheckedCreateWithoutUser2Input = {
+    id?: string
+    participant1: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    messages?: MessageUncheckedCreateNestedManyWithoutInboxInput
+  }
+
+  export type InboxCreateOrConnectWithoutUser2Input = {
+    where: InboxWhereUniqueInput
+    create: XOR<InboxCreateWithoutUser2Input, InboxUncheckedCreateWithoutUser2Input>
+  }
+
+  export type InboxCreateManyUser2InputEnvelope = {
+    data: InboxCreateManyUser2Input | InboxCreateManyUser2Input[]
     skipDuplicates?: boolean
   }
 
@@ -16862,6 +17178,7 @@ export namespace Prisma {
     OR?: MessageScalarWhereInput[]
     NOT?: MessageScalarWhereInput | MessageScalarWhereInput[]
     id?: StringFilter<"Message"> | string
+    inboxId?: StringFilter<"Message"> | string
     senderId?: StringFilter<"Message"> | string
     receiverId?: StringFilter<"Message"> | string
     content?: StringFilter<"Message"> | string
@@ -16885,20 +17202,20 @@ export namespace Prisma {
     data: XOR<MessageUpdateManyMutationInput, MessageUncheckedUpdateManyWithoutReceiverInput>
   }
 
-  export type InboxUpsertWithWhereUniqueWithoutUserInput = {
+  export type InboxUpsertWithWhereUniqueWithoutUser1Input = {
     where: InboxWhereUniqueInput
-    update: XOR<InboxUpdateWithoutUserInput, InboxUncheckedUpdateWithoutUserInput>
-    create: XOR<InboxCreateWithoutUserInput, InboxUncheckedCreateWithoutUserInput>
+    update: XOR<InboxUpdateWithoutUser1Input, InboxUncheckedUpdateWithoutUser1Input>
+    create: XOR<InboxCreateWithoutUser1Input, InboxUncheckedCreateWithoutUser1Input>
   }
 
-  export type InboxUpdateWithWhereUniqueWithoutUserInput = {
+  export type InboxUpdateWithWhereUniqueWithoutUser1Input = {
     where: InboxWhereUniqueInput
-    data: XOR<InboxUpdateWithoutUserInput, InboxUncheckedUpdateWithoutUserInput>
+    data: XOR<InboxUpdateWithoutUser1Input, InboxUncheckedUpdateWithoutUser1Input>
   }
 
-  export type InboxUpdateManyWithWhereWithoutUserInput = {
+  export type InboxUpdateManyWithWhereWithoutUser1Input = {
     where: InboxScalarWhereInput
-    data: XOR<InboxUpdateManyMutationInput, InboxUncheckedUpdateManyWithoutUserInput>
+    data: XOR<InboxUpdateManyMutationInput, InboxUncheckedUpdateManyWithoutUser1Input>
   }
 
   export type InboxScalarWhereInput = {
@@ -16906,10 +17223,26 @@ export namespace Prisma {
     OR?: InboxScalarWhereInput[]
     NOT?: InboxScalarWhereInput | InboxScalarWhereInput[]
     id?: StringFilter<"Inbox"> | string
-    userId?: StringFilter<"Inbox"> | string
-    subject?: StringFilter<"Inbox"> | string
+    participant1?: StringFilter<"Inbox"> | string
+    participant2?: StringFilter<"Inbox"> | string
     createdAt?: DateTimeFilter<"Inbox"> | Date | string
     updatedAt?: DateTimeFilter<"Inbox"> | Date | string
+  }
+
+  export type InboxUpsertWithWhereUniqueWithoutUser2Input = {
+    where: InboxWhereUniqueInput
+    update: XOR<InboxUpdateWithoutUser2Input, InboxUncheckedUpdateWithoutUser2Input>
+    create: XOR<InboxCreateWithoutUser2Input, InboxUncheckedCreateWithoutUser2Input>
+  }
+
+  export type InboxUpdateWithWhereUniqueWithoutUser2Input = {
+    where: InboxWhereUniqueInput
+    data: XOR<InboxUpdateWithoutUser2Input, InboxUncheckedUpdateWithoutUser2Input>
+  }
+
+  export type InboxUpdateManyWithWhereWithoutUser2Input = {
+    where: InboxScalarWhereInput
+    data: XOR<InboxUpdateManyMutationInput, InboxUncheckedUpdateManyWithoutUser2Input>
   }
 
   export type BussinessUpsertWithWhereUniqueWithoutProfileInput = {
@@ -16995,7 +17328,8 @@ export namespace Prisma {
     sessions?: SessionCreateNestedManyWithoutUserInput
     sentMessages?: MessageCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
-    inboxes?: InboxCreateNestedManyWithoutUserInput
+    inboxesAsUser1?: InboxCreateNestedManyWithoutUser1Input
+    inboxesAsUser2?: InboxCreateNestedManyWithoutUser2Input
     bussinesses?: BussinessCreateNestedManyWithoutProfileInput
     reviews?: ReviewCreateNestedManyWithoutProfileInput
   }
@@ -17019,7 +17353,8 @@ export namespace Prisma {
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     sentMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
-    inboxes?: InboxUncheckedCreateNestedManyWithoutUserInput
+    inboxesAsUser1?: InboxUncheckedCreateNestedManyWithoutUser1Input
+    inboxesAsUser2?: InboxUncheckedCreateNestedManyWithoutUser2Input
     bussinesses?: BussinessUncheckedCreateNestedManyWithoutProfileInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutProfileInput
   }
@@ -17059,7 +17394,8 @@ export namespace Prisma {
     sessions?: SessionUpdateManyWithoutUserNestedInput
     sentMessages?: MessageUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
-    inboxes?: InboxUpdateManyWithoutUserNestedInput
+    inboxesAsUser1?: InboxUpdateManyWithoutUser1NestedInput
+    inboxesAsUser2?: InboxUpdateManyWithoutUser2NestedInput
     bussinesses?: BussinessUpdateManyWithoutProfileNestedInput
     reviews?: ReviewUpdateManyWithoutProfileNestedInput
   }
@@ -17083,7 +17419,8 @@ export namespace Prisma {
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     sentMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
-    inboxes?: InboxUncheckedUpdateManyWithoutUserNestedInput
+    inboxesAsUser1?: InboxUncheckedUpdateManyWithoutUser1NestedInput
+    inboxesAsUser2?: InboxUncheckedUpdateManyWithoutUser2NestedInput
     bussinesses?: BussinessUncheckedUpdateManyWithoutProfileNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutProfileNestedInput
   }
@@ -17107,7 +17444,8 @@ export namespace Prisma {
     accounts?: AccountCreateNestedManyWithoutUserInput
     sentMessages?: MessageCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
-    inboxes?: InboxCreateNestedManyWithoutUserInput
+    inboxesAsUser1?: InboxCreateNestedManyWithoutUser1Input
+    inboxesAsUser2?: InboxCreateNestedManyWithoutUser2Input
     bussinesses?: BussinessCreateNestedManyWithoutProfileInput
     reviews?: ReviewCreateNestedManyWithoutProfileInput
   }
@@ -17131,7 +17469,8 @@ export namespace Prisma {
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sentMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
-    inboxes?: InboxUncheckedCreateNestedManyWithoutUserInput
+    inboxesAsUser1?: InboxUncheckedCreateNestedManyWithoutUser1Input
+    inboxesAsUser2?: InboxUncheckedCreateNestedManyWithoutUser2Input
     bussinesses?: BussinessUncheckedCreateNestedManyWithoutProfileInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutProfileInput
   }
@@ -17171,7 +17510,8 @@ export namespace Prisma {
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sentMessages?: MessageUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
-    inboxes?: InboxUpdateManyWithoutUserNestedInput
+    inboxesAsUser1?: InboxUpdateManyWithoutUser1NestedInput
+    inboxesAsUser2?: InboxUpdateManyWithoutUser2NestedInput
     bussinesses?: BussinessUpdateManyWithoutProfileNestedInput
     reviews?: ReviewUpdateManyWithoutProfileNestedInput
   }
@@ -17195,7 +17535,8 @@ export namespace Prisma {
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sentMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
-    inboxes?: InboxUncheckedUpdateManyWithoutUserNestedInput
+    inboxesAsUser1?: InboxUncheckedUpdateManyWithoutUser1NestedInput
+    inboxesAsUser2?: InboxUncheckedUpdateManyWithoutUser2NestedInput
     bussinesses?: BussinessUncheckedUpdateManyWithoutProfileNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutProfileNestedInput
   }
@@ -17304,7 +17645,8 @@ export namespace Prisma {
     sessions?: SessionCreateNestedManyWithoutUserInput
     sentMessages?: MessageCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
-    inboxes?: InboxCreateNestedManyWithoutUserInput
+    inboxesAsUser1?: InboxCreateNestedManyWithoutUser1Input
+    inboxesAsUser2?: InboxCreateNestedManyWithoutUser2Input
     reviews?: ReviewCreateNestedManyWithoutProfileInput
   }
 
@@ -17328,7 +17670,8 @@ export namespace Prisma {
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     sentMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
-    inboxes?: InboxUncheckedCreateNestedManyWithoutUserInput
+    inboxesAsUser1?: InboxUncheckedCreateNestedManyWithoutUser1Input
+    inboxesAsUser2?: InboxUncheckedCreateNestedManyWithoutUser2Input
     reviews?: ReviewUncheckedCreateNestedManyWithoutProfileInput
   }
 
@@ -17440,7 +17783,8 @@ export namespace Prisma {
     sessions?: SessionUpdateManyWithoutUserNestedInput
     sentMessages?: MessageUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
-    inboxes?: InboxUpdateManyWithoutUserNestedInput
+    inboxesAsUser1?: InboxUpdateManyWithoutUser1NestedInput
+    inboxesAsUser2?: InboxUpdateManyWithoutUser2NestedInput
     reviews?: ReviewUpdateManyWithoutProfileNestedInput
   }
 
@@ -17464,7 +17808,8 @@ export namespace Prisma {
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     sentMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
-    inboxes?: InboxUncheckedUpdateManyWithoutUserNestedInput
+    inboxesAsUser1?: InboxUncheckedUpdateManyWithoutUser1NestedInput
+    inboxesAsUser2?: InboxUncheckedUpdateManyWithoutUser2NestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutProfileNestedInput
   }
 
@@ -17648,7 +17993,8 @@ export namespace Prisma {
     sessions?: SessionCreateNestedManyWithoutUserInput
     sentMessages?: MessageCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
-    inboxes?: InboxCreateNestedManyWithoutUserInput
+    inboxesAsUser1?: InboxCreateNestedManyWithoutUser1Input
+    inboxesAsUser2?: InboxCreateNestedManyWithoutUser2Input
     bussinesses?: BussinessCreateNestedManyWithoutProfileInput
   }
 
@@ -17672,7 +18018,8 @@ export namespace Prisma {
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     sentMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
-    inboxes?: InboxUncheckedCreateNestedManyWithoutUserInput
+    inboxesAsUser1?: InboxUncheckedCreateNestedManyWithoutUser1Input
+    inboxesAsUser2?: InboxUncheckedCreateNestedManyWithoutUser2Input
     bussinesses?: BussinessUncheckedCreateNestedManyWithoutProfileInput
   }
 
@@ -17749,7 +18096,8 @@ export namespace Prisma {
     sessions?: SessionUpdateManyWithoutUserNestedInput
     sentMessages?: MessageUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
-    inboxes?: InboxUpdateManyWithoutUserNestedInput
+    inboxesAsUser1?: InboxUpdateManyWithoutUser1NestedInput
+    inboxesAsUser2?: InboxUpdateManyWithoutUser2NestedInput
     bussinesses?: BussinessUpdateManyWithoutProfileNestedInput
   }
 
@@ -17773,7 +18121,8 @@ export namespace Prisma {
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     sentMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
-    inboxes?: InboxUncheckedUpdateManyWithoutUserNestedInput
+    inboxesAsUser1?: InboxUncheckedUpdateManyWithoutUser1NestedInput
+    inboxesAsUser2?: InboxUncheckedUpdateManyWithoutUser2NestedInput
     bussinesses?: BussinessUncheckedUpdateManyWithoutProfileNestedInput
   }
 
@@ -17820,6 +18169,27 @@ export namespace Prisma {
     portfolios?: PortfolioUncheckedUpdateManyWithoutBussinessNestedInput
   }
 
+  export type InboxCreateWithoutMessagesInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user1: ProfileCreateNestedOneWithoutInboxesAsUser1Input
+    user2: ProfileCreateNestedOneWithoutInboxesAsUser2Input
+  }
+
+  export type InboxUncheckedCreateWithoutMessagesInput = {
+    id?: string
+    participant1: string
+    participant2: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InboxCreateOrConnectWithoutMessagesInput = {
+    where: InboxWhereUniqueInput
+    create: XOR<InboxCreateWithoutMessagesInput, InboxUncheckedCreateWithoutMessagesInput>
+  }
+
   export type ProfileCreateWithoutSentMessagesInput = {
     id?: string
     fullName?: string | null
@@ -17839,7 +18209,8 @@ export namespace Prisma {
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
-    inboxes?: InboxCreateNestedManyWithoutUserInput
+    inboxesAsUser1?: InboxCreateNestedManyWithoutUser1Input
+    inboxesAsUser2?: InboxCreateNestedManyWithoutUser2Input
     bussinesses?: BussinessCreateNestedManyWithoutProfileInput
     reviews?: ReviewCreateNestedManyWithoutProfileInput
   }
@@ -17863,7 +18234,8 @@ export namespace Prisma {
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
-    inboxes?: InboxUncheckedCreateNestedManyWithoutUserInput
+    inboxesAsUser1?: InboxUncheckedCreateNestedManyWithoutUser1Input
+    inboxesAsUser2?: InboxUncheckedCreateNestedManyWithoutUser2Input
     bussinesses?: BussinessUncheckedCreateNestedManyWithoutProfileInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutProfileInput
   }
@@ -17892,7 +18264,8 @@ export namespace Prisma {
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     sentMessages?: MessageCreateNestedManyWithoutSenderInput
-    inboxes?: InboxCreateNestedManyWithoutUserInput
+    inboxesAsUser1?: InboxCreateNestedManyWithoutUser1Input
+    inboxesAsUser2?: InboxCreateNestedManyWithoutUser2Input
     bussinesses?: BussinessCreateNestedManyWithoutProfileInput
     reviews?: ReviewCreateNestedManyWithoutProfileInput
   }
@@ -17916,7 +18289,8 @@ export namespace Prisma {
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     sentMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
-    inboxes?: InboxUncheckedCreateNestedManyWithoutUserInput
+    inboxesAsUser1?: InboxUncheckedCreateNestedManyWithoutUser1Input
+    inboxesAsUser2?: InboxUncheckedCreateNestedManyWithoutUser2Input
     bussinesses?: BussinessUncheckedCreateNestedManyWithoutProfileInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutProfileInput
   }
@@ -17924,6 +18298,33 @@ export namespace Prisma {
   export type ProfileCreateOrConnectWithoutReceivedMessagesInput = {
     where: ProfileWhereUniqueInput
     create: XOR<ProfileCreateWithoutReceivedMessagesInput, ProfileUncheckedCreateWithoutReceivedMessagesInput>
+  }
+
+  export type InboxUpsertWithoutMessagesInput = {
+    update: XOR<InboxUpdateWithoutMessagesInput, InboxUncheckedUpdateWithoutMessagesInput>
+    create: XOR<InboxCreateWithoutMessagesInput, InboxUncheckedCreateWithoutMessagesInput>
+    where?: InboxWhereInput
+  }
+
+  export type InboxUpdateToOneWithWhereWithoutMessagesInput = {
+    where?: InboxWhereInput
+    data: XOR<InboxUpdateWithoutMessagesInput, InboxUncheckedUpdateWithoutMessagesInput>
+  }
+
+  export type InboxUpdateWithoutMessagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user1?: ProfileUpdateOneRequiredWithoutInboxesAsUser1NestedInput
+    user2?: ProfileUpdateOneRequiredWithoutInboxesAsUser2NestedInput
+  }
+
+  export type InboxUncheckedUpdateWithoutMessagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    participant1?: StringFieldUpdateOperationsInput | string
+    participant2?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProfileUpsertWithoutSentMessagesInput = {
@@ -17956,7 +18357,8 @@ export namespace Prisma {
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
-    inboxes?: InboxUpdateManyWithoutUserNestedInput
+    inboxesAsUser1?: InboxUpdateManyWithoutUser1NestedInput
+    inboxesAsUser2?: InboxUpdateManyWithoutUser2NestedInput
     bussinesses?: BussinessUpdateManyWithoutProfileNestedInput
     reviews?: ReviewUpdateManyWithoutProfileNestedInput
   }
@@ -17980,7 +18382,8 @@ export namespace Prisma {
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
-    inboxes?: InboxUncheckedUpdateManyWithoutUserNestedInput
+    inboxesAsUser1?: InboxUncheckedUpdateManyWithoutUser1NestedInput
+    inboxesAsUser2?: InboxUncheckedUpdateManyWithoutUser2NestedInput
     bussinesses?: BussinessUncheckedUpdateManyWithoutProfileNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutProfileNestedInput
   }
@@ -18015,7 +18418,8 @@ export namespace Prisma {
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     sentMessages?: MessageUpdateManyWithoutSenderNestedInput
-    inboxes?: InboxUpdateManyWithoutUserNestedInput
+    inboxesAsUser1?: InboxUpdateManyWithoutUser1NestedInput
+    inboxesAsUser2?: InboxUpdateManyWithoutUser2NestedInput
     bussinesses?: BussinessUpdateManyWithoutProfileNestedInput
     reviews?: ReviewUpdateManyWithoutProfileNestedInput
   }
@@ -18039,12 +18443,41 @@ export namespace Prisma {
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     sentMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
-    inboxes?: InboxUncheckedUpdateManyWithoutUserNestedInput
+    inboxesAsUser1?: InboxUncheckedUpdateManyWithoutUser1NestedInput
+    inboxesAsUser2?: InboxUncheckedUpdateManyWithoutUser2NestedInput
     bussinesses?: BussinessUncheckedUpdateManyWithoutProfileNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutProfileNestedInput
   }
 
-  export type ProfileCreateWithoutInboxesInput = {
+  export type MessageCreateWithoutInboxInput = {
+    id?: string
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    sender: ProfileCreateNestedOneWithoutSentMessagesInput
+    receiver: ProfileCreateNestedOneWithoutReceivedMessagesInput
+  }
+
+  export type MessageUncheckedCreateWithoutInboxInput = {
+    id?: string
+    senderId: string
+    receiverId: string
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MessageCreateOrConnectWithoutInboxInput = {
+    where: MessageWhereUniqueInput
+    create: XOR<MessageCreateWithoutInboxInput, MessageUncheckedCreateWithoutInboxInput>
+  }
+
+  export type MessageCreateManyInboxInputEnvelope = {
+    data: MessageCreateManyInboxInput | MessageCreateManyInboxInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProfileCreateWithoutInboxesAsUser1Input = {
     id?: string
     fullName?: string | null
     avatarUrl?: string | null
@@ -18064,11 +18497,12 @@ export namespace Prisma {
     sessions?: SessionCreateNestedManyWithoutUserInput
     sentMessages?: MessageCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
+    inboxesAsUser2?: InboxCreateNestedManyWithoutUser2Input
     bussinesses?: BussinessCreateNestedManyWithoutProfileInput
     reviews?: ReviewCreateNestedManyWithoutProfileInput
   }
 
-  export type ProfileUncheckedCreateWithoutInboxesInput = {
+  export type ProfileUncheckedCreateWithoutInboxesAsUser1Input = {
     id?: string
     fullName?: string | null
     avatarUrl?: string | null
@@ -18088,27 +18522,99 @@ export namespace Prisma {
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     sentMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
+    inboxesAsUser2?: InboxUncheckedCreateNestedManyWithoutUser2Input
     bussinesses?: BussinessUncheckedCreateNestedManyWithoutProfileInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutProfileInput
   }
 
-  export type ProfileCreateOrConnectWithoutInboxesInput = {
+  export type ProfileCreateOrConnectWithoutInboxesAsUser1Input = {
     where: ProfileWhereUniqueInput
-    create: XOR<ProfileCreateWithoutInboxesInput, ProfileUncheckedCreateWithoutInboxesInput>
+    create: XOR<ProfileCreateWithoutInboxesAsUser1Input, ProfileUncheckedCreateWithoutInboxesAsUser1Input>
   }
 
-  export type ProfileUpsertWithoutInboxesInput = {
-    update: XOR<ProfileUpdateWithoutInboxesInput, ProfileUncheckedUpdateWithoutInboxesInput>
-    create: XOR<ProfileCreateWithoutInboxesInput, ProfileUncheckedCreateWithoutInboxesInput>
+  export type ProfileCreateWithoutInboxesAsUser2Input = {
+    id?: string
+    fullName?: string | null
+    avatarUrl?: string | null
+    phone?: string | null
+    email?: string | null
+    password?: string | null
+    emailVerified?: boolean
+    role?: NullableJsonNullValueInput | InputJsonValue
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    image?: string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    sentMessages?: MessageCreateNestedManyWithoutSenderInput
+    receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
+    inboxesAsUser1?: InboxCreateNestedManyWithoutUser1Input
+    bussinesses?: BussinessCreateNestedManyWithoutProfileInput
+    reviews?: ReviewCreateNestedManyWithoutProfileInput
+  }
+
+  export type ProfileUncheckedCreateWithoutInboxesAsUser2Input = {
+    id?: string
+    fullName?: string | null
+    avatarUrl?: string | null
+    phone?: string | null
+    email?: string | null
+    password?: string | null
+    emailVerified?: boolean
+    role?: NullableJsonNullValueInput | InputJsonValue
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    image?: string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    sentMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
+    receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
+    inboxesAsUser1?: InboxUncheckedCreateNestedManyWithoutUser1Input
+    bussinesses?: BussinessUncheckedCreateNestedManyWithoutProfileInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutProfileInput
+  }
+
+  export type ProfileCreateOrConnectWithoutInboxesAsUser2Input = {
+    where: ProfileWhereUniqueInput
+    create: XOR<ProfileCreateWithoutInboxesAsUser2Input, ProfileUncheckedCreateWithoutInboxesAsUser2Input>
+  }
+
+  export type MessageUpsertWithWhereUniqueWithoutInboxInput = {
+    where: MessageWhereUniqueInput
+    update: XOR<MessageUpdateWithoutInboxInput, MessageUncheckedUpdateWithoutInboxInput>
+    create: XOR<MessageCreateWithoutInboxInput, MessageUncheckedCreateWithoutInboxInput>
+  }
+
+  export type MessageUpdateWithWhereUniqueWithoutInboxInput = {
+    where: MessageWhereUniqueInput
+    data: XOR<MessageUpdateWithoutInboxInput, MessageUncheckedUpdateWithoutInboxInput>
+  }
+
+  export type MessageUpdateManyWithWhereWithoutInboxInput = {
+    where: MessageScalarWhereInput
+    data: XOR<MessageUpdateManyMutationInput, MessageUncheckedUpdateManyWithoutInboxInput>
+  }
+
+  export type ProfileUpsertWithoutInboxesAsUser1Input = {
+    update: XOR<ProfileUpdateWithoutInboxesAsUser1Input, ProfileUncheckedUpdateWithoutInboxesAsUser1Input>
+    create: XOR<ProfileCreateWithoutInboxesAsUser1Input, ProfileUncheckedCreateWithoutInboxesAsUser1Input>
     where?: ProfileWhereInput
   }
 
-  export type ProfileUpdateToOneWithWhereWithoutInboxesInput = {
+  export type ProfileUpdateToOneWithWhereWithoutInboxesAsUser1Input = {
     where?: ProfileWhereInput
-    data: XOR<ProfileUpdateWithoutInboxesInput, ProfileUncheckedUpdateWithoutInboxesInput>
+    data: XOR<ProfileUpdateWithoutInboxesAsUser1Input, ProfileUncheckedUpdateWithoutInboxesAsUser1Input>
   }
 
-  export type ProfileUpdateWithoutInboxesInput = {
+  export type ProfileUpdateWithoutInboxesAsUser1Input = {
     id?: StringFieldUpdateOperationsInput | string
     fullName?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18128,11 +18634,12 @@ export namespace Prisma {
     sessions?: SessionUpdateManyWithoutUserNestedInput
     sentMessages?: MessageUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
+    inboxesAsUser2?: InboxUpdateManyWithoutUser2NestedInput
     bussinesses?: BussinessUpdateManyWithoutProfileNestedInput
     reviews?: ReviewUpdateManyWithoutProfileNestedInput
   }
 
-  export type ProfileUncheckedUpdateWithoutInboxesInput = {
+  export type ProfileUncheckedUpdateWithoutInboxesAsUser1Input = {
     id?: StringFieldUpdateOperationsInput | string
     fullName?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18152,6 +18659,68 @@ export namespace Prisma {
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     sentMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
+    inboxesAsUser2?: InboxUncheckedUpdateManyWithoutUser2NestedInput
+    bussinesses?: BussinessUncheckedUpdateManyWithoutProfileNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutProfileNestedInput
+  }
+
+  export type ProfileUpsertWithoutInboxesAsUser2Input = {
+    update: XOR<ProfileUpdateWithoutInboxesAsUser2Input, ProfileUncheckedUpdateWithoutInboxesAsUser2Input>
+    create: XOR<ProfileCreateWithoutInboxesAsUser2Input, ProfileUncheckedCreateWithoutInboxesAsUser2Input>
+    where?: ProfileWhereInput
+  }
+
+  export type ProfileUpdateToOneWithWhereWithoutInboxesAsUser2Input = {
+    where?: ProfileWhereInput
+    data: XOR<ProfileUpdateWithoutInboxesAsUser2Input, ProfileUncheckedUpdateWithoutInboxesAsUser2Input>
+  }
+
+  export type ProfileUpdateWithoutInboxesAsUser2Input = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    role?: NullableJsonNullValueInput | InputJsonValue
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    sentMessages?: MessageUpdateManyWithoutSenderNestedInput
+    receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
+    inboxesAsUser1?: InboxUpdateManyWithoutUser1NestedInput
+    bussinesses?: BussinessUpdateManyWithoutProfileNestedInput
+    reviews?: ReviewUpdateManyWithoutProfileNestedInput
+  }
+
+  export type ProfileUncheckedUpdateWithoutInboxesAsUser2Input = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    role?: NullableJsonNullValueInput | InputJsonValue
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    sentMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
+    receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
+    inboxesAsUser1?: InboxUncheckedUpdateManyWithoutUser1NestedInput
     bussinesses?: BussinessUncheckedUpdateManyWithoutProfileNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutProfileNestedInput
   }
@@ -18185,6 +18754,7 @@ export namespace Prisma {
 
   export type MessageCreateManySenderInput = {
     id?: string
+    inboxId: string
     receiverId: string
     content: string
     createdAt?: Date | string
@@ -18193,15 +18763,23 @@ export namespace Prisma {
 
   export type MessageCreateManyReceiverInput = {
     id?: string
+    inboxId: string
     senderId: string
     content: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type InboxCreateManyUserInput = {
+  export type InboxCreateManyUser1Input = {
     id?: string
-    subject: string
+    participant2: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InboxCreateManyUser2Input = {
+    id?: string
+    participant1: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -18316,11 +18894,13 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    inbox?: InboxUpdateOneRequiredWithoutMessagesNestedInput
     receiver?: ProfileUpdateOneRequiredWithoutReceivedMessagesNestedInput
   }
 
   export type MessageUncheckedUpdateWithoutSenderInput = {
     id?: StringFieldUpdateOperationsInput | string
+    inboxId?: StringFieldUpdateOperationsInput | string
     receiverId?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18329,6 +18909,7 @@ export namespace Prisma {
 
   export type MessageUncheckedUpdateManyWithoutSenderInput = {
     id?: StringFieldUpdateOperationsInput | string
+    inboxId?: StringFieldUpdateOperationsInput | string
     receiverId?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18340,11 +18921,13 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    inbox?: InboxUpdateOneRequiredWithoutMessagesNestedInput
     sender?: ProfileUpdateOneRequiredWithoutSentMessagesNestedInput
   }
 
   export type MessageUncheckedUpdateWithoutReceiverInput = {
     id?: StringFieldUpdateOperationsInput | string
+    inboxId?: StringFieldUpdateOperationsInput | string
     senderId?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18353,29 +18936,55 @@ export namespace Prisma {
 
   export type MessageUncheckedUpdateManyWithoutReceiverInput = {
     id?: StringFieldUpdateOperationsInput | string
+    inboxId?: StringFieldUpdateOperationsInput | string
     senderId?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type InboxUpdateWithoutUserInput = {
+  export type InboxUpdateWithoutUser1Input = {
     id?: StringFieldUpdateOperationsInput | string
-    subject?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    messages?: MessageUpdateManyWithoutInboxNestedInput
+    user2?: ProfileUpdateOneRequiredWithoutInboxesAsUser2NestedInput
+  }
+
+  export type InboxUncheckedUpdateWithoutUser1Input = {
+    id?: StringFieldUpdateOperationsInput | string
+    participant2?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    messages?: MessageUncheckedUpdateManyWithoutInboxNestedInput
+  }
+
+  export type InboxUncheckedUpdateManyWithoutUser1Input = {
+    id?: StringFieldUpdateOperationsInput | string
+    participant2?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type InboxUncheckedUpdateWithoutUserInput = {
+  export type InboxUpdateWithoutUser2Input = {
     id?: StringFieldUpdateOperationsInput | string
-    subject?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    messages?: MessageUpdateManyWithoutInboxNestedInput
+    user1?: ProfileUpdateOneRequiredWithoutInboxesAsUser1NestedInput
   }
 
-  export type InboxUncheckedUpdateManyWithoutUserInput = {
+  export type InboxUncheckedUpdateWithoutUser2Input = {
     id?: StringFieldUpdateOperationsInput | string
-    subject?: StringFieldUpdateOperationsInput | string
+    participant1?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    messages?: MessageUncheckedUpdateManyWithoutInboxNestedInput
+  }
+
+  export type InboxUncheckedUpdateManyWithoutUser2Input = {
+    id?: StringFieldUpdateOperationsInput | string
+    participant1?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -18562,6 +19171,42 @@ export namespace Prisma {
     anonymousName?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
     comment?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MessageCreateManyInboxInput = {
+    id?: string
+    senderId: string
+    receiverId: string
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MessageUpdateWithoutInboxInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sender?: ProfileUpdateOneRequiredWithoutSentMessagesNestedInput
+    receiver?: ProfileUpdateOneRequiredWithoutReceivedMessagesNestedInput
+  }
+
+  export type MessageUncheckedUpdateWithoutInboxInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    senderId?: StringFieldUpdateOperationsInput | string
+    receiverId?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MessageUncheckedUpdateManyWithoutInboxInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    senderId?: StringFieldUpdateOperationsInput | string
+    receiverId?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

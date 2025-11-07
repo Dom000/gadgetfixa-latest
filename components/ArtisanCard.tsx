@@ -111,10 +111,6 @@ const ArtisanCard = ({ artisan }: ArtisanCardProps) => {
             </div>
           ) : (
             <div className="flex space-x-2 pt-2">
-              <Button className="flex-1" variant="hero">
-                <MessageCircle className="w-4 h-4 mr-2" />
-                Contact
-              </Button>
               <Link className="w-full" href={"/artisans/" + artisan.id}>
                 <Button variant="outline" className="flex-1">
                   <Clock className="w-4 h-4 mr-2" />
