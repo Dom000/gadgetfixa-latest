@@ -75,7 +75,7 @@ function page() {
 
     setIsLoading(true);
     mutate({
-      bussinessName: data.bussinessName,
+      name: data.bussinessName,
       occupation: data.occupation,
       categories: data.categories,
       email: data.email,
