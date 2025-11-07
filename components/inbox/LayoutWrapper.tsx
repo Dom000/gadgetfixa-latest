@@ -13,7 +13,7 @@ function LayoutWrapper({
   return (
     <>
       {" "}
-      <div className="w-full flex md:hidden relative lg:w-[calc(100vw-240px)] p-1 md:p-2">
+      <div className="w-full md:hidden relative lg:w-[calc(100vw-240px)] p-1 md:p-2">
         {currentView == ChatView.INBOX ? <MessageSideBar /> : children}
       </div>{" "}
       <div className="w-full hidden md:flex  relative lg:w-[calc(100vw-240px)] p-1 md:p-2">
