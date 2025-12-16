@@ -52,6 +52,8 @@ Gadget Fixa is a marketplace platform designed to bridge the gap between custome
 
 ## Project Structure
 
+> **Note**: Some directories and files in the codebase use the spelling "bussiness" and "porfolio". These are documented as they appear in the actual codebase for accuracy.
+
 ```
 gadgetfixa-latest/
 ├── app/                      # Next.js app directory (pages and routes)
